@@ -1,6 +1,7 @@
 package com.handsome.yiqu.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
 import com.handsome.yiqu.databinding.MainFragmentVideoFlowBinding
+import com.handsome.yiqu.ui.activity.VideoActivity
 import com.handsome.yiqu.ui.adapter.VideoForegroundAdapter
 import com.handsome.yiqu.ui.viewmodel.fragment.VideoFlowViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -41,7 +43,11 @@ class VideoFlowFragment : BaseFragment() {
     private fun initRv() {
         with(mBinding.mainFragmentVideoFlowRv) {
             layoutManager = GridLayoutManager(requireContext(),3)
-            adapter = mAdapter
+            adapter = mAdapter.apply {
+                setOnClickVideo {
+                    VideoActivity.startAction(requireContext(),it)
+                }
+            }
         }
     }
 
@@ -61,15 +67,19 @@ class VideoFlowFragment : BaseFragment() {
             mViewModel.likeVideo.collectLatest {
                 if (it != null){
                     if (it.status_code == 0){
+                        Log.d("lx", "videoFlowFragment: observe $it ")
                         mAdapter.submitList(it.video_list)
                     }else{
                         toast("网络错误")
                     }
                 }
             }
+        }
+        viewLifecycleOwner.lifecycleScope.launch(myCoroutineExceptionHandler) {
             mViewModel.publishVideo.collectLatest {
                 if (it != null){
                     if (it.status_code == 0){
+                        Log.d("lx", "videoFlowFragment: observe $it ")
                         mAdapter.submitList(it.video_list)
                     }else{
                         toast("网络错误")

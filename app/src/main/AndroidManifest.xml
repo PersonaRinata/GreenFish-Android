@@ -50,6 +50,10 @@
             </intent-filter>
 
         </activity>
+
+        <activity
+            android:name=".ui.activity.VideoActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

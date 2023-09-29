@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.lib.util.extention.setImageFromUrl
-import com.handsome.lib.util.extention.toast
 import com.handsome.yiqu.bean.VideoBean
 import com.handsome.yiqu.databinding.MainItemVideoForegroudBinding
 
@@ -25,13 +24,17 @@ class VideoForegroundAdapter : ListAdapter<VideoBean,VideoForegroundAdapter.MyHo
             }
         }
     }
+
+    private var mOnClickVideo : ((VideoBean) -> Unit)? = null
+
+    fun setOnClickVideo(mOnClickVideo : (VideoBean) -> Unit){
+        this.mOnClickVideo = mOnClickVideo
+    }
     
     inner class MyHolder(val binding : MainItemVideoForegroudBinding) : RecyclerView.ViewHolder(binding.root){
         init {
-            //todo 设置点击事件
             binding.root.setOnClickListener {
-                //todo 跳转到播放界面
-                toast("改跳转了，快去做")
+                mOnClickVideo?.invoke(getItem(adapterPosition))
             }
         }
     }
