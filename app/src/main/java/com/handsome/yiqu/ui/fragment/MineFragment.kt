@@ -2,30 +2,26 @@ package com.handsome.yiqu.ui.fragment
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
 import com.handsome.lib.util.adapter.FragmentVpAdapter
 import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.setImageFromUrl
 import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.extention.visible
-import com.handsome.lib.util.util.myCoroutineExceptionHandler
 import com.handsome.yiqu.R
 import com.handsome.yiqu.bean.AuthorBean
 import com.handsome.yiqu.databinding.MainFragmentMineBinding
 import com.handsome.yiqu.ui.viewmodel.fragment.MineFragmentViewModel
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class MineFragment : BaseFragment() {
     private val mBinding by lazy { MainFragmentMineBinding.inflate(layoutInflater) }
     private val mViewModel by viewModels<MineFragmentViewModel>()
-    private var mUserInfo: AuthorBean? = null
+    private var mUserInfo by arguments<AuthorBean>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,8 +29,6 @@ class MineFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         initView()
-        initObserve()
-        getUserInfo()
         return mBinding.root
     }
 
@@ -44,8 +38,32 @@ class MineFragment : BaseFragment() {
         initTvFollow()
         initImgUser()
         initTvUserName()
+        initTvFansNum()
+        initTvFollowNum()
         initVp()
         initTabLayout()
+    }
+
+    private fun initTvFollowNum() {
+        with(mBinding.mainFragmentMineTvFollowNum){
+            val followCount = "关注：${mUserInfo.follow_count}"
+            text = followCount
+            setOnClickListener {
+                //todo 跳转到指定位置
+                toast("追随者")
+            }
+        }
+    }
+
+    private fun initTvFansNum() {
+        with(mBinding.mainFragmentMineTvFansNum){
+            val followerCount = "粉丝：${mUserInfo.follower_count}"
+            text = followerCount
+            setOnClickListener {
+                //todo 跳转到指定位置
+                toast("粉丝数量")
+            }
+        }
     }
 
     /**
@@ -54,20 +72,24 @@ class MineFragment : BaseFragment() {
     private fun initTvFollow() {
         // todo 等待做判断是不是本人
         with(mBinding.mainFragmentMineTvFollow) {
+            // 初始化follow按钮的颜色
+            if (mUserInfo.is_follow) {
+                text = "已关注"
+                setBackgroundResource(R.drawable.main_shape_follow_have_bg)
+            } else {
+                text = "关注"
+                setBackgroundResource(R.drawable.main_shape_follow_no_bg)
+            }
             setOnClickListener {
                 // action_type 2 为 取消关注  1 为 关注
-                if (mUserInfo != null) {
-                    mViewModel.followUser(
-                        mUserInfo!!.id,
-                        actionId = if (mUserInfo!!.is_follow) 2 else 1
-                    )
-                }
+                mViewModel.followUser(mUserInfo.id, actionId = if (mUserInfo.is_follow) 2 else 1)
             }
         }
     }
 
     private fun initTvUserName() {
         with(mBinding.mainFragmentMineTvUserName) {
+            text = mUserInfo.name ?: "开心超人"
             setOnClickListener {
                 //todo 用户名称的点击事件，跳转
                 toast("用户名称的点击事件")
@@ -77,6 +99,9 @@ class MineFragment : BaseFragment() {
 
     private fun initImgUser() {
         with(mBinding.mainFragmentMineImgUser) {
+            if (mUserInfo.avatar != null && mUserInfo.avatar != "") {
+                setImageFromUrl(mUserInfo.avatar!!)
+            }
             setOnClickListener {
                 //todo 头像的点击事件，跳转
                 toast("头像的点击事件，还没做！！！")
@@ -87,8 +112,8 @@ class MineFragment : BaseFragment() {
     private fun initVp() {
         // tab + vp
         val fragmentVpAdapter = FragmentVpAdapter(this).apply {
-            add { VideoFlowFragment.newInstance(VideoFlowFragment.MineType.TYPE_PUBLISH) }
-            add { VideoFlowFragment.newInstance(VideoFlowFragment.MineType.TYPE_LIKE) }
+            add { VideoFlowFragment.newInstance(VideoFlowFragment.MineType.TYPE_PUBLISH,mUserInfo.id) }
+            add { VideoFlowFragment.newInstance(VideoFlowFragment.MineType.TYPE_LIKE,mUserInfo.id) }
         }
         with(mBinding.mainFragmentMineVp) {
             adapter = fragmentVpAdapter
@@ -113,59 +138,13 @@ class MineFragment : BaseFragment() {
         }
     }
 
-    private fun getUserInfo() {
-        mViewModel.getUserInfo()
-    }
-
-    private fun initObserve() {
-        viewLifecycleOwner.lifecycleScope.launch(myCoroutineExceptionHandler) {
-            mViewModel.userInfo.collectLatest {
-                Log.d("lx", "initObserve:${it} ")
-                if (it != null) {
-                    if (it.status_code == 0) {
-                        mUserInfo = it
-                        with(mBinding) {
-                            with(mBinding.mainFragmentMineTvFollow) {
-                                // 初始化follow按钮的颜色
-                                if (it.is_follow) {
-                                    text = "已关注"
-                                    setBackgroundResource(R.drawable.main_shape_follow_have_bg)
-                                } else {
-                                    text = "关注"
-                                    setBackgroundResource(R.drawable.main_shape_follow_no_bg)
-                                }
-                            }
-                            if (it.avatar != null && it.avatar != "") {
-                                mainFragmentMineImgUser.setImageFromUrl(it.avatar)
-                            }
-                            mainFragmentMineTvUserName.text = it.name ?: "开心超人"
-                            val followCount = "关注：${it.follow_count}"
-                            mainFragmentMineTvFollowNum.text = followCount
-                            val followerCount = "粉丝：${it.follower_count}"
-                            mainFragmentMineTvFansNum.text = followerCount
-                            mainFragmentMineTvDescribe.text = it.signature ?: "等待填写签名"
-                            if (it.is_follow) {
-                                with(mainFragmentMineTvFollow) {
-                                    setBackgroundResource(R.drawable.main_shape_follow_have_bg)
-                                    text = "已关注"
-                                }
-                            }
-                        }
-                    } else {
-                        toast("网络错误")
-                    }
-                }
-            }
-        }
-    }
-
     companion object {
-        @JvmStatic
-        fun newInstance() = MineFragment()
 
         @JvmStatic
-        fun newInstance(authorBean: AuthorBean) = MineFragment().apply {
-            //todo
+        fun newInstance(userBean: AuthorBean) = MineFragment().apply {
+            arguments = bundleOf(
+                this::mUserInfo.name to userBean
+            )
         }
     }
 }

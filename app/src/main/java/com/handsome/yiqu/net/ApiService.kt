@@ -1,7 +1,7 @@
 package com.handsome.yiqu.net
 
 import com.handsome.lib.util.network.ApiGenerator
-import com.handsome.yiqu.bean.AuthorBean
+import com.handsome.yiqu.bean.ApiWrapperUserBean
 import com.handsome.yiqu.bean.CommentBean
 import com.handsome.yiqu.bean.ContentList
 import com.handsome.yiqu.bean.FriendsList
@@ -32,15 +32,15 @@ interface ApiService {
 
     //获取个人信息的接口
     @GET("user")
-    suspend fun getUserInfo(@Query("user_id") userId : Long = ApiService.userId,@Query("token") token: String = ApiService.token) : AuthorBean
+    suspend fun getUserInfo(@Query("user_id") userId : Long,@Query("token") token: String = ApiService.token) : ApiWrapperUserBean
 
     //获得喜欢信息的接口
     @GET("favorite/list")
-    suspend fun getUserLike(@Query("user_id") userId: Long = ApiService.userId,@Query("token") token: String = ApiService.token) : VideoListBean
+    suspend fun getUserLike(@Query("user_id") userId: Long,@Query("token") token: String = ApiService.token) : VideoListBean
 
     //获得发布信息的接口
     @GET("publish/list")
-    suspend fun getUserPublish(@Query("user_id") userId: Long = ApiService.userId,@Query("token") token: String = ApiService.token) : VideoListBean
+    suspend fun getUserPublish(@Query("user_id") userId: Long,@Query("token") token: String = ApiService.token) : VideoListBean
 
     // 上传视频 todo 等待返回数据
     @Multipart
@@ -70,8 +70,8 @@ interface ApiService {
             ApiGenerator.getApiService(ApiService::class)
         }
 
-        var userId = 1701107552978210816
+        var userId = 0L
 
-        var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTY5MzUxMjg5NjQ4NDQ3ODk3NiwiZXhwIjoxNjk3MDI2NDQ0LCJpc3MiOiJHb1lpbiIsIm5iZiI6MTY5NDQzNDQ0NH0.EvsbDpvJEf4tIfxR49H4fUifdxFohoCHkCdFP22FhL4"
+        var token = ""
     }
 }

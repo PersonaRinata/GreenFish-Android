@@ -25,6 +25,7 @@ class VideoFlowFragment : BaseFragment() {
     private val mType by arguments<MineType>()
     private val mViewModel by viewModels<VideoFlowViewModel>()
     private val mAdapter by lazy { VideoForegroundAdapter() }
+    private val mUserId by arguments<Long>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,10 +48,10 @@ class VideoFlowFragment : BaseFragment() {
     private fun getData() {
         when(mType){
             MineType.TYPE_LIKE -> {
-                mViewModel.getLikeVideo()
+                mViewModel.getLikeVideo(mUserId)
             }
             MineType.TYPE_PUBLISH -> {
-                mViewModel.getUserPublish()
+                mViewModel.getUserPublish(mUserId)
             }
         }
     }
@@ -81,9 +82,10 @@ class VideoFlowFragment : BaseFragment() {
 
     companion object{
         // 需要传入用户id，由本fragment自己请求数据
-        fun newInstance(type : MineType) = VideoFlowFragment().apply {
+        fun newInstance(type : MineType,userId : Long) = VideoFlowFragment().apply {
             arguments = bundleOf(
-                this::mType.name to type
+                this::mType.name to type,
+                this::mUserId.name to userId
             )
         }
     }

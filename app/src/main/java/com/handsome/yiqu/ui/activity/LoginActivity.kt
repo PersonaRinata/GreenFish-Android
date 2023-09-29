@@ -1,6 +1,7 @@
 package com.handsome.yiqu.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.handsome.lib.util.base.BaseActivity
@@ -29,9 +30,8 @@ class LoginActivity : BaseActivity() {
             mViewModel.loginIn.collectLatest {
                 if (it != null){
                     if (it.status_code == 0){
-                        // 登录成功
-                        MainActivity.startAction(this@LoginActivity)
-                        finishAfterTransition()
+                        saveUserInfo(it)
+                        getUserInfo()
                     }else{
                         toast("用户不存在")
                     }
@@ -50,6 +50,25 @@ class LoginActivity : BaseActivity() {
                 }
             }
         }
+        lifecycleScope.launch {
+            mViewModel.userInfo.collectLatest {
+                if (it != null) {
+                    if (it.status_code == 0) {
+                        // 登录成功
+                        Log.d("lx", "loginActivity observe userInfo ${it}: ")
+                        MainActivity.startAction(this@LoginActivity,it.user)
+                        finishAfterTransition()
+                    } else {
+                        saveUserInfo(LoginBean(0,"","",0L))
+                        toast("网络错误")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getUserInfo() {
+        mViewModel.getUserInfo(ApiService.userId)
     }
 
     private fun initRegister() {

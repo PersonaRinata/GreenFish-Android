@@ -17,15 +17,15 @@ class VideoFlowViewModel : ViewModel() {
     private val _mutablePublishVide = MutableStateFlow<VideoListBean?>(null)
     val publishVideo get() = _mutablePublishVide.asStateFlow()
 
-    fun getLikeVideo(){
+    fun getLikeVideo(userId : Long){
         viewModelScope.launch(myCoroutineExceptionHandler) {
-            ApiService.INSTANCE.getUserLike()
+            _mutableLikeVideo.emit(ApiService.INSTANCE.getUserLike(userId))
         }
     }
 
-    fun getUserPublish(){
+    fun getUserPublish(userId : Long){
         viewModelScope.launch(myCoroutineExceptionHandler) {
-            ApiService.INSTANCE.getUserPublish()
+            _mutablePublishVide.emit(ApiService.INSTANCE.getUserPublish(userId))
         }
     }
 

@@ -16,4 +16,10 @@ data class AuthorBean(
     val signature: String?,
     val total_favorited: Int,
     val work_count: Int
-) : Serializable , ApiWrapper
+) : Serializable , IApiWrapper
+
+data class ApiWrapperUserBean(
+    val user: AuthorBean,
+    override val status_code: Int,
+    override val status_msg: String,
+) : IApiWrapper ,Serializable

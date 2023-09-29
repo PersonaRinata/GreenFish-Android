@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
+import com.handsome.yiqu.bean.ApiWrapperUserBean
 import com.handsome.yiqu.bean.LoginBean
 import com.handsome.yiqu.net.ApiService
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +19,15 @@ class LoginActivityViewModel : ViewModel() {
 
     private val _mutableRegisterIn = MutableStateFlow<LoginBean?>(null)
     val registerIn get() = _mutableRegisterIn.asStateFlow()
+
+    private val _mutableUserInfo = MutableStateFlow<ApiWrapperUserBean?>(null)
+    val userInfo get() = _mutableUserInfo.asStateFlow()
+
+    fun getUserInfo(userId : Long){
+        viewModelScope.launch(myCoroutineExceptionHandler){
+            _mutableUserInfo.emit(ApiService.INSTANCE.getUserInfo(userId))
+        }
+    }
 
     fun loginIn(userName: String, password: String) {
         viewModelScope.launch(myCoroutineExceptionHandler) {

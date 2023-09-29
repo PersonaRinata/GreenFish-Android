@@ -3,7 +3,7 @@ package com.handsome.yiqu.ui.viewmodel.fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
-import com.handsome.yiqu.bean.AuthorBean
+import com.handsome.yiqu.bean.ApiWrapperUserBean
 import com.handsome.yiqu.bean.CommentBean
 import com.handsome.yiqu.bean.StatusBean
 import com.handsome.yiqu.net.ApiService
@@ -22,7 +22,7 @@ class VideoFragmentViewModel : ViewModel() {
     private val _mutableFollowUser = MutableStateFlow<StatusBean?>(null)
     val followUser get() = _mutableFollowUser.asStateFlow()
 
-    private val _mutableUserInfo = MutableStateFlow<AuthorBean?>(null)
+    private val _mutableUserInfo = MutableStateFlow<ApiWrapperUserBean?>(null)
     val userInfo get() = _mutableUserInfo.asStateFlow()
 
     fun getVideoComment(videoId : Long){

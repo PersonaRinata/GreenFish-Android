@@ -2,7 +2,7 @@ package com.handsome.yiqu.ui.viewmodel.activity
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.handsome.yiqu.bean.ApiWrapper
+import com.handsome.yiqu.bean.IApiWrapper
 import com.handsome.yiqu.net.ApiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,7 +11,7 @@ import okhttp3.MultipartBody
 
 class PublishActivityViewModel : ViewModel() {
 
-    private val _mutablePublishVideo = MutableStateFlow<ApiWrapper?>(null)
+    private val _mutablePublishVideo = MutableStateFlow<IApiWrapper?>(null)
     val publishVideo = _mutablePublishVideo.asStateFlow()
 
     /**

@@ -113,7 +113,7 @@ class VideoFragment : BaseFragment() {
                 Log.d("lx", "videoFragment: userInfo $it ")
                 if (it != null){
                     if(it.status_code == 0){
-                        PersonActivity.startAction(requireContext(),it)
+                        PersonActivity.startAction(requireContext(),it.user)
                     }else{
                         toast("网络异常")
                     }
