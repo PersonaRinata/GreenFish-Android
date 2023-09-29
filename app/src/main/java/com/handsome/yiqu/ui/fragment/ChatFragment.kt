@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
+import com.handsome.yiqu.bean.AuthorBean
 import com.handsome.yiqu.databinding.MainFragmentChatBinding
 import com.handsome.yiqu.ui.activity.ChatDetailActivity
 import com.handsome.yiqu.ui.adapter.FriendsListAdapter
@@ -21,6 +23,8 @@ class ChatFragment : BaseFragment() {
     private val mBinding by lazy { MainFragmentChatBinding.inflate(layoutInflater) }
     private val mViewModel by viewModels<ChatFragmentViewModel>()
     private val mAdapter by lazy { FriendsListAdapter() }
+    private var mUserInfo by arguments<AuthorBean>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +42,7 @@ class ChatFragment : BaseFragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = mAdapter.apply {
                 setOnClickItem {
-                    ChatDetailActivity.startAction(requireContext())
+                    ChatDetailActivity.startAction(requireContext(),mUserInfo,it)
                 }
                 setOnClickTop {
                     toast("置顶")
@@ -70,6 +74,10 @@ class ChatFragment : BaseFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = ChatFragment()
+        fun newInstance(userInfo : AuthorBean) = ChatFragment().apply {
+            arguments = bundleOf(
+                this::mUserInfo.name to userInfo
+            )
+        }
     }
 }

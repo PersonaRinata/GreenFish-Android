@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
         fragmentVpAdapter
             .add(RecommendFragment::class.java)
             .add(FindFragment::class.java)
-            .add(ChatFragment::class.java)
+            .add{ ChatFragment.newInstance(mUserInfo) }
             .add { MineFragment.newInstance(mUserInfo) }
         mBinding.mainVp.adapter = fragmentVpAdapter
         mBinding.mainVp.isUserInputEnabled = false;  //禁止滑动的方法

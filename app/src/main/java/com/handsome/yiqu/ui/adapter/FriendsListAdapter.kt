@@ -25,9 +25,9 @@ class FriendsListAdapter : ListAdapter<FriendsList.User,FriendsListAdapter.MyHol
         }
     }
 
-    private var mOnClickItem : ((id : Long) -> Unit)? = null
+    private var mOnClickItem : ((FriendsList.User) -> Unit)? = null
 
-    fun setOnClickItem(onClickItem : (id : Long) -> Unit){
+    fun setOnClickItem(onClickItem : (FriendsList.User) -> Unit){
         this.mOnClickItem = onClickItem
     }
 
@@ -46,7 +46,7 @@ class FriendsListAdapter : ListAdapter<FriendsList.User,FriendsListAdapter.MyHol
     inner class MyHolder(val binding : MainItemFriendsListBinding) : RecyclerView.ViewHolder(binding.root){
         init {
             binding.mainItemFriendsListSlide.setOnTapTouchListener {
-                mOnClickItem?.invoke(getItem(adapterPosition).id)
+                mOnClickItem?.invoke(getItem(adapterPosition))
             }
             binding.mainItemFriendsListIsTop.setOnClickListener {
                 mOnClickTop?.invoke()

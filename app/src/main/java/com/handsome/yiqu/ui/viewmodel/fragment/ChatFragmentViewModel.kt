@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
 import com.handsome.yiqu.bean.FriendsList
+import com.handsome.yiqu.net.ApiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -15,9 +16,9 @@ class ChatFragmentViewModel : ViewModel() {
 
     fun getFriendsList(){
         viewModelScope.launch(myCoroutineExceptionHandler){
-//            _mutableFriendsList.emit(ApiService.INSTANCE.getFriendsList())
+            _mutableFriendsList.emit(ApiService.INSTANCE.getFriendsList())
             //todo
-            _mutableFriendsList.emit(fakeMessage)
+//            _mutableFriendsList.emit(fakeMessage)
         }
     }
 

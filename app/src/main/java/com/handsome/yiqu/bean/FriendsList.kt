@@ -1,10 +1,12 @@
 package com.handsome.yiqu.bean
 
+import java.io.Serializable
+
 data class FriendsList(
     val status_code: Int,
     val status_msg: String,
     val user_list: List<User>
-) {
+) : Serializable{
     data class User(
         val avatar: String,
         val background_image: String,
@@ -19,5 +21,5 @@ data class FriendsList(
         val signature: String,
         val total_favorited: Int,
         val work_count: Int
-    )
+    ) : Serializable
 }
