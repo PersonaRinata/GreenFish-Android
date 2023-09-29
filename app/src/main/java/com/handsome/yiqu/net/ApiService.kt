@@ -5,6 +5,7 @@ import com.handsome.yiqu.bean.AuthorBean
 import com.handsome.yiqu.bean.CommentBean
 import com.handsome.yiqu.bean.ContentList
 import com.handsome.yiqu.bean.FriendsList
+import com.handsome.yiqu.bean.LoginBean
 import com.handsome.yiqu.bean.StatusBean
 import com.handsome.yiqu.bean.VideoListBean
 import okhttp3.MultipartBody
@@ -31,15 +32,15 @@ interface ApiService {
 
     //获取个人信息的接口
     @GET("user")
-    suspend fun getUserInfo(@Query("user_id") userId : Long = 1701107552978210816,@Query("token") token: String = ApiService.token) : AuthorBean
+    suspend fun getUserInfo(@Query("user_id") userId : Long = ApiService.userId,@Query("token") token: String = ApiService.token) : AuthorBean
 
     //获得喜欢信息的接口
     @GET("favorite/list")
-    suspend fun getUserLike(@Query("user_id") userId: Long = 1701107552978210816,@Query("token") token: String = ApiService.token) : VideoListBean
+    suspend fun getUserLike(@Query("user_id") userId: Long = ApiService.userId,@Query("token") token: String = ApiService.token) : VideoListBean
 
     //获得发布信息的接口
     @GET("publish/list")
-    suspend fun getUserPublish(@Query("user_id") userId: Long = 1701107552978210816,@Query("token") token: String = ApiService.token) : VideoListBean
+    suspend fun getUserPublish(@Query("user_id") userId: Long = ApiService.userId,@Query("token") token: String = ApiService.token) : VideoListBean
 
     // 上传视频 todo 等待返回数据
     @Multipart
@@ -52,16 +53,24 @@ interface ApiService {
 
     // 获得好友列表
     @GET("relation/friend/list")
-    suspend fun getFriendsList(@Query("user_id") userId: Long = 1701107552978210816,@Query("token") token: String = ApiService.token) : FriendsList
+    suspend fun getFriendsList(@Query("user_id") userId: Long = ApiService.userId,@Query("token") token: String = ApiService.token) : FriendsList
 
     // 关注操作
     @POST("relation/action")
     suspend fun followUser(@Query("to_user_id") to_user_id : Long, @Query("action_type") action_type: Int,@Query("token") token: String = ApiService.token) : StatusBean
 
+    @POST("user/login")
+    suspend fun loginIn(@Query("username") userName : String, @Query("password") password : String) : LoginBean
+
+    @POST("user/register")
+    suspend fun registerIn(@Query("username") userName : String, @Query("password") password : String) : LoginBean
+
     companion object{
         val INSTANCE by lazy {
             ApiGenerator.getApiService(ApiService::class)
         }
+
+        var userId = 1701107552978210816
 
         var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTY5MzUxMjg5NjQ4NDQ3ODk3NiwiZXhwIjoxNjk3MDI2NDQ0LCJpc3MiOiJHb1lpbiIsIm5iZiI6MTY5NDQzNDQ0NH0.EvsbDpvJEf4tIfxR49H4fUifdxFohoCHkCdFP22FhL4"
     }

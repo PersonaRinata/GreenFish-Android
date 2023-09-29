@@ -1,5 +1,7 @@
 package com.handsome.yiqu.ui.activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.handsome.lib.util.adapter.FragmentVpAdapter
 import com.handsome.lib.util.base.BaseActivity
@@ -42,6 +44,13 @@ class MainActivity : BaseActivity() {
                 R.id.item_main_bottom_mine -> {mBinding.mainVp.currentItem = 3}
             }
             return@setOnItemSelectedListener true
+        }
+    }
+
+    companion object{
+        fun startAction(context: Context){
+            val intent = Intent(context,MainActivity::class.java)
+            context.startActivity(intent)
         }
     }
 }
