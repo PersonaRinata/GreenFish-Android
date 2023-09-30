@@ -10,12 +10,15 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.handsome.lib.util.adapter.FragmentVpAdapter
 import com.handsome.lib.util.base.BaseFragment
+import com.handsome.lib.util.extention.gone
 import com.handsome.lib.util.extention.setImageFromUrl
 import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.extention.visible
 import com.handsome.yiqu.R
 import com.handsome.yiqu.bean.AuthorBean
 import com.handsome.yiqu.databinding.MainFragmentMineBinding
+import com.handsome.yiqu.net.ApiService
+import com.handsome.yiqu.ui.activity.FollowListActivity
 import com.handsome.yiqu.ui.viewmodel.fragment.MineFragmentViewModel
 
 class MineFragment : BaseFragment() {
@@ -49,8 +52,7 @@ class MineFragment : BaseFragment() {
             val followCount = "关注：${mUserInfo.follow_count}"
             text = followCount
             setOnClickListener {
-                //todo 跳转到指定位置
-                toast("追随者")
+                FollowListActivity.startAction(requireContext(),mUserInfo,FollowListActivity.FollowType.FOLLOWS)
             }
         }
     }
@@ -60,8 +62,7 @@ class MineFragment : BaseFragment() {
             val followerCount = "粉丝：${mUserInfo.follower_count}"
             text = followerCount
             setOnClickListener {
-                //todo 跳转到指定位置
-                toast("粉丝数量")
+                FollowListActivity.startAction(requireContext(),mUserInfo,FollowListActivity.FollowType.FANS)
             }
         }
     }
@@ -71,25 +72,31 @@ class MineFragment : BaseFragment() {
      */
     private fun initTvFollow() {
         // todo 等待做判断是不是本人
-        with(mBinding.mainFragmentMineTvFollow) {
-            // 初始化follow按钮的颜色
-            if (mUserInfo.is_follow) {
-                text = "已关注"
-                setBackgroundResource(R.drawable.main_shape_follow_have_bg)
-            } else {
-                text = "关注"
-                setBackgroundResource(R.drawable.main_shape_follow_no_bg)
+            // 不是本人
+            with(mBinding.mainFragmentMineTvFollow) {
+                if (mUserInfo.id != ApiService.userId) {
+                    // 初始化follow按钮的颜色
+                    if (mUserInfo.is_follow) {
+                        text = "已关注"
+                        setBackgroundResource(R.drawable.main_shape_follow_have_bg)
+                    } else {
+                        text = "关注"
+                        setBackgroundResource(R.drawable.main_shape_follow_no_bg)
+                    }
+                    setOnClickListener {
+                        // action_type 2 为 取消关注  1 为 关注
+                        mViewModel.followUser(mUserInfo.id, actionId = if (mUserInfo.is_follow) 2 else 1)
+                    }
+                }else{
+                    gone()
+                }
             }
-            setOnClickListener {
-                // action_type 2 为 取消关注  1 为 关注
-                mViewModel.followUser(mUserInfo.id, actionId = if (mUserInfo.is_follow) 2 else 1)
-            }
-        }
+
     }
 
     private fun initTvUserName() {
         with(mBinding.mainFragmentMineTvUserName) {
-            text = mUserInfo.name ?: "开心超人"
+            text = mUserInfo.name
             setOnClickListener {
                 //todo 用户名称的点击事件，跳转
                 toast("用户名称的点击事件")
@@ -99,8 +106,8 @@ class MineFragment : BaseFragment() {
 
     private fun initImgUser() {
         with(mBinding.mainFragmentMineImgUser) {
-            if (mUserInfo.avatar != null && mUserInfo.avatar != "") {
-                setImageFromUrl(mUserInfo.avatar!!)
+            if (mUserInfo.avatar != "") {
+                setImageFromUrl(mUserInfo.avatar)
             }
             setOnClickListener {
                 //todo 头像的点击事件，跳转

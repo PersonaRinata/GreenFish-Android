@@ -33,7 +33,7 @@ class FindFragment : BaseFragment() {
                 tooltipText = ""
             }
             //和viewpager联动起来
-            val titles = listOf("主要", "健康", "食物", "生活", "药品")
+            val titles = listOf(TYPE_ALL, TYPE_FOOD, TYPE_LIFE, TYPE_MEDICINE)
             TabLayoutMediator(this, mBinding.mainFindVp) { tab, position ->
                 tab.text = titles[position]
             }.attach()
@@ -43,7 +43,6 @@ class FindFragment : BaseFragment() {
     private fun initVp() {
         val fragmentVpAdapter = FragmentVpAdapter(this)
         fragmentVpAdapter.add { ContentListFragment.newInstance(ContentType.MAIN) }
-        fragmentVpAdapter.add { ContentListFragment.newInstance(ContentType.HEALTHY) }
         fragmentVpAdapter.add { ContentListFragment.newInstance(ContentType.FOOD) }
         fragmentVpAdapter.add { ContentListFragment.newInstance(ContentType.LIFE) }
         fragmentVpAdapter.add { ContentListFragment.newInstance(ContentType.MEDICINE) }
@@ -53,5 +52,10 @@ class FindFragment : BaseFragment() {
     companion object {
         @JvmStatic
         fun newInstance() = FindFragment()
+
+        const val TYPE_ALL = "全部"
+        const val TYPE_FOOD = "食物"
+        const val TYPE_LIFE = "生活"
+        const val TYPE_MEDICINE = "药品"
     }
 }

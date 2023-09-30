@@ -11,7 +11,6 @@ import com.handsome.lib.util.base.BaseActivity
 import com.handsome.lib.util.extention.toast
 import com.handsome.yiqu.bean.AuthorBean
 import com.handsome.yiqu.bean.ChatMessageBean
-import com.handsome.yiqu.bean.FriendsList
 import com.handsome.yiqu.databinding.MainActivityChatDetailBinding
 import com.handsome.yiqu.ui.adapter.ChatAdapter
 import com.handsome.yiqu.ui.viewmodel.activity.ChatDetailActivityViewModel
@@ -23,7 +22,7 @@ class ChatDetailActivity : BaseActivity() {
     private val mViewModel by viewModels<ChatDetailActivityViewModel>()
 
     private lateinit var currentUser: AuthorBean
-    private lateinit var otherUser: FriendsList.User
+    private lateinit var otherUser: AuthorBean
     private lateinit var mAdapter: ChatAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,12 +101,12 @@ class ChatDetailActivity : BaseActivity() {
 
     private fun initValue() {
         currentUser = intent.getSerializableExtra("currentUser") as AuthorBean
-        otherUser = intent.getSerializableExtra("otherUser") as FriendsList.User
+        otherUser = intent.getSerializableExtra("otherUser") as AuthorBean
         mAdapter = ChatAdapter(currentUser.id)
     }
 
     companion object {
-        fun startAction(context: Context, currentUser: AuthorBean, otherUser: FriendsList.User) {
+        fun startAction(context: Context, currentUser: AuthorBean, otherUser: AuthorBean) {
             val intent = Intent(context, ChatDetailActivity::class.java)
             intent.putExtra("currentUser", currentUser)
             intent.putExtra("otherUser", otherUser)

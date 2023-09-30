@@ -7,27 +7,27 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.lib.util.extention.setImageFromUrl
-import com.handsome.yiqu.bean.FriendsList
+import com.handsome.yiqu.bean.AuthorBean
 import com.handsome.yiqu.databinding.MainItemFriendsListBinding
 
-class FriendsListAdapter : ListAdapter<FriendsList.User,FriendsListAdapter.MyHolder>(myDiffUtil) {
+class FriendsListAdapter : ListAdapter<AuthorBean,FriendsListAdapter.MyHolder>(myDiffUtil) {
 
     companion object{
-        val myDiffUtil = object : DiffUtil.ItemCallback<FriendsList.User>() {
-            override fun areItemsTheSame(oldItem: FriendsList.User, newItem: FriendsList.User): Boolean {
+        val myDiffUtil = object : DiffUtil.ItemCallback<AuthorBean>() {
+            override fun areItemsTheSame(oldItem: AuthorBean, newItem: AuthorBean): Boolean {
                 return oldItem.id == newItem.id
             }
 
             @SuppressLint("DiffUtilEquals")
-            override fun areContentsTheSame(oldItem: FriendsList.User, newItem: FriendsList.User): Boolean {
+            override fun areContentsTheSame(oldItem: AuthorBean, newItem: AuthorBean): Boolean {
                 return oldItem == newItem
             }
         }
     }
 
-    private var mOnClickItem : ((FriendsList.User) -> Unit)? = null
+    private var mOnClickItem : ((AuthorBean) -> Unit)? = null
 
-    fun setOnClickItem(onClickItem : (FriendsList.User) -> Unit){
+    fun setOnClickItem(onClickItem : (AuthorBean) -> Unit){
         this.mOnClickItem = onClickItem
     }
 

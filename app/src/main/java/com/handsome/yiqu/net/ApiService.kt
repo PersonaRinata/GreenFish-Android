@@ -5,6 +5,7 @@ import com.handsome.yiqu.bean.ApiWrapperChatMessageBean
 import com.handsome.yiqu.bean.ApiWrapperUserBean
 import com.handsome.yiqu.bean.CommentBean
 import com.handsome.yiqu.bean.ContentList
+import com.handsome.yiqu.bean.FollowBean
 import com.handsome.yiqu.bean.FriendsList
 import com.handsome.yiqu.bean.LoginBean
 import com.handsome.yiqu.bean.StatusBean
@@ -120,6 +121,20 @@ interface ApiService {
         @Query("action_type") action_type: Int = 1,
         @Query("token") token: String = ApiService.token
     ): StatusBean
+
+    // 获得关注列表
+    @GET("relation/follow/list")
+    suspend fun getFollowList(
+        @Query("user_id") userId: Long,
+        @Query("token") token: String = ApiService.token
+    ) : FollowBean
+
+    //获取粉丝列表
+    @GET("relation/follower/list")
+    suspend fun getFansList(
+        @Query("user_id") userId: Long,
+        @Query("token") token: String = ApiService.token
+    ): FollowBean
 
     companion object {
         val INSTANCE by lazy {

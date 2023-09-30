@@ -12,10 +12,12 @@ data class ContentList(
         val pic : String, // 内容的封面
         val title : String, // 信息概览
         val date : String, // 时间信息
+        val types : List<String>,
 //        val simpleContent : String //简单的信息
+        val url : String
     ) : Serializable
 }
 
 enum class ContentType{
-    MAIN,HEALTHY,FOOD,LIFE,MEDICINE
+    MAIN,FOOD,LIFE,MEDICINE
 }

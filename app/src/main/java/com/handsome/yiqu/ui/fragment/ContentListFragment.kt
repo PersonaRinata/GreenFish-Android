@@ -9,10 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.handsome.lib.util.base.BaseFragment
-import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
 import com.handsome.yiqu.bean.ContentType
 import com.handsome.yiqu.databinding.MainFragmentContentListBinding
+import com.handsome.yiqu.ui.activity.WebActivity
 import com.handsome.yiqu.ui.adapter.ContentListAdapter
 import com.handsome.yiqu.ui.viewmodel.fragment.ContentListFragmentViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -43,8 +43,7 @@ class ContentListFragment : BaseFragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = mAdapter.apply {
                 setOnClickItem {
-                    //todo 跳转
-                    toast(it.toString())
+                    WebActivity.startAction(requireContext(),it.url)
                 }
             }
         }
@@ -58,7 +57,6 @@ class ContentListFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch(myCoroutineExceptionHandler) {
             mViewModel.contentList.collectLatest { data  ->
                 if (data != null){
-                    //todo 等到处理内容
                     mAdapter.submitList(data.contentList)
                 }
             }

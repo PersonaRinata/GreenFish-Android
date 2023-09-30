@@ -1,9 +1,7 @@
 package com.handsome.yiqu.bean
 
-import java.io.Serializable
-
-data class FriendsList(
+data class FollowBean(
     val status_code: Int,
     val status_msg: String,
     val user_list: List<AuthorBean>
-) : Serializable
+)

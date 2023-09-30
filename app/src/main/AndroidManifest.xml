@@ -54,6 +54,14 @@
         <activity
             android:name=".ui.activity.VideoActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".ui.activity.FollowListActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.activity.WebActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
