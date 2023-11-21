@@ -10,8 +10,22 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        mavenLocal()
+        maven {url "https://jitpack.io" }
     }
 }
 rootProject.name = "YiQu"
 include ':app'
 include ':lib_util'
+include ':module_find'
+include ':lib_api'
+include ':module_chat'
+include ':module_mine'
+include ':module_personalization'
+include ':module_publish'
+include ':module_aigc'
+include ':module_search'
+include ':module_login'
+include ':module_video'
+include ':lib_account'
+include ':module_main'

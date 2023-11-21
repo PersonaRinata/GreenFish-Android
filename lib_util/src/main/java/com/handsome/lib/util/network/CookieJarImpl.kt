@@ -1,6 +1,6 @@
 package com.handsome.lib.util.network
 
-import com.handsome.lib.util.util.getSharePreference
+import com.handsome.lib.util.util.getSp
 import okhttp3.Cookie
 import okhttp3.CookieJar
 import okhttp3.HttpUrl
@@ -51,14 +51,14 @@ object CookieJarImpl : CookieJar {
     }
 
     private fun saveCookies(cookies: List<Cookie>){
-        val sp = getSharePreference("cookie").edit()
+        val sp = getSp("cookie").edit()
         val cookieStr = cookiesToString(cookies)
         sp.putString("MyCookie",cookieStr)
         sp.apply()
     }
 
     private fun getCookies() : List<Cookie>{
-        val sp = getSharePreference("cookie")
+        val sp = getSp("cookie")
         val cookieStr = sp.getString("MyCookie", touristCookie)
         return parseCookie(cookieStr!!)
     }

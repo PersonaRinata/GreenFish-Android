@@ -1,0 +1,16 @@
+ext{
+    //是否开启单模块调试
+    isDebug=true
+
+    //sdk版本
+    app_sdk = [
+            compileSdk: 34,
+            minSdk: 24,
+            targetSdk: 34,
+    ]
+
+    //三方库版本
+    versions =[
+            arouter_version : "1.5.2",
+    ]
+}

@@ -18,6 +18,8 @@ object ApiGenerator {
 
     private val retrofit = getNewRetrofit(true)
 
+//    private val mAccountService = IAcconter
+
     //3getApiService 函数：创建给定类的 API 服务，就是将我们的网络请求接口实例化
     fun <T : Any> getApiService(clazz: KClass<T>): T {
         return retrofit.create(clazz.java)
@@ -26,7 +28,7 @@ object ApiGenerator {
     /**
      * 创建一个新的 Retrofit
      */
-    private fun getNewRetrofit(
+    fun getNewRetrofit(
         isNeedCookie: Boolean,
         config: (OkHttpClient.Builder.() -> Unit)? = null
     ): Retrofit {

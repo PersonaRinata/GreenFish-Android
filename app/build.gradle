@@ -1,57 +1,60 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.handsome.yiqu'
-    compileSdk 33
+    namespace 'com.handsome.module.app'
+    compileSdk app_sdk.compileSdk
 
     defaultConfig {
-        applicationId "com.handsome.yiqu"
-        minSdk 24
-        targetSdk 33
+        applicationId "com.handsome.module.app"
+        minSdk app_sdk.minSdk
+        targetSdk app_sdk.targetSdk
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
-    }
-    viewBinding{
-        enabled=true
+        jvmTarget = '17'
     }
 }
 
-dependencies {
+//Arouter注解处理器选项
+kapt{
+    arguments{
+        arg("AROUTER_MODULE_NAME",project.getName())
+    }
+}
 
-    implementation 'com.squareup.okhttp3:okhttp:3.12.1'
-    implementation 'androidx.fragment:fragment:1.6.1' // 替换版本号为最新版本
-    implementation 'androidx.fragment:fragment-ktx:1.6.1' // 替换版本号为最新版本
-    implementation 'xyz.doikki.android.dkplayer:dkplayer-java:3.3.7'
-    implementation 'xyz.doikki.android.dkplayer:dkplayer-ui:3.3.7'
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
-    implementation("com.squareup.retrofit2:retrofit:2.6.1")
-    implementation("com.squareup.retrofit2:converter-gson:2.6.1")
-    implementation 'androidx.core:core-ktx:1.10.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation project(path: ':lib_util')
+
+dependencies {
+    //依赖Arouter注解处理器
+    kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
+
+    //在这里引入所有的模块
+    implementation(project(":lib_util"))
+    implementation(project(":lib_api"))
+
+    implementation(project(":module_main"))
+    implementation(project(":module_login"))
+    implementation(project(":module_find"))
+    implementation(project(":module_video"))
+    implementation(project(":module_aigc"))
+    implementation(project(":module_mine"))
+    implementation(project(":module_search"))
+    implementation(project(":module_publish"))
+    implementation(project(":module_chat"))
+    implementation(project(":module_personalization"))
+
 }

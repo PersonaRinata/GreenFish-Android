@@ -10,8 +10,21 @@ import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    fun <T> Flow<T>.collectLaunch(
+        owner: LifecycleOwner = this@BaseActivity,
+        action: suspend (value: T) -> Unit
+    ) {
+        owner.lifecycleScope.launch {
+            collect{ action.invoke(it) }
+        }
+    }
 
     /**
      * 是否处于转屏或异常重建后的 Activity 状态

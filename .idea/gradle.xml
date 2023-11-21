@@ -11,7 +11,19 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/lib_account" />
+            <option value="$PROJECT_DIR$/lib_api" />
             <option value="$PROJECT_DIR$/lib_util" />
+            <option value="$PROJECT_DIR$/module_aigc" />
+            <option value="$PROJECT_DIR$/module_chat" />
+            <option value="$PROJECT_DIR$/module_find" />
+            <option value="$PROJECT_DIR$/module_login" />
+            <option value="$PROJECT_DIR$/module_main" />
+            <option value="$PROJECT_DIR$/module_mine" />
+            <option value="$PROJECT_DIR$/module_personalization" />
+            <option value="$PROJECT_DIR$/module_publish" />
+            <option value="$PROJECT_DIR$/module_search" />
+            <option value="$PROJECT_DIR$/module_video" />
           </set>
         </option>
       </GradleProjectSettings>
