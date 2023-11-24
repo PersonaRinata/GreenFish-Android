@@ -1,3 +1,3 @@
 package com.handsome.lib.util.network
 
-fun getBaseUrl() = "http://162.14.78.209:8080/qingyu/"
+fun getBaseUrl() = "http://115.159.4.245:8080/qingyu/"

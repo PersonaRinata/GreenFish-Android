@@ -39,12 +39,17 @@ kapt{
 
 
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
     //依赖Arouter注解处理器
     kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
 
     //在这里引入所有的模块
     implementation(project(":lib_util"))
     implementation(project(":lib_api"))
+    implementation(project(":lib_account"))
 
     implementation(project(":module_main"))
     implementation(project(":module_login"))

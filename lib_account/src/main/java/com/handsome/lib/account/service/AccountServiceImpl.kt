@@ -6,12 +6,13 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.handsome.lib.account.network.LoginApiService
+import com.handsome.lib.account.table.LOGIN_INFO
+import com.handsome.lib.account.table.USER_INFO
 import com.handsome.lib.api.server.ACCOUNT_SERVICE
-import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.api.server.Value
+import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.util.extention.unsafeSubscribeBy
 import com.handsome.lib.util.network.ApiGenerator
-import com.handsome.lib.util.network.getBaseUrl
 import com.handsome.lib.util.service.impl
 import com.handsome.lib.util.util.getSp
 import io.reactivex.rxjava3.core.Completable
@@ -20,7 +21,6 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
-import okhttp3.HttpUrl.Companion.toHttpUrl
 
 /**
  * ...
@@ -63,7 +63,7 @@ class AccountServiceImpl : IAccountService {
   }
   
   override fun isLogin(): Boolean {
-    return mCookieService.loadForRequest(getBaseUrl().toHttpUrl()).isNotEmpty()
+    return ApiGenerator.getToken() != null
   }
   
   override fun login(
@@ -72,10 +72,7 @@ class AccountServiceImpl : IAccountService {
   ): Single<IAccountService.LoginBean> {
     return mApiService.login(username, password)
       .doOnSuccess {
-        if (it != null) {
-          // 网络请求来的不默认包含密码，所以自己加上
-          emitUserInfo(it.copy(password = password))
-        }
+        emitUserInfo(it.copy(username = username,password = password))
       }.subscribeOn(Schedulers.io())
       .map { it }
   }
@@ -97,19 +94,16 @@ class AccountServiceImpl : IAccountService {
   ): Single<IAccountService.LoginBean> {
     return mApiService.register(username, password, rePassword)
       .doOnSuccess {
-        if (it != null) {
-          // 网络请求来的不默认包含密码，所以自己加上
-          emitUserInfo(it.copy(password = password))
-        }
+        emitUserInfo(it.copy(username = username,password = password))
       }.subscribeOn(Schedulers.io())
       .map { it }
   }
   
   override fun init(context: Context) {
     mContext = context
-    val userinfoSp = getSp("UserInfo")
+    val userinfoSp = getSp(USER_INFO)
     val gson = Gson()
-    val spKey = "登录数据"
+    val spKey = LOGIN_INFO
     // 从本地初始化数据
     val userinfo = userinfoSp.getString(spKey, null)
     try {

@@ -2,10 +2,9 @@ package com.handsome.module.login.ui.activity
 
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.alibaba.android.arouter.facade.annotation.Route
-import com.handsome.lib.api.server.LOGIN_ENTRY
 import com.handsome.lib.api.server.service.IMainService
 import com.handsome.lib.util.base.BaseActivity
 import com.handsome.lib.util.extention.setOnSingleClickListener
@@ -68,7 +67,7 @@ class LoginActivity : BaseActivity() {
                     finishAfterTransition() // 其他页面可能返回动画，所以使用这个方法
                 }
                 is LoginViewModel.LoginEvent.Fail -> {
-                    toast(it.error.errorMsg)
+                    toast(it.error.message)
                 }
             }
         }
@@ -78,6 +77,7 @@ class LoginActivity : BaseActivity() {
     companion object{
         fun startAction(context : Context){
             val intent = Intent(context,LoginActivity::class.java)
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
     }

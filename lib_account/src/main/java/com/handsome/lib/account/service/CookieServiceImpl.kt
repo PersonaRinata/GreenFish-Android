@@ -1,6 +1,7 @@
 package com.handsome.lib.account.service
 
 import android.content.Context
+import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.facade.template.IProvider
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
@@ -36,6 +37,7 @@ class CookieServiceImpl : IProvider, CookieJar {
   }
 
   override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
+    Log.d("lx", "saveFromResponse:$cookies ")
     mCookieJar.saveFromResponse(url, cookies)
   }
 }

@@ -18,10 +18,10 @@ data class AuthorBean(
     val signature: String,
     val total_favorited: Int,
     val work_count: Int
-) : Serializable , com.handsome.module.main.bean.IApiWrapper
+) : Serializable , IApiWrapper
 
 data class ApiWrapperUserBean(
-    val user: com.handsome.module.main.bean.AuthorBean,
+    val user: AuthorBean,
     override val status_code: Int,
     override val status_msg: String,
-) : com.handsome.module.main.bean.IApiWrapper,Serializable
+) : IApiWrapper,Serializable

@@ -2,15 +2,14 @@ package com.handsome.module.main.ui.activity
 
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.alibaba.android.arouter.launcher.ARouter
-import com.handsome.lib.api.server.LOGIN_ENTRY
 import com.handsome.lib.api.server.MAIN_FIND
+import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.api.server.service.ILoginService
 import com.handsome.lib.util.adapter.FragmentVpAdapter
 import com.handsome.lib.util.base.BaseActivity
-import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.service.ServiceManager
 import com.handsome.lib.util.service.impl
 import com.handsome.module.main.R
@@ -25,15 +24,12 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        isLogin = intent.getBooleanExtra("isLogin",false)
-        toast("isLogin = ${isLogin}")
-        isLogin = false
+        isLogin = IAccountService::class.impl.isLogin()
         if (!isLogin){
             ILoginService::class.impl.startLoginActivity()
-//            ARouter.getInstance().build(LOGIN_ENTRY).navigation()
             finish()
         }
-//        initUi()
+        initUi()
     }
 
     private fun initUi() {
@@ -43,6 +39,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initVp() {
+        val mUserInfo = IAccountService::class.impl.getUserInfo()
         val fragmentVpAdapter = FragmentVpAdapter(this)
         fragmentVpAdapter
             .add{ServiceManager.fragment(MAIN_FIND)}
@@ -83,7 +80,7 @@ class MainActivity : BaseActivity() {
     companion object {
         fun startAction(context: Context) {
             val intent = Intent(context, MainActivity::class.java)
-            intent.putExtra("isLogin",true)
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
     }

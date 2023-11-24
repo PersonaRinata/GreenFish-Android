@@ -74,6 +74,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.2'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.6.4"
+
     //依赖api通信模块
     implementation(project(":lib_api"))
     implementation(project(":lib_util"))

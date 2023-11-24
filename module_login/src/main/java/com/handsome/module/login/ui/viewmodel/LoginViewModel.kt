@@ -3,8 +3,7 @@ package com.handsome.module.login.ui.viewmodel
 import androidx.core.content.edit
 import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.util.base.BaseViewModel
-import com.handsome.lib.util.exception.ApiException
-import com.handsome.lib.util.service.ServiceManager
+import com.handsome.lib.util.network.ApiGenerator
 import com.handsome.lib.util.service.impl
 import com.handsome.lib.util.util.getSp
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -12,8 +11,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.rx3.asFlow
 
-class LoginViewModel : BaseViewModel(){
+class LoginViewModel : BaseViewModel() {
     /**
      * 流程: 记住密码->存进去sp->取出时判断登陆状态
      * 登录->放入text中
@@ -32,10 +33,19 @@ class LoginViewModel : BaseViewModel(){
         get() = _loginEvent
 
     private val mLoginSp = getSp(this::class.java.simpleName)
-//    private val mAccountService = IAccountService::class.impl
+    private val mAccountService = IAccountService::class.impl
 
-    fun login(userName : String,password : String){
-//        val loginBean = mAccountService.login(userName,password)
+    fun login(userName: String, password: String) {
+        mAccountService.login(userName, password)
+            .toObservable()
+            .asFlow()
+            .catch {
+                _loginEvent.emit(LoginEvent.Fail(it))
+            }
+            .collectLaunch{
+                _loginEvent.emit(LoginEvent.Success(it))
+                ApiGenerator.setToken(it.token)
+            }
     }
 
     fun isRememberPassword(): Boolean {
@@ -49,7 +59,7 @@ class LoginViewModel : BaseViewModel(){
     }
 
     sealed class LoginEvent {
-        data class Success(val bean: IAccountService.LoginBean): LoginEvent()
-        data class Fail(val error: ApiException): LoginEvent()
+        data class Success(val bean: IAccountService.LoginBean) : LoginEvent()
+        data class Fail(val error: Throwable) : LoginEvent()
     }
 }

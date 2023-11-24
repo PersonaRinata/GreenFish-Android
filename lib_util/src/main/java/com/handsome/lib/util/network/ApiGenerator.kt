@@ -1,6 +1,7 @@
 package com.handsome.lib.util.network
 
 import android.util.Log
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -15,10 +16,29 @@ import kotlin.reflect.KClass
 //const val COOKIE_SERVICE = "/cookie/service"
 
 object ApiGenerator {
+    // 获取用户信息变得很简单，直接IAccountService获取实例直接有
+    // 但是初始化token的过程变得离谱
+    private var token : String? = null
 
-    private val retrofit = getNewRetrofit(true)
+    fun setToken(token : String){
+        this.token = token
+    }
 
-//    private val mAccountService = IAcconter
+    fun getToken() : String?{
+        return token
+    }
+
+    private val retrofit = getNewRetrofit(false){
+        addInterceptor(Interceptor { chain ->
+            val original: Request = chain.request()
+            val request: Request = original.newBuilder().apply {
+                token?.let { header("token", token!!) }  //如果还是没有的话直接返回登录过期，要求重新登录
+                method(original.method, original.body)
+            }
+                .build()
+            chain.proceed(request)
+        })
+    }
 
     //3getApiService 函数：创建给定类的 API 服务，就是将我们的网络请求接口实例化
     fun <T : Any> getApiService(clazz: KClass<T>): T {
@@ -41,7 +61,6 @@ object ApiGenerator {
 //                cookieJar(cookieJar)
                 config?.invoke(this)
                 defaultOkhttpConfig(isNeedCookie)
-
             })
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.createSynchronous())
