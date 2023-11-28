@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
+import com.handsome.module.main.bean.AuthorBean
 import com.handsome.module.main.databinding.MainFragmentChatBinding
 import com.handsome.module.main.ui.activity.ChatDetailActivity
 import com.handsome.module.main.ui.adapter.FriendsListAdapter
@@ -22,7 +23,7 @@ class ChatFragment : BaseFragment() {
     private val mBinding by lazy { MainFragmentChatBinding.inflate(layoutInflater) }
     private val mViewModel by viewModels<ChatFragmentViewModel>()
     private val mAdapter by lazy { FriendsListAdapter() }
-    private var mUserInfo by arguments<com.handsome.module.main.bean.AuthorBean>()
+    private var mUserInfo by arguments<AuthorBean>()
 
 
     override fun onCreateView(

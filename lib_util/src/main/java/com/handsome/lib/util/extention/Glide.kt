@@ -49,7 +49,7 @@ fun ImageView.setImageFromId(
 }
 
 fun ImageView.setImageFromLocalUri(
-    id: Uri,  //必须传入一个id
+    id: Uri,  //必须传入一个uri
     @DrawableRes placeholder: Int = R.drawable.config_ic_place_holder,
     @DrawableRes error: Int = R.drawable.config_ic_place_holder,
     func: (RequestBuilder<Drawable>.() -> Unit)? = null

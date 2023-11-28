@@ -31,11 +31,13 @@ object ApiGenerator {
     private val retrofit = getNewRetrofit(false){
         addInterceptor(Interceptor { chain ->
             val original: Request = chain.request()
-            val request: Request = original.newBuilder().apply {
-                token?.let { header("token", token!!) }  //如果还是没有的话直接返回登录过期，要求重新登录
-                method(original.method, original.body)
+            val originalHttpUrl = original.url
+            val url = originalHttpUrl.newBuilder().apply {
+                token?.let { addQueryParameter("token", token!!) }
             }
                 .build()
+            val requestBuilder = original.newBuilder().url(url)
+            val request = requestBuilder.build()
             chain.proceed(request)
         })
     }

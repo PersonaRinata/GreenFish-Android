@@ -11,5 +11,5 @@ data class ChatMessageBean(
 data class ApiWrapperChatMessageBean(
     val status_code : Int,
     val status_msg: String,
-    val message_list : List<com.handsome.module.main.bean.ChatMessageBean>?
+    val message_list : List<ChatMessageBean>?
 )

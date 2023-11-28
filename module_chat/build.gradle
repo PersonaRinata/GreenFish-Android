@@ -74,6 +74,8 @@ dependencies {
     implementation(project(":lib_util"))
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.2'
+    implementation("com.squareup.retrofit2:retrofit:2.6.1")
+    implementation("com.squareup.retrofit2:converter-gson:2.6.1")
     //依赖api通信模块
     implementation(project(":lib_api"))
     //依赖Arouter注解处理器

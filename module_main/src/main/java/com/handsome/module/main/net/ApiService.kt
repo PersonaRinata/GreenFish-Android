@@ -18,12 +18,12 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("feed")
-    suspend fun getAllVideo(@Query("token") token: String =  ApiService.Companion.token):  VideoListBean
+    suspend fun getAllVideo(@Query("token") token: String =  Companion.token):  VideoListBean
 
     @GET("comment/list")
     suspend fun getVideoComment(
         @Query("video_id") videoId: Long,
-        @Query("token") token: String =  ApiService.Companion.token
+        @Query("token") token: String =  Companion.token
     ): CommentBean
 
     //todo 等待完成 ,记得返回值
@@ -53,14 +53,14 @@ interface ApiService {
     @GET("favorite/list")
     suspend fun getUserLike(
         @Query("user_id") userId: Long,
-        @Query("token") token: String =  ApiService.Companion.token
+        @Query("token") token: String =  Companion.token
     ):  VideoListBean
 
     //获得发布信息的接口
     @GET("publish/list")
     suspend fun getUserPublish(
         @Query("user_id") userId: Long,
-        @Query("token") token: String =  ApiService.Companion.token
+        @Query("token") token: String =  Companion.token
     ): VideoListBean
 
     // 上传视频 todo 等待返回数据
@@ -69,7 +69,7 @@ interface ApiService {
     suspend fun publishVideo(
         @Part video: MultipartBody.Part,
         @Query("title") title: String,
-        @Query("token") token: String =  ApiService.Companion.token
+        @Query("token") token: String =  Companion.token
     )
 
     //todo 获得发现的内容列表
@@ -79,8 +79,8 @@ interface ApiService {
     // 获得好友列表
     @GET("relation/friend/list")
     suspend fun getFriendsList(
-        @Query("user_id") userId: Long =  ApiService.Companion.userId,
-        @Query("token") token: String =  ApiService.Companion.token
+        @Query("user_id") userId: Long =  Companion.userId,
+        @Query("token") token: String =  Companion.token
     ): FriendsList
 
     // 关注操作
@@ -88,7 +88,7 @@ interface ApiService {
     suspend fun followUser(
         @Query("to_user_id") to_user_id: Long,
         @Query("action_type") action_type: Int,
-        @Query("token") token: String =  ApiService.Companion.token
+        @Query("token") token: String =  Companion.token
     ):  StatusBean
 
     @POST("user/login")
@@ -108,7 +108,7 @@ interface ApiService {
     suspend fun getMessageHistory(
         @Query("to_user_id") toUserId: String,
         @Query("pre_msg_time") preMessageTime: String = "0",
-        @Query("token") token: String =  ApiService.Companion.token
+        @Query("token") token: String =  Companion.token
     ): com.handsome.module.main.bean.ApiWrapperChatMessageBean
 
     // 上传聊天记录
@@ -117,21 +117,21 @@ interface ApiService {
         @Query("to_user_id") toUserId: String,
         @Query("content") content: String,
         @Query("action_type") action_type: Int = 1,
-        @Query("token") token: String =  ApiService.Companion.token
+        @Query("token") token: String =  Companion.token
     ):  StatusBean
 
     // 获得关注列表
     @GET("relation/follow/list")
     suspend fun getFollowList(
         @Query("user_id") userId: Long,
-        @Query("token") token: String =  ApiService.Companion.token
+        @Query("token") token: String =  Companion.token
     ) : FollowBean
 
     //获取粉丝列表
     @GET("relation/follower/list")
     suspend fun getFansList(
         @Query("user_id") userId: Long,
-        @Query("token") token: String =  ApiService.Companion.token
+        @Query("token") token: String =  Companion.token
     ):  FollowBean
 
     companion object {

@@ -1,0 +1,92 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/noclass_item_group_member"
+    android:layout_width="match_parent"
+    android:layout_height="42dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp">
+
+    <com.handsome.module.chat.wight.SlideMenuLayout
+        android:id="@+id/chat_item_friends_list_slide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:noclass_isFixedView="false"
+        app:noclass_slideMode="right">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/chat_item_friends_list_isTop"
+                android:layout_width="100dp"
+                android:layout_height="46dp"
+                android:background="#4741E0"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="取消置顶"
+                android:textColor="@color/white"
+                tools:text="取消置顶" />
+
+            <TextView
+                android:id="@+id/chat_item_friends_list_delete"
+                android:layout_width="82dp"
+                android:layout_height="46dp"
+                android:background="#ED535C"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="删除"
+                android:textColor="@color/white"
+                tools:text="删除" />
+        </LinearLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/chat_item_friends_list_img_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/chat_ic_user"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/chat_item_friends_list_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginStart="9dp"
+                android:textColor="@color/chat_member_name_color"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/chat_item_friends_list_img_user"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"
+                tools:text="陈思言" />
+
+            <TextView
+                android:id="@+id/chat_item_friends_list_tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="9dp"
+                android:textColor="@color/chat_member_message_color"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/chat_item_friends_list_img_user"
+                tools:text="2021214171" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.handsome.module.chat.wight.SlideMenuLayout>
+
+
+</FrameLayout>

@@ -10,6 +10,7 @@ const val MAIN_AIGC = "/aigc/entry"
 const val MAIN_PERSONALIZATION = "/personalization/entry"
 const val MAIN_MINE = "/mine/entry"
 const val LOGIN_ENTRY = "/login/entry"
+const val MAIN_PUBLISH = "/publish/entry"
 
 const val ACCOUNT_SERVICE = "/account/service"
 // cookie 服务

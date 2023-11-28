@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/chat_content_list_img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/chat_ic_back" />
+
+            <TextView
+                android:id="@+id/chat_content_list_tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:text="聊天详情"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_activity_content_list_rv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <EditText
+                android:id="@+id/chat_content_list_et_send"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/chat_shape_send_comment_bg"
+                android:hint="点击进入输入"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:maxLength="20"
+                android:paddingStart="17dp"
+                android:paddingTop="9.5dp"
+                android:paddingEnd="19dp"
+                android:paddingBottom="9.5dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/white"
+                tools:ignore="Autofill,TextFields" />
+
+            <TextView
+                android:id="@+id/chat_content_list_tv_send"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="发送"
+                android:background="@drawable/chat_shape_send_bg"
+                android:textSize="20sp"
+                android:layout_marginTop="2.6dp"
+                android:layout_marginBottom="2dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

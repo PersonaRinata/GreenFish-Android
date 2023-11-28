@@ -5,16 +5,19 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.handsome.lib.api.server.MAIN_CHAT
 import com.handsome.lib.api.server.MAIN_FIND
+import com.handsome.lib.api.server.MAIN_MINE
+import com.handsome.lib.api.server.MAIN_PERSONALIZATION
 import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.api.server.service.ILoginService
+import com.handsome.lib.api.server.service.IPublishService
 import com.handsome.lib.util.adapter.FragmentVpAdapter
 import com.handsome.lib.util.base.BaseActivity
 import com.handsome.lib.util.service.ServiceManager
 import com.handsome.lib.util.service.impl
 import com.handsome.module.main.R
 import com.handsome.module.main.databinding.MainActivityMainBinding
-import com.handsome.module.main.ui.fragment.FindFragment
 import com.handsome.module.main.ui.viewmodel.activity.MainActivityViewModel
 
 class MainActivity : BaseActivity() {
@@ -43,9 +46,9 @@ class MainActivity : BaseActivity() {
         val fragmentVpAdapter = FragmentVpAdapter(this)
         fragmentVpAdapter
             .add{ServiceManager.fragment(MAIN_FIND)}
-            .add(FindFragment::class.java)
-//            .add{ ChatFragment.newInstance(mUserInfo) }
-//            .add { MineFragment.newInstance(mUserInfo) }
+            .add{ServiceManager.fragment(MAIN_PERSONALIZATION)}
+            .add{ServiceManager.fragment(MAIN_CHAT)}
+            .add{ServiceManager.fragment(MAIN_MINE)}
         mBinding.mainVp.adapter = fragmentVpAdapter
         mBinding.mainVp.isUserInputEnabled = false;  //禁止滑动的方法
     }
@@ -62,7 +65,7 @@ class MainActivity : BaseActivity() {
                 }
 
                 R.id.item_main_bottom_publish -> {
-                    PublishActivity.startAction(this)
+                    IPublishService::class.impl.startPublishActivity()
                 }
 
                 R.id.item_main_bottom_chat -> {
