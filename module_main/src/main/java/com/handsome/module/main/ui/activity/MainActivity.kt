@@ -7,10 +7,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.handsome.lib.api.server.MAIN_CHAT
 import com.handsome.lib.api.server.MAIN_FIND
-import com.handsome.lib.api.server.MAIN_MINE
 import com.handsome.lib.api.server.MAIN_PERSONALIZATION
 import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.api.server.service.ILoginService
+import com.handsome.lib.api.server.service.IMineService
 import com.handsome.lib.api.server.service.IPublishService
 import com.handsome.lib.util.adapter.FragmentVpAdapter
 import com.handsome.lib.util.base.BaseActivity
@@ -48,7 +48,7 @@ class MainActivity : BaseActivity() {
             .add{ServiceManager.fragment(MAIN_FIND)}
             .add{ServiceManager.fragment(MAIN_PERSONALIZATION)}
             .add{ServiceManager.fragment(MAIN_CHAT)}
-            .add{ServiceManager.fragment(MAIN_MINE)}
+            .add{IMineService::class.impl.getMineFragment(mUserInfo!!.user_id)}
         mBinding.mainVp.adapter = fragmentVpAdapter
         mBinding.mainVp.isUserInputEnabled = false;  //禁止滑动的方法
     }

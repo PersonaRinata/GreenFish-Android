@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/main_fragment_mine_img_user"
+            android:id="@+id/mine_fragment_mine_img_user"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
@@ -26,7 +26,7 @@
             app:shapeAppearance="@style/Circle" />
 
         <TextView
-            android:id="@+id/main_fragment_mine_tv_user_name"
+            android:id="@+id/mine_fragment_mine_tv_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -35,11 +35,11 @@
             android:text="夕阳不再"
             android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/main_fragment_mine_img_user"
-            app:layout_constraintTop_toTopOf="@+id/main_fragment_mine_img_user" />
+            app:layout_constraintStart_toEndOf="@+id/mine_fragment_mine_img_user"
+            app:layout_constraintTop_toTopOf="@+id/mine_fragment_mine_img_user" />
 
         <TextView
-            android:id="@+id/main_fragment_mine_tv_follow"
+            android:id="@+id/mine_fragment_mine_tv_follow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -51,9 +51,9 @@
             android:paddingEnd="24dp"
             android:paddingBottom="8dp"
             android:background="@drawable/mine_shape_follow_no_bg"
-            app:layout_constraintBottom_toBottomOf="@+id/main_fragment_mine_tv_user_name"
+            app:layout_constraintBottom_toBottomOf="@+id/mine_fragment_mine_tv_user_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/main_fragment_mine_tv_user_name" />
+            app:layout_constraintTop_toTopOf="@+id/mine_fragment_mine_tv_user_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <TextView
-            android:id="@+id/main_fragment_mine_tv_follow_num"
+            android:id="@+id/mine_fragment_mine_tv_follow_num"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -77,7 +77,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/main_fragment_mine_tv_fans_num"
+            android:id="@+id/mine_fragment_mine_tv_fans_num"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -92,7 +92,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/main_fragment_mine_tv_describe"
+        android:id="@+id/mine_fragment_mine_tv_describe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -104,22 +104,22 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/main_fragment_mine_tab_layout"
+        android:id="@+id/mine_fragment_mine_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_fragment_mine_tv_describe" />
+        app:layout_constraintTop_toBottomOf="@+id/mine_fragment_mine_tv_describe" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/main_fragment_mine_vp"
+        android:id="@+id/mine_fragment_mine_vp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_fragment_mine_tab_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/mine_fragment_mine_tab_layout" />
 
 
 
