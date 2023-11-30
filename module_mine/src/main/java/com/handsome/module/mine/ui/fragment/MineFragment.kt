@@ -12,6 +12,7 @@ import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.setImageFromUrl
 import com.handsome.lib.util.extention.toast
 import com.handsome.module.mine.databinding.MineFragmentMineBinding
+import com.handsome.module.mine.ui.activity.FollowListActivity
 import com.handsome.module.mine.ui.viewmodel.MineViewModel
 
 // 后续考虑通过service
@@ -32,6 +33,18 @@ class MineFragment : BaseFragment() {
 
     private fun initView() {
         initVpTab()
+        initClick()
+    }
+
+    private fun initClick() {
+        with(mBinding) {
+            mineFragmentMineTvFansNum.setOnClickListener {
+                FollowListActivity.startAction(requireContext(),mUserId,FollowListActivity.FollowType.FANS)
+            }
+            mineFragmentMineTvFollowNum.setOnClickListener {
+                FollowListActivity.startAction(requireContext(),mUserId,FollowListActivity.FollowType.FOLLOWS)
+            }
+        }
     }
 
     private fun initVpTab(){

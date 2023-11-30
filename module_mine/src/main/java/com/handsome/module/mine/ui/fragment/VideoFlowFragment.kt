@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
-import com.handsome.module.mine.databinding.MainFragmentVideoFlowBinding
+import com.handsome.module.mine.databinding.MineFragmentVideoFlowBinding
 import com.handsome.module.mine.ui.adapter.VideoForegroundAdapter
 import com.handsome.module.mine.ui.viewmodel.VideoFlowViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
  * 我的界面的发布和喜欢(❤ ω ❤)
  */
 class VideoFlowFragment : BaseFragment() {
-    private val mBinding by lazy { MainFragmentVideoFlowBinding.inflate(layoutInflater) }
+    private val mBinding by lazy { MineFragmentVideoFlowBinding.inflate(layoutInflater) }
     private val mType by arguments<MineType>()
     private val mViewModel by viewModels<VideoFlowViewModel>()
     private val mAdapter by lazy { VideoForegroundAdapter() }

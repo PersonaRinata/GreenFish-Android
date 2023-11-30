@@ -1,4 +1,4 @@
-package com.handsome.module.mine.ui.adapter
+package com.handsome.module.find.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.lib.util.extention.setImageFromUrl
-import com.handsome.module.mine.bean.VideoBean
-import com.handsome.module.mine.databinding.MineItemVideoForegroudBinding
+import com.handsome.module.find.bean.VideoBean
+import com.handsome.module.find.databinding.FindItemVideoForegroudBinding
 
 class VideoForegroundAdapter : ListAdapter<VideoBean,VideoForegroundAdapter.MyHolder>(myDiffUtil) {
 
@@ -31,7 +31,7 @@ class VideoForegroundAdapter : ListAdapter<VideoBean,VideoForegroundAdapter.MyHo
         this.mOnClickVideo = mOnClickVideo
     }
 
-    inner class MyHolder(val binding : MineItemVideoForegroudBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class MyHolder(val binding : FindItemVideoForegroudBinding) : RecyclerView.ViewHolder(binding.root){
         init {
             binding.root.setOnClickListener {
                 mOnClickVideo?.invoke(getItem(adapterPosition))
@@ -40,15 +40,15 @@ class VideoForegroundAdapter : ListAdapter<VideoBean,VideoForegroundAdapter.MyHo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        return MyHolder(MineItemVideoForegroudBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return MyHolder(FindItemVideoForegroudBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val item = getItem(position)
         if (item != null){
             holder.binding.apply {
-                if (item.cover_url != "") mainItemVideoForegroudImgUser.setImageFromUrl(item.cover_url)
-                mainItemVideoForegroudTvLikeNum.text = item.favorite_count.toString()
+                if (item.cover_url != "") findItemVideoForegroudImgUser.setImageFromUrl(item.cover_url)
+                findItemVideoForegroudTvLikeNum.text = item.favorite_count.toString()
             }
         }
     }
