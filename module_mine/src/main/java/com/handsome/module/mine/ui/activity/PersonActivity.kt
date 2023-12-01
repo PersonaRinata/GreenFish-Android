@@ -30,6 +30,7 @@ class PersonActivity : BaseActivity() {
         fun startAction(context : Context,userId: Long){
             val intent = Intent(context,PersonActivity::class.java)
             intent.putExtra("userId",userId)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
     }

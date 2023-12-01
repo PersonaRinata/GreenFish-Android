@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.handsome.api.video.bean.VideoBean
 import com.handsome.lib.util.extention.setImageFromUrl
-import com.handsome.module.mine.bean.VideoBean
 import com.handsome.module.mine.databinding.MineItemVideoForegroudBinding
 
 class VideoForegroundAdapter : ListAdapter<VideoBean,VideoForegroundAdapter.MyHolder>(myDiffUtil) {

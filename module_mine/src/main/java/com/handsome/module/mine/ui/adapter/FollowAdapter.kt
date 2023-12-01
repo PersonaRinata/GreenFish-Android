@@ -6,8 +6,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.handsome.api.video.bean.AuthorBean
 import com.handsome.module.mine.R
-import com.handsome.module.mine.bean.AuthorBean
 import com.handsome.module.mine.databinding.MineItemFollowBinding
 
 class FollowAdapter : ListAdapter<AuthorBean, FollowAdapter.MyHolder>(myDiffUtil) {

@@ -7,4 +7,6 @@ interface IMineService : IProvider {
 
     fun getMineFragment(userId : Long) : BaseFragment
 
+    fun startPersonActivity(userId: Long)
+
 }

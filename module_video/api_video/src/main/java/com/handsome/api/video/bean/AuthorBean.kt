@@ -1,4 +1,4 @@
-package com.handsome.module.mine.bean
+package com.handsome.api.video.bean
 
 import java.io.Serializable
 
@@ -24,4 +24,4 @@ data class ApiWrapperUserBean(
     val user: AuthorBean,
     val status_code: Int,
     val status_msg: String,
-) : Serializable
+) :Serializable

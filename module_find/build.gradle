@@ -75,12 +75,12 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
-    //依赖utlis工具模块
-    implementation(project(":lib_util"))
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.2'
-    //依赖api通信模块
+
     implementation(project(":lib_api"))
+    implementation(project(":lib_util"))
+    implementation(project(":module_video:api_video"))
     //依赖Arouter注解处理器
     kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
 }

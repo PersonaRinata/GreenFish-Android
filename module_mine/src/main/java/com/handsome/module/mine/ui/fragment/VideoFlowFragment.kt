@@ -9,8 +9,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.handsome.api.video.service.IVideoService
 import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.toast
+import com.handsome.lib.util.service.impl
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
 import com.handsome.module.mine.databinding.MineFragmentVideoFlowBinding
 import com.handsome.module.mine.ui.adapter.VideoForegroundAdapter
@@ -44,8 +46,7 @@ class VideoFlowFragment : BaseFragment() {
             layoutManager = GridLayoutManager(requireContext(), 3)
             adapter = mAdapter.apply {
                 setOnClickVideo {
-//                    VideoActivity.startAction(requireContext(),it)
-                    //todo 等待跳转到视频activity
+                    IVideoService::class.impl.startVideoActivity(it)
                 }
             }
         }

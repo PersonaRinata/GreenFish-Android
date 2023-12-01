@@ -1,5 +1,6 @@
 package com.handsome.module.mine.bean
 
+import com.handsome.api.video.bean.VideoBean
 import java.io.Serializable
 
 data class VideoListBean(

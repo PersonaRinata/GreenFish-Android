@@ -1,7 +1,7 @@
 package com.handsome.module.mine.net
 
+import com.handsome.api.video.bean.ApiWrapperUserBean
 import com.handsome.lib.util.network.ApiGenerator
-import com.handsome.module.mine.bean.ApiWrapperUserBean
 import com.handsome.module.mine.bean.FollowBean
 import com.handsome.module.mine.bean.StatusBean
 import com.handsome.module.mine.bean.VideoListBean

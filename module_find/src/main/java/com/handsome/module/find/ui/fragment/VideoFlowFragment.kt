@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.handsome.api.video.service.IVideoService
 import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.toast
+import com.handsome.lib.util.service.impl
 import com.handsome.module.find.databinding.FindFragmentVideoFlowBinding
 import com.handsome.module.find.ui.adapter.VideoForegroundAdapter
 import com.handsome.module.find.ui.viewmodel.VideoFlowViewModel
@@ -36,8 +38,7 @@ class VideoFlowFragment : BaseFragment() {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = mAdapter.apply {
                 setOnClickVideo {
-//                    VideoActivity.startAction(requireContext(),it)
-                    //todo 等待跳转到视频activity
+                    IVideoService::class.impl.startVideoActivity(it)
                 }
             }
         }

@@ -47,6 +47,7 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
 
     //在这里引入所有的模块
+
     implementation(project(":lib_util"))
     implementation(project(":lib_api"))
     implementation(project(":lib_account"))
@@ -61,5 +62,8 @@ dependencies {
     implementation(project(":module_publish"))
     implementation(project(":module_chat"))
     implementation(project(":module_personalization"))
+
+    implementation(project(":module_video:api_video"))
+
 
 }

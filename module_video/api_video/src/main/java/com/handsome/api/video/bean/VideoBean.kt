@@ -1,4 +1,4 @@
-package com.handsome.module.find.bean
+package com.handsome.api.video.bean
 
 import java.io.Serializable
 
