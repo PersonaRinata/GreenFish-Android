@@ -55,7 +55,8 @@ class ChatFragment : BaseFragment() {
         mViewModel.chatList.collectLaunch {
             if (it != null) {
                 if (it.status_code == 0) {
-                    mAdapter.submitList(it.user_list)
+                    // 这里因为远端没有设置字段，所以其实也就和submitList结果一样
+                    mAdapter.submitListToOrder(it.user_list)
                 } else {
                     toast("消息请求失败")
                 }
@@ -68,10 +69,42 @@ class ChatFragment : BaseFragment() {
             setOnClickChatItem { selfId, otherId ->
                 ContentListActivity.startAction(requireContext(),selfId,otherId)
             }
+            setOnClickDelete {
+                deleteItem(it)
+            }
+            setOnClickTop { data,tv ->
+                // 等到有接口的时候放到远端返回正确信息后再返回
+                addItemToOrder(data,tv)
+            }
+            setOnItemSlideBack { curPosition ->
+                val list = currentList.toMutableList()
+                rightSlideOpenLoc?.let { lastPosition ->
+                    list[curPosition].isOpen = true
+                    list[lastPosition].isOpen = false
+                    submitList(list)
+                    notifyItemChanged(lastPosition)
+                }
+            }
         }
         with(mBinding.chatFragRv) {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = mAdapter
+            addOnScrollListener(object : RecyclerView.OnScrollListener(){
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    // 正在拖动
+                    if (newState == RecyclerView.SCROLL_STATE_DRAGGING){
+                        with(mAdapter){
+                            rightSlideOpenLoc?.let {
+                                val list = currentList.toMutableList()
+                                list[it].isOpen = false
+                                submitList(list)
+                                notifyItemChanged(it)
+                                rightSlideOpenLoc = null
+                            }
+                        }
+                    }
+                }
+            })
         }
 
     }

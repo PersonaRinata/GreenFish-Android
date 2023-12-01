@@ -35,6 +35,19 @@ class LoginViewModel : BaseViewModel() {
     private val mLoginSp = getSp(this::class.java.simpleName)
     private val mAccountService = IAccountService::class.impl
 
+    fun register(userName: String, password: String,rePassword : String){
+        mAccountService.register(userName,password,rePassword)
+            .toObservable()
+            .asFlow()
+            .catch {
+                _loginEvent.emit(LoginEvent.Fail(it))
+            }
+            .collectLaunch{
+                _loginEvent.emit(LoginEvent.Success(it))
+                ApiGenerator.setToken(it.token)
+            }
+    }
+
     fun login(userName: String, password: String) {
         mAccountService.login(userName, password)
             .toObservable()

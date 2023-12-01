@@ -3,7 +3,6 @@ package com.handsome.lib.account.network
 import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.util.network.ApiStatus
 import io.reactivex.rxjava3.core.Single
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -21,7 +20,6 @@ interface LoginApiService {
   fun logout(): Single<ApiStatus>
   
   @POST("user/register")
-  @FormUrlEncoded
   fun register(
     @Query("username") username: String,
     @Query("password") password: String,

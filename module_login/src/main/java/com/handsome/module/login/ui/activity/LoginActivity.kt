@@ -42,6 +42,15 @@ class LoginActivity : BaseActivity() {
                 mViewModel.login(username, password)
             }
         }
+        mBinding.loginBtnRegister.setOnSingleClickListener {
+            val username = mBinding.loginEtUsername.text?.toString()
+            val password = mBinding.loginEtPassword.text?.toString()
+            if (username.isNullOrBlank() || password.isNullOrBlank()) {
+                toast("请输入完整!")
+            } else {
+                mViewModel.register(username, password,password)
+            }
+        }
     }
 
     private fun initEvent() {
