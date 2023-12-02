@@ -23,7 +23,7 @@ class ContentListActivity : BaseActivity() {
     private val otherId: Long by lazy { intent.getLongExtra("otherId", -1) }
     private var mHandler: Handler? = null
     private var mRunnable: Runnable? = null
-    private var lastMessageTime : Long = 0   //最后一条消息的时间，其实也可以通过adapter来获得
+    private var lastMessageTime: Long = 0   //最后一条消息的时间，其实也可以通过adapter来获得
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +72,10 @@ class ContentListActivity : BaseActivity() {
                     if (it.message_list != null) {
                         list.addAll(it.message_list)
                         mAdapter.submitList(list)
-                        lastMessageTime = list[list.size-1].create_time
+                        lastMessageTime = list[list.size - 1].create_time
+                        mBinding.chatActivityContentListRv.post {
+                            mBinding.chatActivityContentListRv.smoothScrollToPosition(mBinding.chatActivityContentListRv.computeVerticalScrollRange())
+                        }
                     }
                 } else {
                     toast("获取消息列表失败！")
@@ -99,7 +102,7 @@ class ContentListActivity : BaseActivity() {
     /**
      * 一秒钟之后再次请求一次消息
      */
-    private fun postSingle(lastMessageTime: Long,delayTime: Long = 1000) {
+    private fun postSingle(lastMessageTime: Long, delayTime: Long = 1000) {
         if (mHandler == null) {
             mHandler = Handler(Looper.getMainLooper())
         }
