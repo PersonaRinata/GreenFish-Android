@@ -5,13 +5,29 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/find_fragment_find_tab"
+    <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="70sp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/find_fragment_find_tab"
+            android:layout_width="match_parent"
+            android:layout_height="70sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:src="@drawable/find_ic_search"
+            android:layout_marginEnd="16dp"
+            />
+
+    </FrameLayout>
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/find_fragment_find_vp"
@@ -20,6 +36,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/find_fragment_find_tab" />
+        app:layout_constraintTop_toBottomOf="@+id/frame_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,7 +64,7 @@ class FindFragment : BaseFragment() {
             if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.O) {
                 tooltipText = ""
             }
-            val titles = listOf("视频", "文章")
+            val titles = listOf("视频", "资讯")
             //和viewpager联动起来
             TabLayoutMediator(this, mBinding.findFragmentFindVp) { tab, position ->
                 tab.text = titles[position]

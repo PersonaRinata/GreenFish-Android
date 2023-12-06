@@ -5,8 +5,11 @@ import com.handsome.lib.util.network.ApiGenerator
 import com.handsome.module.mine.bean.FollowBean
 import com.handsome.module.mine.bean.StatusBean
 import com.handsome.module.mine.bean.VideoListBean
+import okhttp3.MultipartBody
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface MineApiService {
@@ -47,6 +50,13 @@ interface MineApiService {
         @Query("to_user_id") to_user_id: Long,
         @Query("action_type") action_type: Int,
     ): StatusBean
+
+    // 上传图片接口
+    @Multipart
+    @POST("user/avatar")
+    suspend fun uploadPhoto(
+        @Part data : MultipartBody.Part,
+    ) : StatusBean
 
     companion object {
         val INSTANCE by lazy {
