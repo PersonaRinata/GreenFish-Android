@@ -9,10 +9,10 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/mine_fragment_mine_img_user"
@@ -108,6 +108,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/transparent"
+        android:longClickable="false"
+        app:tabGravity="fill"
+        app:tabIndicator="@drawable/mine_ic_indicator"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabIndicatorFullWidth="false"
+        app:tabMaxWidth="200dp"
+        app:tabMinWidth="20dp"
+        app:tabMode="fixed"
+        app:tabRippleColor="@android:color/transparent"
+        app:tabSelectedTextAppearance="@style/MineTabSelectedTextAppearance"
+        app:tabSelectedTextColor="@color/fish_font_level4_color"
+        app:tabTextColor="@color/fish_font_level4_color"
+        app:tabTextAppearance="@style/MineTabTextAppearance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mine_fragment_mine_tv_describe" />

@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.handsome.api.video.service.IVideoService
 import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.toast
@@ -35,7 +36,7 @@ class VideoFlowFragment : BaseFragment() {
 
     private fun initRv() {
         with(mBinding.mainFragmentVideoFlowRv) {
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
             adapter = mAdapter.apply {
                 setOnClickVideo {
                     IVideoService::class.impl.startVideoActivity(it)

@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="find_bg">#F4F5F9</color>
+    <color name="find_message_tab_no_select_text_color">#646464</color>
+    <color name="find_message_tab_select_text_color">#FFFFFF</color>
+    <color name="find_message_tab_select_bg">#2DD6B4</color>
+    <color name="find_message_tab_not_select_bg">@android:color/transparent</color>
 </resources>

@@ -4,11 +4,8 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_fragment_video_flow_rv"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
+        android:id="@+id/find_fragment_message_page_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

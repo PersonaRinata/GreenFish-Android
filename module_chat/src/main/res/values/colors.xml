@@ -8,10 +8,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!--    成员名字颜色-->
+
     <color name="chat_member_name_color">#2D4D80</color>
-    <!--    成员学号颜色-->
+
     <color name="chat_member_message_color">#ABB5C4</color>
 
     <color name="chat_select_color">#F2F4FF</color>
+
+    <color name="chat_line_color">#E7E8EE</color>
+
+
+    <color name="chat_message_content">#898989</color>
+
+
+    <color name="chat_message_time">#898989</color>
 </resources>

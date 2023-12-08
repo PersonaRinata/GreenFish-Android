@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/noclass_item_group_member"
     android:layout_width="match_parent"
-    android:layout_height="42dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp">
+    android:layout_height="70dp">
 
     <com.handsome.module.chat.wight.SlideMenuLayout
         android:id="@+id/chat_item_friends_list_slide"
@@ -48,40 +46,64 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <View
+                android:id="@+id/chat_item_friends_list_view_line"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="9dp"
+                android:background="@color/chat_line_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/chat_item_friends_list_img_user"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/chat_item_friends_list_img_user"
-                android:layout_width="wrap_content"
+                android:layout_width="56dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/chat_ic_user"
+                android:src="@drawable/chat_ic_doctor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/chat_item_friends_list_view_line"
+                app:shapeAppearance="@style/Circle" />
 
             <TextView
                 android:id="@+id/chat_item_friends_list_tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:layout_marginStart="9dp"
-                android:textColor="@color/chat_member_name_color"
+                android:textColor="@color/black"
                 android:textSize="16sp"
+                android:layout_marginTop="6dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/chat_item_friends_list_img_user"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0"
-                tools:text="陈思言" />
+                app:layout_constraintTop_toTopOf="@+id/chat_item_friends_list_img_user"
+                tools:text="张医生" />
+
+            <TextView
+                android:id="@+id/chat_item_friends_list_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginEnd="16sp"
+                android:textColor="@color/chat_message_time"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/chat_item_friends_list_tv_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/chat_item_friends_list_tv_name"
+                tools:text="12:30" />
 
             <TextView
                 android:id="@+id/chat_item_friends_list_tv_message"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginStart="9dp"
-                android:textColor="@color/chat_member_message_color"
-                android:textSize="14sp"
+                android:textColor="@color/chat_message_content"
+                android:textSize="12sp"
+                android:layout_marginBottom="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/chat_item_friends_list_img_user"
-                tools:text="2021214171" />
+                tools:text="张医生，我身体有一点不舒服" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CircleStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15%</item>
+    </style>
+
+    <style name="Circle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="SmallCircle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="MineTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">16sp</item> <!-- 修改字体大小 -->
+        <item name="color">@color/fish_font_level4_color</item>
+    </style>
+
+    <style name="MineTabSelectedTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">16sp</item> <!-- 修改字体大小 -->
+        <item name="color">@color/fish_font_level4_color</item>
+    </style>
+</resources>

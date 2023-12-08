@@ -3,39 +3,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:background="@color/white">
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/find_fragment_find_tab"
+        <FrameLayout
+            android:id="@+id/frame_layout"
             android:layout_width="match_parent"
-            android:layout_height="70sp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center"
-            android:src="@drawable/find_ic_search"
-            android:layout_marginEnd="16dp"
-            />
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
 
-    </FrameLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/find_fragment_find_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:longClickable="false"
+                app:tabGravity="center"
+                app:tabIndicator="@drawable/find_ic_indicator"
+                app:tabIndicatorColor="@android:color/transparent"
+                app:tabIndicatorFullWidth="false"
+                app:tabMaxWidth="200dp"
+                app:tabMinWidth="20dp"
+                app:tabMode="fixed"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabSelectedTextAppearance="@style/FindTabSelectedTextAppearance"
+                app:tabSelectedTextColor="@color/fish_font_level4_color"
+                app:tabTextColor="@color/fish_font_level2_color"
+                app:tabTextAppearance="@style/FindTabTextAppearance" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:src="@drawable/find_ic_search"
+                android:layout_marginEnd="16dp" />
+
+        </FrameLayout>
 
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/find_fragment_find_vp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frame_layout" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/find_fragment_find_vp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frame_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

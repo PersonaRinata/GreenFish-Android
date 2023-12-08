@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="1dp"
+    android:id="@+id/main_item_content_list_constrain">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/find_item_message_page_img_pic"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/find_ic_place_message" />
+
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/find_item_video_foreground_img_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/find_ic_user"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintStart_toEndOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/find_item_video_foreground_tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center"
+        android:layout_marginStart="16dp"
+        android:text="医学百科"
+        android:textColor="@color/fish_font_level3_color"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintStart_toEndOf="@+id/find_item_video_foreground_img_user"
+        app:layout_constraintTop_toTopOf="@+id/find_item_video_foreground_img_user" />
+
+
+    <TextView
+        android:id="@+id/find_item_message_page_tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:lines="2"
+        android:text="急救常识科普，一分钟快速学习急救课程"
+        android:textSize="16sp"
+        android:textColor="@color/fish_font_level4_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/find_item_message_page_tv_date"
+        android:layout_width="58dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="16dp"
+        android:text="2023.9.28"
+        android:textColor="@color/fish_font_level2_color"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/find_item_video_foreground_img_user" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
