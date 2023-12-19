@@ -7,4 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="mine_private_chat_border_color">#A7ABB4</color>
+
+
+    <color name="mine_follow_start_color">#95E2D4</color>
+    <color name="mine_follow_end_color">#7DE3CA</color>
+
+    <color name="mine_have_follow_color">#AEF0E0</color>
+
+    <color name="mine_video_flow_bg">#F4F5F9</color>
+
+    <color name="mine_follow_text_color">#92E7D2</color>
+    <color name="mine_have_follow_text_color">#FFFFFF</color>
+
+    <color name="mine_list_have_follow_bg">#D0D0D0</color>
 </resources>

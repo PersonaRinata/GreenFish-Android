@@ -12,9 +12,8 @@ import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.service.impl
 import com.handsome.module.login.databinding.LoginActivityLoginBinding
 import com.handsome.module.login.ui.viewmodel.LoginViewModel
-import com.ndhzs.module.login.utils.textwatcher.BaseTextWatcher
 
-//@Route(name = LOGIN_ENTRY, path = LOGIN_ENTRY)
+
 class LoginActivity : BaseActivity() {
     private val mBinding by lazy { LoginActivityLoginBinding.inflate(layoutInflater) }
     private val mViewModel by viewModels<LoginViewModel>()
@@ -22,18 +21,13 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
-        initView()
         initClick()
-        initEvent()
         initObserve()
     }
 
     private fun initClick() {
-        mBinding.loginCbRemember.setOnCheckedChangeListener { _, isChecked ->
-            mViewModel.changeRememberPassword(isChecked)
-        }
         // 使用 setOnSingleClickListener 防抖 (即 500 毫秒内的多次点击无效)
-        mBinding.loginBtnLogin.setOnSingleClickListener {
+        mBinding.loginTvLogin.setOnSingleClickListener {
             val username = mBinding.loginEtUsername.text?.toString()
             val password = mBinding.loginEtPassword.text?.toString()
             if (username.isNullOrBlank() || password.isNullOrBlank()) {
@@ -42,7 +36,7 @@ class LoginActivity : BaseActivity() {
                 mViewModel.login(username, password)
             }
         }
-        mBinding.loginBtnRegister.setOnSingleClickListener {
+        mBinding.loginTvRegister.setOnSingleClickListener {
             val username = mBinding.loginEtUsername.text?.toString()
             val password = mBinding.loginEtPassword.text?.toString()
             if (username.isNullOrBlank() || password.isNullOrBlank()) {
@@ -51,15 +45,6 @@ class LoginActivity : BaseActivity() {
                 mViewModel.register(username, password,password)
             }
         }
-    }
-
-    private fun initEvent() {
-        mBinding.loginEtUsername.addTextChangedListener(BaseTextWatcher(mBinding.loginTilUsername))
-        mBinding.loginEtPassword.addTextChangedListener(BaseTextWatcher(mBinding.loginTilPassword))
-    }
-
-    private fun initView() {
-        mBinding.loginCbRemember.isChecked = mViewModel.isRememberPassword()
     }
 
     private fun initObserve() {

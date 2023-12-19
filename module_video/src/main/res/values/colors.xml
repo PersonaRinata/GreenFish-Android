@@ -7,4 +7,23 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+<!--    发送按钮也在使用-->
+    <color name="video_follow_start_color">#95E2D4</color>
+    <color name="video_follow_end_color">#7DE3CA</color>
+
+    <color name="video_have_follow_color">#AEF0E0</color>
+
+
+    <color name="video_comment_user_name_color">#454545</color>
+
+    <color name="video_comment_time_color">#999999</color>
+
+
+    <color name="video_comment_split_color">#EDEDED</color>
+
+
+    <color name="video_comment_edit_bg">#F4F4F4</color>
+
+    <color name="video_comment_edit_hint_color">#A4A4A4</color>
 </resources>

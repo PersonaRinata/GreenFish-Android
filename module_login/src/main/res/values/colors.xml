@@ -7,4 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="login_bg">#F4F5F9</color>
+
+    <color name="login_hello_text_color">#666666</color>
+
+
+    <color name="login_username_password_bg">#F8F8F8</color>
+
+    <color name="login_hint_text_color">#999999</color>
+
+
+    <color name="login_tv_login_start_color">#82EED4</color>
+    <color name="login_tv_login_end_color">#9FF1E2</color>
 </resources>

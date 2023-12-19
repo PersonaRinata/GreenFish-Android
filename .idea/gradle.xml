@@ -20,8 +20,8 @@
             <option value="$PROJECT_DIR$/module_login" />
             <option value="$PROJECT_DIR$/module_main" />
             <option value="$PROJECT_DIR$/module_mine" />
-            <option value="$PROJECT_DIR$/module_personalization" />
             <option value="$PROJECT_DIR$/module_publish" />
+            <option value="$PROJECT_DIR$/module_record" />
             <option value="$PROJECT_DIR$/module_search" />
             <option value="$PROJECT_DIR$/module_video" />
             <option value="$PROJECT_DIR$/module_video/api_video" />

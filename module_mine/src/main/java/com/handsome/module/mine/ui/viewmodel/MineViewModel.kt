@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.handsome.api.video.bean.ApiWrapperUserBean
 import com.handsome.lib.util.base.BaseViewModel
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
+import com.handsome.module.mine.bean.JudgeDoctorBean
 import com.handsome.module.mine.bean.StatusBean
 import com.handsome.module.mine.net.MineApiService
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,6 +21,12 @@ class MineViewModel : BaseViewModel() {
     private val _uploadImg = MutableStateFlow<StatusBean?>(null)
     val uploadImg get() = _uploadImg.asStateFlow()
 
+    private val _isDoctor = MutableStateFlow<JudgeDoctorBean?>(null)
+    val isDoctor get() = _isDoctor.asStateFlow()
+
+    private val _mutableFollowUser = MutableStateFlow<Pair<StatusBean,Int>?>(null)
+    val followUser get() = _mutableFollowUser.asStateFlow()
+
     fun getUserInfo(userId : Long){
         viewModelScope.launch(myCoroutineExceptionHandler){
             _mutableUserInfo.emit(MineApiService.INSTANCE.getUserInfo(userId))
@@ -29,6 +36,13 @@ class MineViewModel : BaseViewModel() {
     fun uploadImg(@Part fileBody: MultipartBody.Part){
         viewModelScope.launch(myCoroutineExceptionHandler) {
             _uploadImg.emit(MineApiService.INSTANCE.uploadPhoto(fileBody))
+        }
+    }
+
+
+    fun followUser(toUserId : Long , actionId: Int){
+        viewModelScope.launch(myCoroutineExceptionHandler) {
+            _mutableFollowUser.emit(MineApiService.INSTANCE.followUser(toUserId,actionId) to actionId)
         }
     }
 

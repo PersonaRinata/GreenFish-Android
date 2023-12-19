@@ -67,7 +67,7 @@ class LoginViewModel : BaseViewModel() {
 
     fun changeRememberPassword(isRemember: Boolean) {
         mLoginSp.edit {
-            putBoolean("isRememberPassword", isRemember)
+            putBoolean("isRememberPassword", false)
         }
     }
 

@@ -90,7 +90,7 @@ class VideoFragment : BaseFragment() {
                                 setBackgroundResource(R.drawable.video_shape_follow_have_bg)
                             }else{
                                 text = "关注"
-                                setBackgroundResource(R.drawable.video_shape_follow_no_bg)
+                                setBackgroundResource(R.drawable.video_shape_follow_bg)
                             }
                             isFollow = !isFollow
                         }
@@ -142,7 +142,7 @@ class VideoFragment : BaseFragment() {
                 setBackgroundResource(R.drawable.video_shape_follow_have_bg)
             }else{
                 text = "关注"
-                setBackgroundResource(R.drawable.video_shape_follow_no_bg)
+                setBackgroundResource(R.drawable.video_shape_follow_bg)
             }
             setOnClickListener {
                 if(isCanFollow){

@@ -4,24 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp">
+    android:layout_marginTop="9.3dp"
+    android:layout_marginBottom="9.3dp">
 
-    <LinearLayout
-        android:id="@+id/video_item_comment_linear_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/video_item_comment_img_user"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="35.53dp"
+            android:layout_height="35.53dp"
+            android:layout_marginStart="21.99dp"
             android:layout_gravity="center"
-            android:src="@drawable/video_ic_user"
+            app:shapeAppearance="@style/Circle"
+            android:src="@color/teal_200"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,36 +26,49 @@
             android:lines="1"
             android:layout_gravity="center_vertical"
             android:text="张三"
-            android:textSize="20sp"
+            android:textColor="@color/video_comment_user_name_color"
+            android:textSize="12.26sp"
             app:layout_constraintStart_toEndOf="@+id/video_item_comment_img_user"
             app:layout_constraintTop_toTopOf="parent" />
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/video_item_comment_tv_comment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginTop="5.41dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="5dp"
-        android:textSize="15sp"
         android:text="意大利面应该拌四十三号混凝土"
+        android:textSize="13.53sp"
+        android:textColor="@color/fish_font_level4_color"
+        android:layout_marginStart="13.53dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video_item_comment_linear_user" />
+        app:layout_constraintStart_toEndOf="@+id/video_item_comment_img_user"
+        app:layout_constraintTop_toBottomOf="@+id/video_item_comment_tv_user_name"
+        app:layout_goneMarginStart="13.53dp" />
 
     <TextView
         android:id="@+id/video_item_comment_tv_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6.41dp"
         android:lines="1"
-        android:alpha="0.5"
+        android:textColor="@color/video_comment_time_color"
+        android:layout_marginStart="13.53dp"
         android:text="2023-09-06 16:38:50"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/video_item_comment_img_user"
+        app:layout_constraintTop_toBottomOf="@+id/video_item_comment_tv_comment" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0.42dp"
+        android:layout_marginStart="21.99dp"
+        android:layout_marginEnd="21.15dp"
+        android:layout_marginTop="7.11dp"
+        android:background="@color/video_comment_split_color"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video_item_comment_tv_comment" />
+        app:layout_constraintTop_toBottomOf="@+id/video_item_comment_tv_time" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

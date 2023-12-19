@@ -18,7 +18,7 @@ class FollowListViewModel : ViewModel() {
     private val _mutableFansList = MutableStateFlow<FollowBean?>(null)
     val fansList get() = _mutableFansList.asStateFlow()
 
-    private val _mutableFollowUser = MutableStateFlow<Pair<Long, StatusBean?>?>(null)
+    private val _mutableFollowUser = MutableStateFlow<StatusBean?>(null)
     val followUser get() = _mutableFollowUser.asStateFlow()
 
     fun getFollowList(userId : Long){
@@ -35,7 +35,7 @@ class FollowListViewModel : ViewModel() {
 
     fun followUser(toUserId : Long , actionId: Int){
         viewModelScope.launch(myCoroutineExceptionHandler) {
-            _mutableFollowUser.emit(toUserId to MineApiService.INSTANCE.followUser(toUserId,actionId))
+            _mutableFollowUser.emit(MineApiService.INSTANCE.followUser(toUserId,actionId))
         }
     }
 }

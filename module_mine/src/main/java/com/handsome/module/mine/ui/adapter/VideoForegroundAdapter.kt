@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.api.video.bean.VideoBean
+import com.handsome.lib.util.extention.setImageFromId
 import com.handsome.lib.util.extention.setImageFromUrl
+import com.handsome.module.mine.R
 import com.handsome.module.mine.databinding.MineItemVideoForegroudBinding
 
 class VideoForegroundAdapter : ListAdapter<VideoBean,VideoForegroundAdapter.MyHolder>(myDiffUtil) {
@@ -47,8 +49,17 @@ class VideoForegroundAdapter : ListAdapter<VideoBean,VideoForegroundAdapter.MyHo
         val item = getItem(position)
         if (item != null){
             holder.binding.apply {
-                if (item.cover_url != "") mainItemVideoForegroudImgUser.setImageFromUrl(item.cover_url)
-                mainItemVideoForegroudTvLikeNum.text = item.favorite_count.toString()
+                if (item.cover_url != "") mineItemVideoForegroundImgForeground.setImageFromUrl(item.cover_url,
+                    R.drawable.mine_ic_place_foreground_photo)
+                if (item.author.avatar != "") mineItemVideoForegroundImgUser.setImageFromUrl(item.author.avatar)
+                mineItemVideoForegroundTvLikeNum.text = item.favorite_count.toString()
+                mineItemVideoForegroundTvUsername.text = item.author.name
+                mineItemVideoForegroundTvTitle.text = item.title
+                if (item.is_favorite) {
+                    mineItemVideoForegroundImgLike.setImageFromId(R.drawable.mine_ic_like)
+                }else{
+                    mineItemVideoForegroundImgLike.setImageFromId(R.drawable.mine_ic_unlike)
+                }
             }
         }
     }

@@ -38,7 +38,10 @@ class CommentAdapter : ListAdapter<CommentBean.Comment,CommentAdapter.MyHolder>(
 
     inner class MyHolder(val binding : VideoItemCommentBinding) : RecyclerView.ViewHolder(binding.root){
         init {
-            binding.videoItemCommentLinearUser.setOnClickListener {
+            binding.videoItemCommentImgUser.setOnClickListener {
+                mOnClickUser?.invoke(getItem(adapterPosition).user.id)
+            }
+            binding.videoItemCommentTvUserName.setOnClickListener {
                 mOnClickUser?.invoke(getItem(adapterPosition).user.id)
             }
         }

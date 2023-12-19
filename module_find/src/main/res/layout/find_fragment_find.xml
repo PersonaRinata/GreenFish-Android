@@ -26,11 +26,14 @@
                 android:backgroundTint="@android:color/transparent"
                 android:longClickable="false"
                 app:tabGravity="center"
-                app:tabIndicator="@drawable/find_ic_indicator"
-                app:tabIndicatorColor="@android:color/transparent"
+                app:tabPaddingTop="18dp"
+                app:tabPaddingStart="15dp"
+                app:tabPaddingEnd="15dp"
+                app:tabIndicator="@drawable/find_layer_indicator"
+                app:tabIndicatorColor="@color/find_indicator_color"
                 app:tabIndicatorFullWidth="false"
                 app:tabMaxWidth="200dp"
-                app:tabMinWidth="20dp"
+                app:tabMinWidth="5dp"
                 app:tabMode="fixed"
                 app:tabRippleColor="@android:color/transparent"
                 app:tabSelectedTextAppearance="@style/FindTabSelectedTextAppearance"
@@ -39,11 +42,13 @@
                 app:tabTextAppearance="@style/FindTabTextAppearance" />
 
             <ImageView
+                android:id="@+id/find_fragment_find_img_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
-                android:src="@drawable/find_ic_search"
-                android:layout_marginEnd="16dp" />
+                android:layout_marginEnd="16dp"
+                android:paddingTop="18dp"
+                android:src="@drawable/find_ic_search" />
 
         </FrameLayout>
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="7.055dp"
+    android:layout_marginEnd="7.055dp"
+    android:layout_marginTop="7.055dp"
+    android:layout_marginBottom="7.055dp">
+
+    <TextView
+        android:id="@+id/search_item_history_tv_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="搜索历史"
+        android:textSize="12.7sp"
+        android:paddingTop="7.05dp"
+        android:paddingBottom="6.46dp"
+        android:paddingStart="10.35dp"
+        android:paddingEnd="10.73dp"
+        android:textColor="@color/fish_font_level4_color"
+        android:background="@drawable/search_shape_history_bg"/>
+
+</LinearLayout>

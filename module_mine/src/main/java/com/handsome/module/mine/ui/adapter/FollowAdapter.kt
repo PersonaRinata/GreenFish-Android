@@ -2,11 +2,13 @@ package com.handsome.module.mine.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.api.video.bean.AuthorBean
+import com.handsome.lib.util.extention.gone
+import com.handsome.lib.util.extention.setImageFromUrl
+import com.handsome.lib.util.extention.visible
 import com.handsome.module.mine.R
 import com.handsome.module.mine.databinding.MineItemFollowBinding
 
@@ -35,8 +37,8 @@ class FollowAdapter : ListAdapter<AuthorBean, FollowAdapter.MyHolder>(myDiffUtil
         this.mOnClickUser = mOnClickUser
     }
 
-    private var mOnClickFollow: ((AuthorBean, textView: TextView) -> Unit)? = null
-    fun setOnClickFollow(mOnClickFollow: (AuthorBean, textView: TextView) -> Unit) {
+    private var mOnClickFollow: ((AuthorBean) -> Unit)? = null
+    fun setOnClickFollow(mOnClickFollow: (AuthorBean) -> Unit) {
         this.mOnClickFollow = mOnClickFollow
     }
 
@@ -45,14 +47,14 @@ class FollowAdapter : ListAdapter<AuthorBean, FollowAdapter.MyHolder>(myDiffUtil
         RecyclerView.ViewHolder(binding.root) {
         init {
             with(binding) {
-                mainItemFollowImgUser.setOnClickListener {
+                mineItemFriendsListImgUser.setOnClickListener {
                     mOnClickUser?.invoke(getItem(adapterPosition))
                 }
-                mainItemFollowTvName.setOnClickListener {
+                mineItemFriendsListTvName.setOnClickListener {
                     mOnClickUser?.invoke(getItem(adapterPosition))
                 }
-                mainItemFollowTvFollow.setOnClickListener {
-                    mOnClickFollow?.invoke(getItem(adapterPosition),it as TextView)
+                mineItemFollowTvFollow.setOnClickListener {
+                    mOnClickFollow?.invoke(getItem(adapterPosition))
                 }
             }
         }
@@ -71,18 +73,28 @@ class FollowAdapter : ListAdapter<AuthorBean, FollowAdapter.MyHolder>(myDiffUtil
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val item = getItem(position)
         with(holder.binding) {
-//            mainItemFollowImgUser.setImageFromUrl()
-            mainItemFollowTvName.text = item.name
-            with(mainItemFollowTvFollow) {
+            if (item.avatar!="") mineItemFriendsListImgUser.setImageFromUrl(item.avatar)
+            mineItemFriendsListTvName.text = item.name
+            with(mineItemFollowTvFollow) {
                 if (item.is_follow) {
                     text = "已关注"
-                    setBackgroundResource(R.drawable.mine_shape_follow_have_bg)
+                    setBackgroundResource(R.drawable.mine_shape_list_have_follow_bg)
                 } else {
                     text = "关注"
-                    setBackgroundResource(R.drawable.mine_shape_follow_no_bg)
+                    setBackgroundResource(R.drawable.mine_layer_list_follow_bg)
                 }
             }
-
+            if (item.department != ""){
+                mineItemFriendsListImgOfficial.visible()
+                mineItemFriendsListTvMessage.visible()
+                mineItemFriendsListTvFans.gone()
+            }else{
+                mineItemFriendsListImgOfficial.gone()
+                mineItemFriendsListTvMessage.gone()
+                val text = "粉丝数：${item.follower_count}"
+                mineItemFriendsListTvFans.text = text
+                mineItemFriendsListTvFans.visible()
+            }
         }
     }
 }

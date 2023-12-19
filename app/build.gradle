@@ -61,7 +61,7 @@ dependencies {
     implementation(project(":module_search"))
     implementation(project(":module_publish"))
     implementation(project(":module_chat"))
-    implementation(project(":module_personalization"))
+    implementation implementation(project(':module_record',))
 
     implementation(project(":module_video:api_video"))
 

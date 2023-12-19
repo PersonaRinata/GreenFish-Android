@@ -12,4 +12,6 @@
     <color name="find_message_tab_select_text_color">#FFFFFF</color>
     <color name="find_message_tab_select_bg">#2DD6B4</color>
     <color name="find_message_tab_not_select_bg">@android:color/transparent</color>
+
+    <color name="find_indicator_color">#2DD6B4</color>
 </resources>

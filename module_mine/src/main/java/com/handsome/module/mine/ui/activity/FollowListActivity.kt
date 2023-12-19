@@ -3,15 +3,14 @@ package com.handsome.module.mine.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.lib.util.base.BaseActivity
+import com.handsome.lib.util.extention.gone
 import com.handsome.lib.util.extention.toast
-import com.handsome.module.mine.R
+import com.handsome.lib.util.extention.visible
 import com.handsome.module.mine.databinding.MineActivityFollowListBinding
 import com.handsome.module.mine.ui.adapter.FollowAdapter
 import com.handsome.module.mine.ui.viewmodel.FollowListViewModel
@@ -24,8 +23,6 @@ class FollowListActivity : BaseActivity() {
     private val mAdapter by lazy { FollowAdapter() }
     private var mUserId : Long = -1  // 后面可以考虑替换成全局变量
     private lateinit var mType : FollowType
-    private var mTextView : TextView? = null
-    private val isFollowList by lazy { HashMap<String,Boolean>() }  //同一个人的记录
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +35,7 @@ class FollowListActivity : BaseActivity() {
     }
 
     private fun initBack() {
-        mBinding.mainActivityFollowListImgBack.setOnClickListener {
+        mBinding.mineActivityFollowListImgBack.setOnClickListener {
             finish()
         }
     }
@@ -60,31 +57,38 @@ class FollowListActivity : BaseActivity() {
     }
 
     private fun initRv() {
-        with(mBinding.mainActivityChatDetailRv) {
+        with(mBinding.mineActivityChatDetailRv) {
             layoutManager =
                 LinearLayoutManager(this@FollowListActivity, RecyclerView.VERTICAL, false)
             adapter = mAdapter.apply {
-                setOnClickFollow { user, textView ->
-                    mTextView = textView
-                    // 第一次没初始化
-                    if (!isFollowList.containsKey(user.id.toString())){
-                        isFollowList[user.id.toString()] = user.is_follow
-                    }
-                    mViewModel.followUser(user.id,if (isFollowList[user.id.toString()] == true) 2 else 1)
+                setOnClickFollow { user ->
+                    mViewModel.followUser(user.id,if (user.is_follow) 2 else 1)
+                    startLoad()
                 }
                 setOnClickUser {
-                    PersonActivity.startAction(
-                        this@FollowListActivity,it.id)
+                    PersonActivity.startAction(this@FollowListActivity,it.id)
                 }
             }
         }
     }
+
+    private fun startLoad(){
+        mBinding.mineActivityProgressBar.visible()
+        mBinding.root.isClickable = false
+    }
+
+    private fun stopLoad(){
+        mBinding.mineActivityProgressBar.gone()
+        mBinding.root.isClickable = true
+    }
+
 
     private fun initObserve() {
         lifecycleScope.launch {
             mViewModel.followList.collectLatest {
                 if (it != null) {
                     if (it.status_code == 0) {
+                        stopLoad()
                         mAdapter.submitList(it.user_list)
                     } else {
                         toast("网络异常")
@@ -97,6 +101,7 @@ class FollowListActivity : BaseActivity() {
             mViewModel.fansList.collectLatest {
                 if (it != null) {
                     if (it.status_code == 0) {
+                        stopLoad()
                         mAdapter.submitList(it.user_list)
                     } else {
                         toast("网络异常")
@@ -107,24 +112,13 @@ class FollowListActivity : BaseActivity() {
 
         lifecycleScope.launch {
             mViewModel.followUser.collectLatest {data ->
-                Log.d("lx", "videoFragment: follow $data ")
                 if (data != null){
-                    Log.d("lx", "videoFragment: isFollowList[it.first.toString()] ${isFollowList[data.first.toString()]} ")
-                    if(data.second != null && data.second!!.status_code == 0){
-                        mTextView?.let{
-                            if (isFollowList[data.first.toString()]!!){
-                                it.text = "已关注"
-                                it.setBackgroundResource(R.drawable.mine_shape_follow_have_bg)
-                            }else{
-                                it.text = "关注"
-                                it.setBackgroundResource(R.drawable.mine_shape_follow_no_bg)
-                            }
-                            isFollowList[data.first.toString()] = !isFollowList[data.first.toString()]!!
-                        }
+                    if (data.status_code == 0){
+                        getData()  //刷新数据，用数据来说话
                     }else{
+                        stopLoad()
                         toast("网络异常")
                     }
-                    mTextView = null
                 }
             }
         }

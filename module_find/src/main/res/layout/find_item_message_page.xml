@@ -13,9 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:cardCornerRadius="12dp"
+        android:layout_marginTop="6.35dp"
+        android:layout_marginBottom="6.77dp"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,8 +27,8 @@
 
             <ImageView
                 android:id="@+id/find_item_message_page_img_pic"
-                android:layout_width="100dp"
-                android:layout_height="80dp"
+                android:layout_width="143.4dp"
+                android:layout_height="107.2dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/find_ic_place_message" />
 
@@ -37,11 +38,12 @@
 
     <ImageView
         android:id="@+id/find_item_video_foreground_img_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="22.42dp"
+        android:layout_height="22.42dp"
         android:layout_gravity="center"
         android:src="@drawable/find_ic_user"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="11.92dp"
+        android:layout_marginBottom="3dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintStart_toEndOf="@+id/cardView" />
 
@@ -50,10 +52,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="6.35dp"
         android:text="医学百科"
         android:textColor="@color/fish_font_level3_color"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        android:textSize="11.84dp"
+        app:layout_constraintBottom_toBottomOf="@+id/find_item_video_foreground_img_user"
         app:layout_constraintStart_toEndOf="@+id/find_item_video_foreground_img_user"
         app:layout_constraintTop_toTopOf="@+id/find_item_video_foreground_img_user" />
 
@@ -63,11 +66,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="12.19dp"
+        android:layout_marginStart="11.92dp"
         android:lines="2"
         android:text="急救常识科普，一分钟快速学习急救课程"
-        android:textSize="16sp"
+        android:textSize="14.38sp"
         android:textColor="@color/fish_font_level4_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -77,11 +80,12 @@
         android:id="@+id/find_item_message_page_tv_date"
         android:layout_width="58dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="14.34dp"
+        android:gravity="center"
         android:text="2023.9.28"
         android:textColor="@color/fish_font_level2_color"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        android:textSize="10.15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/find_item_video_foreground_img_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/find_item_video_foreground_img_user" />
 

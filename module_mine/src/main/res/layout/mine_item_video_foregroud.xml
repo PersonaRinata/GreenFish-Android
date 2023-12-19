@@ -1,45 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2.96dp"
+    android:layout_marginStart="2.96dp"
+    android:layout_marginTop="2.96dp"
+    android:layout_marginEnd="2.96dp"
+    app:cardCornerRadius="20dp">
 
-    <ImageView
-        android:id="@+id/main_item_video_foregroud_img_user"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@color/purple_200"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mine_constrain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/main_item_video_foregroud_img_like"
+            android:id="@+id/mine_item_video_foreground_img_foreground"
+            android:layout_width="match_parent"
+            android:layout_height="243dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/mine_ic_place_foreground_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/mine_ic_play"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/mine_item_video_foreground_img_user"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_gravity="center"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/main_item_video_foregroud_img_user"
-            app:layout_constraintEnd_toStartOf="@+id/main_item_video_foregroud_tv_like_num" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/mine_ic_user"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mine_item_video_foreground_img_foreground" />
 
         <TextView
-            android:id="@+id/main_item_video_foregroud_tv_like_num"
+            android:id="@+id/mine_item_video_foreground_tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="0" />
+            android:layout_gravity="end|center"
+            android:layout_marginStart="16dp"
+            android:text="医学百科"
+            android:textSize="12sp"
+            android:textColor="@color/fish_font_level3_color"
+            app:layout_constraintBottom_toBottomOf="@+id/mine_item_video_foreground_img_user"
+            app:layout_constraintStart_toEndOf="@+id/mine_item_video_foreground_img_user"
+            app:layout_constraintTop_toTopOf="@+id/mine_item_video_foreground_img_user" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/mine_item_video_foreground_img_like"
+            android:layout_width="15dp"
+            android:layout_height="14dp"
+            android:layout_gravity="center"
+            android:src="@drawable/mine_ic_unlike"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/mine_item_video_foreground_img_user"
+            app:layout_constraintEnd_toStartOf="@+id/mine_item_video_foreground_tv_like_num"
+            app:layout_constraintTop_toTopOf="@+id/mine_item_video_foreground_img_user" />
 
+        <TextView
+            android:id="@+id/mine_item_video_foreground_tv_like_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="0"
+            android:paddingBottom="3dp"
+            android:textSize="12sp"
+            android:textColor="@color/fish_font_level1_color"
+            app:layout_constraintBottom_toBottomOf="@+id/mine_item_video_foreground_img_user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/mine_item_video_foreground_img_user" />
 
+        <TextView
+            android:id="@+id/mine_item_video_foreground_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:textStyle="bold"
+            android:text="急救常识科普，一分钟 快速学习急救课程"
+            android:textSize="12sp"
+            android:textColor="@color/fish_font_level4_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mine_item_video_foreground_img_user" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

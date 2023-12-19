@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/search_activity_search_img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search_ic_back"
+            android:layout_marginStart="18.91dp"
+            android:layout_marginTop="18.19dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6.34dp"
+            android:layout_marginTop="10.15dp"
+            android:layout_marginEnd="11.42dp"
+            app:layout_constraintEnd_toStartOf="@+id/search_activity_search_tv_search"
+            app:layout_constraintStart_toEndOf="@+id/search_activity_search_img_back"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/search_activity_search_et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/search_shape_et_bg"
+                android:hint="搜索视频、资讯和用户"
+                android:paddingStart="47.79dp"
+                android:paddingTop="8.04dp"
+                android:paddingBottom="8.49dp"
+                android:lines="1"
+                android:textColorHint="@color/search_tv_hint_color"
+                android:textSize="13.53sp"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="18.19dp"
+                android:src="@drawable/search_ic_search"
+                app:layout_constraintStart_toStartOf="@+id/search_activity_search_et_search" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/search_activity_search_tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:textSize="15.65sp"
+            android:textColor="@color/search_tv_color"
+            android:layout_marginTop="16.92dp"
+            android:layout_marginEnd="17.36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/search_activity_search_linear_history"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索记录"
+                android:textStyle="bold"
+                android:layout_marginStart="18.91dp"
+                android:layout_marginTop="18.19dp"
+                android:textColor="@color/fish_font_level4_color"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_activity_search_rv_history"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4.73dp"
+                android:layout_marginStart="11.855dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/search_activity_search_linear_result"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/search_activity_search_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10.15dp"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
+                app:tabGravity="start"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="scrollable"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabSelectedTextAppearance="@style/SearchTabSelectedTextAppearance"
+                app:tabSelectedTextColor="@color/search_tab_select_text_color"
+                app:tabTextAppearance="@style/SearchTabTextAppearance"
+                app:tabTextColor="@color/search_tab_no_select_text_color" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/search_activity_search_vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_activity_search_tab" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

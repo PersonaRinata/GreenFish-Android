@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YiQu">
         <activity android:name="com.handsome.module.video.ui.activity.VideoActivity"
-            android:exported="true"/>
+            android:exported="true" />
 
     </application>
 

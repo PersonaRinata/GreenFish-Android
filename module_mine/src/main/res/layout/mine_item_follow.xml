@@ -2,47 +2,90 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8.4dp"
+    android:layout_marginBottom="8.4dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/mine_item_friends_list_img_user"
+        android:layout_width="48.33dp"
+        android:layout_height="48.33dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/mine_ic_doctor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/Circle" />
+
+    <TextView
+        android:id="@+id/mine_item_friends_list_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="9dp"
+        android:textColor="@color/fish_font_level4_color"
+        android:textSize="16.27dp"
+        android:layout_marginTop="1.86dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/mine_item_friends_list_img_user"
+        app:layout_constraintTop_toTopOf="@+id/mine_item_friends_list_img_user"
+        tools:text="张医生" />
+
+    <TextView
+        android:id="@+id/mine_item_friends_list_tv_fans"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="9dp"
+        android:textColor="@color/fish_font_level4_color"
+        android:textSize="11sp"
+        android:visibility="gone"
+        android:layout_marginBottom="1.43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mine_item_friends_list_img_user"
+        tools:text="粉丝数：1.3万" />
 
     <ImageView
-        android:id="@+id/main_item_follow_img_user"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/mine_ic_user"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/main_item_follow_tv_name"
+        android:id="@+id/mine_item_friends_list_img_official"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="用户1"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/main_item_follow_img_user"
-        app:layout_constraintStart_toEndOf="@+id/main_item_follow_img_user"
-        app:layout_constraintTop_toTopOf="@+id/main_item_follow_img_user" />
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="2dp"
+        app:layout_goneMarginStart="9dp"
+        android:src="@drawable/mine_ic_official"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mine_item_friends_list_img_user" />
 
     <TextView
-        android:id="@+id/main_item_follow_tv_follow"
+        android:id="@+id/mine_item_friends_list_tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="2.99dp"
+        android:textColor="@color/fish_font_level4_color"
+        android:textSize="11sp"
+        android:gravity="center"
+        android:layout_marginBottom="1.49dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mine_item_friends_list_img_official"
+        tools:text="官方认证医师" />
+
+    <TextView
+        android:id="@+id/mine_item_follow_tv_follow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.50"
-        android:background="@drawable/mine_shape_follow_have_bg"
-        android:gravity="center"
-        android:paddingStart="16dp"
-        android:paddingTop="4dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="4dp"
         android:layout_marginEnd="16dp"
-        android:text="已关注"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/main_item_follow_img_user"
+        android:layout_weight="0.50"
+        android:background="@drawable/mine_layer_list_follow_bg"
+        android:gravity="center"
+        android:paddingStart="24.11dp"
+        android:paddingTop="3.84dp"
+        android:paddingEnd="23.64dp"
+        android:paddingBottom="4.53dp"
+        android:text="关注"
+        android:textColor="@color/mine_follow_text_color"
+        android:textSize="12.28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_item_follow_img_user" />
+        app:layout_constraintTop_toTopOf="@+id/mine_item_friends_list_img_user" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

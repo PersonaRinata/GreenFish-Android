@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/mine_shape_video_flow_bg">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_fragment_video_flow_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="11.42dp"
+        android:layout_marginStart="7.19dp"
+        android:layout_marginEnd="7.19dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

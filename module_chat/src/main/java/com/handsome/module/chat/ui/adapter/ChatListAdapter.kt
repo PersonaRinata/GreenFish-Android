@@ -1,8 +1,10 @@
 package com.handsome.module.chat.ui.adapter
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -60,6 +62,7 @@ class ChatListAdapter(private val selfId : Long) : ListAdapter<AuthorBean,ChatLi
     }
 
     inner class MyHolder(private val binding : ChatItemSingleFriendBinding) : RecyclerView.ViewHolder(binding.root){
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(data : AuthorBean){
             with(binding) {
                 chatItemFriendsListTvName.text = data.name
@@ -70,6 +73,7 @@ class ChatListAdapter(private val selfId : Long) : ListAdapter<AuthorBean,ChatLi
                 }else{
                     chatItemFriendsListSlide.closeRightSlide()
                 }
+//                chatItemFriendsListTvTime.text = data
             }
         }
         init {

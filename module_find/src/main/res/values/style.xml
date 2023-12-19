@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="FindTabTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">16sp</item> <!-- 修改字体大小 -->
+        <item name="android:textSize">16.92sp</item> <!-- 修改字体大小 -->
         <item name="color">@color/fish_font_level2_color</item>
     </style>
 
     <style name="FindTabSelectedTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">16sp</item> <!-- 修改字体大小 -->
+        <item name="android:textSize">16.92sp</item> <!-- 修改字体大小 -->
         <item name="color">@color/fish_font_level4_color</item>
     </style>
 
     <style name="FindMessageTabTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">16sp</item> <!-- 修改字体大小 -->
+        <item name="android:textSize">13.54sp</item> <!-- 修改字体大小 -->
         <item name="color">@color/find_message_tab_no_select_text_color</item>
     </style>
 
     <style name="FindMessageTabSelectedTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">16sp</item> <!-- 修改字体大小 -->
+        <item name="android:textSize">13.54sp</item> <!-- 修改字体大小 -->
         <item name="color">@color/find_message_tab_select_text_color</item>
     </style>
 </resources>

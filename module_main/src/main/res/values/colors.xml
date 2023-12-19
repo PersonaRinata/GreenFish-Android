@@ -7,11 +7,4 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
-    <!--    成员名字颜色-->
-    <color name="main_member_name_color">#2D4D80</color>
-    <!--    成员学号颜色-->
-    <color name="main_member_message_color">#ABB5C4</color>
-
-    <color name="main_select_color">#F2F4FF</color>
 </resources>

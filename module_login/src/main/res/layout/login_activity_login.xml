@@ -1,114 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/login_bg">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="100sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_til_username"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:hint="请输入用户名称"
-        app:counterEnabled="true"
-        app:counterMaxLength="10"
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.00999999"
-        tools:ignore="HardcodedText">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_et_username"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="8dp"
-            android:imeOptions="actionNext"
-            android:inputType="number"
-            android:maxLines="1"
-            android:textSize="24sp" />
+            android:layout_marginStart="29.6dp"
+            android:layout_marginTop="86.27dp"
+            android:text="你好！"
+            android:textColor="@color/fish_font_level4_color"
+            android:textSize="22.39sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_til_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:hint="请输入密码"
-        app:errorEnabled="true"
-        app:counterMaxLength="16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_til_username"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="#C3000000"
-        tools:ignore="HardcodedText">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_et_password"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ?!=+-_.,"
-            android:drawablePadding="8dp"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:lines="1"
-            android:maxLines="1"
-            android:textSize="24sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="3.8dp"
+            android:text="欢迎使用青鱼医疗"
+            android:textColor="@color/login_hello_text_color"
+            android:textSize="16.01sp"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
-    <Button
-        android:id="@+id/login_btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="204dp"
-        android:text="登录"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="31.17dp"
+            android:background="@drawable/login_shape_login_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-    <Button
-        android:id="@+id/login_btn_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="注册"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn_login" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29.6dp"
+                android:layout_marginTop="26.22dp"
+                android:text="账号密码登录"
+                android:textColor="@color/fish_font_level4_color"
+                android:textSize="17.15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
-        android:id="@+id/login_cb_remember"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:text="记住密码"
-        app:layout_constraintBottom_toTopOf="@+id/login_btn_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_til_password"
-        tools:ignore="HardcodedText" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29.6dp"
+                android:layout_marginTop="31.83dp"
+                android:layout_marginEnd="21.15dp"
+                android:background="@drawable/login_shape_username_password_bg"
+                app:layout_constraintTop_toBottomOf="@+id/textView3">
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23.36dp"
+                    android:layout_marginTop="10.57dp"
+                    android:layout_marginBottom="12.74dp"
+                    android:src="@drawable/login_ic_user"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <EditText
+                    android:id="@+id/login_et_username"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2.17dp"
+                    android:background="@android:color/transparent"
+                    android:hint="请输入账号"
+                    android:paddingStart="23.26dp"
+                    android:textColorHint="@color/login_hint_text_color"
+                    android:textSize="12.99sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29.6dp"
+                android:layout_marginTop="16.98dp"
+                android:layout_marginEnd="21.15dp"
+                android:background="@drawable/login_shape_username_password_bg"
+                app:layout_constraintTop_toBottomOf="@+id/constraint1">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23.36dp"
+                    android:layout_marginTop="11.99dp"
+                    android:layout_marginBottom="11.49dp"
+                    android:src="@drawable/login_ic_password"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/login_et_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="请输入密码"
+                    android:paddingStart="23.26dp"
+                    android:textColorHint="@color/login_hint_text_color"
+                    android:textSize="12.99sp"
+                    android:inputType="textPassword"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/login_tv_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="登录"
+                android:textSize="19.34sp"
+                android:background="@drawable/login_shape_tv_login_bg"
+                android:textColor="@color/white"
+                android:paddingTop="7.58dp"
+                android:paddingBottom="7.87dp"
+                android:gravity="center"
+                android:layout_marginStart="29.6dp"
+                android:layout_marginEnd="21.15dp"
+                android:layout_marginTop="31.46dp"
+                app:layout_constraintTop_toBottomOf="@+id/constraint2" />
+
+            <TextView
+                android:id="@+id/login_tv_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户注册"
+                android:textSize="13.32sp"
+                android:textColor="@color/login_hint_text_color"
+                android:layout_marginTop="14.1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_tv_login" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -7,4 +7,31 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="search_tab_no_select_text_color">#646464</color>
+    <color name="search_tab_select_text_color">#FFFFFF</color>
+
+    <color name="search_tv_color">#6BE2C9</color>
+
+    <color name="search_et_bg">#F5F6FA</color>
+
+    <color name="search_tv_hint_color">#AFAFB9</color>
+
+    <color name="search_tab_class_select_bg">#2DD6B4</color>
+    <color name="search_tab_class_not_select_bg">@android:color/transparent</color>
+
+    <color name="search_not_found_bg">#F4F5F9</color>
+
+    <color name="search_follow_text_color">#92E7D2</color>
+    <color name="search_have_follow_text_color">#FFFFFF</color>
+
+    <color name="search_not_found_text_color">#666666</color>
+
+    <color name="search_list_have_follow_bg">#D0D0D0</color>
+    <color name="search_follow_start_color">#95E2D4</color>
+    <color name="search_follow_end_color">#7DE3CA</color>
+
+
+    <color name="search_history_bg">#F6F5FA</color>
+
 </resources>

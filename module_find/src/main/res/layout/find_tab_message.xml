@@ -10,10 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:paddingTop="7dp"
-        android:paddingBottom="7dp"
-        android:paddingStart="11dp"
-        android:paddingEnd="11dp"
+        android:paddingTop="4.65dp"
+        android:paddingBottom="5.96dp"
+        android:paddingStart="10.15dp"
+        android:paddingEnd="9.8dp"
         android:gravity="center"
         android:background="@drawable/find_selector_tab_message"/>
 

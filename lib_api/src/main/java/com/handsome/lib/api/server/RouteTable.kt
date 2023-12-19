@@ -7,10 +7,15 @@ const val MAIN_MAIN = "/main/entry"
 const val MAIN_FIND = "/find/entry"
 const val MAIN_CHAT = "/chat/entry"
 const val MAIN_AIGC = "/aigc/entry"
-const val MAIN_PERSONALIZATION = "/personalization/entry"
+const val MAIN_RECORD = "/record/entry"
 const val MAIN_MINE = "/mine/entry"
 const val LOGIN_ENTRY = "/login/entry"
 const val MAIN_PUBLISH = "/publish/entry"
+const val MAIN_SEARCH = "/search/entry"
+
+const val CHAT_CONTENT = "/chat/content/entry"
+
+const val RECORD_HEALTHY = "/record/healthy/entry"
 
 const val ACCOUNT_SERVICE = "/account/service"
 // cookie 服务

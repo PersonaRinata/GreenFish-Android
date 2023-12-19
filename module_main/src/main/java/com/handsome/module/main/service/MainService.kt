@@ -5,7 +5,7 @@ import android.content.Context
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.handsome.lib.api.server.MAIN_MAIN
 import com.handsome.lib.api.server.service.IMainService
-import com.handsome.module.main.ui.activity.MainActivity
+import com.handsome.module.main.MainActivity
 
 @Route(path = MAIN_MAIN)
 class MainService : IMainService {

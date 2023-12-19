@@ -1,15 +1,10 @@
-package com.ndhzs.module.login.utils.textwatcher
+package com.handsome.module.login.textwatcher
 
 import android.text.Editable
 import android.text.TextWatcher
 import com.google.android.material.textfield.TextInputLayout
 
-/**
- * ...
- * @author 985892345 (Guo Xiangrui)
- * @email 2767465918@qq.com
- * @date 2022/5/30 16:56
- */
+
 open class BaseTextWatcher(
   textInputLayout: TextInputLayout,
 ) : TextWatcher {

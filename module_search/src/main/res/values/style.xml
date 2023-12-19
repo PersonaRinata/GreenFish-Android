@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Circle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="SearchTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">13.54sp</item> <!-- 修改字体大小 -->
+        <item name="color">@color/search_tab_no_select_text_color</item>
+    </style>
+
+    <style name="SearchTabSelectedTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">13.54sp</item> <!-- 修改字体大小 -->
+        <item name="color">@color/search_tab_select_text_color</item>
+    </style>
+</resources>

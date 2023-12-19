@@ -6,32 +6,168 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.activity.MainActivity">
+    tools:context=".MainActivity"
+    android:clipChildren="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipChildren="false">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/main_vp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/main_navi"
+            app:layout_constraintBottom_toTopOf="@+id/main_constrain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/main_navi"
+        
+        <LinearLayout
+            android:id="@+id/main_constrain"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            app:labelVisibilityMode="selected"
-            android:background="@color/white"
+            android:layout_height="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_main_bottom_navi"
-            android:clipChildren="true"/>
+            android:orientation="horizontal"
+            android:clipChildren="false">
+
+            <LinearLayout
+                android:id="@+id/main_bottom_linear_find"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/main_bottom_img_find"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/main_ic_find_select"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:layout_gravity="center"
+                    android:text="发现"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/main_bottom_linear_chat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/main_bottom_img_chat"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/main_ic_chat"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:layout_gravity="center"
+                    android:text="咨询"/>
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_bottom_linear_green_fish"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:clipChildren="false"
+                android:background="@color/white"
+                android:layout_weight="1.5">
+
+                <ImageView
+                    android:id="@+id/main_bottom_img_green_fish"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/main_ic_green_fish"
+                    app:layout_constraintBottom_toTopOf="@+id/textView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="青鱼"
+                    android:textColor="@color/fish_font_level4_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/main_bottom_linear_health_record"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/main_bottom_img_health_record"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/main_ic_health_record"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:layout_gravity="center"
+                    android:text="健康档案"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/main_bottom_linear_mine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/main_bottom_img_mine"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/main_ic_mine"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:layout_gravity="center"
+                    android:text="我的"/>
+
+            </LinearLayout>
+            
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

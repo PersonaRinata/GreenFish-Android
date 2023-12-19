@@ -17,12 +17,12 @@
     </style>
 
     <style name="MineTabTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">16sp</item> <!-- 修改字体大小 -->
+        <item name="android:textSize">15.65sp</item> <!-- 修改字体大小 -->
         <item name="color">@color/fish_font_level4_color</item>
     </style>
 
     <style name="MineTabSelectedTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">16sp</item> <!-- 修改字体大小 -->
+        <item name="android:textSize">15.65sp</item> <!-- 修改字体大小 -->
         <item name="color">@color/fish_font_level4_color</item>
     </style>
 </resources>

@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.handsome.lib.api.server.MAIN_FIND
 import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.api.server.service.ILoginService
+import com.handsome.lib.api.server.service.ISearchService
 import com.handsome.lib.util.adapter.FragmentVpAdapter
 import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.service.impl
@@ -30,7 +31,14 @@ class FindFragment : BaseFragment() {
             requireActivity().finishAfterTransition()
         }
         initView()
+        initClick()
         return mBinding.root
+    }
+
+    private fun initClick() {
+        mBinding.findFragmentFindImgSearch.setOnClickListener {
+            ISearchService::class.impl.startSearchActivity() // 跳转到搜索界面
+        }
     }
 
     private fun initView() {
