@@ -8,9 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.lib.util.base.BaseActivity
-import com.handsome.lib.util.extention.gone
 import com.handsome.lib.util.extention.toast
-import com.handsome.lib.util.extention.visible
 import com.handsome.module.mine.databinding.MineActivityFollowListBinding
 import com.handsome.module.mine.ui.adapter.FollowAdapter
 import com.handsome.module.mine.ui.viewmodel.FollowListViewModel
@@ -63,7 +61,6 @@ class FollowListActivity : BaseActivity() {
             adapter = mAdapter.apply {
                 setOnClickFollow { user ->
                     mViewModel.followUser(user.id,if (user.is_follow) 2 else 1)
-                    startLoad()
                 }
                 setOnClickUser {
                     PersonActivity.startAction(this@FollowListActivity,it.id)
@@ -72,23 +69,12 @@ class FollowListActivity : BaseActivity() {
         }
     }
 
-    private fun startLoad(){
-        mBinding.mineActivityProgressBar.visible()
-        mBinding.root.isClickable = false
-    }
-
-    private fun stopLoad(){
-        mBinding.mineActivityProgressBar.gone()
-        mBinding.root.isClickable = true
-    }
-
 
     private fun initObserve() {
         lifecycleScope.launch {
             mViewModel.followList.collectLatest {
                 if (it != null) {
                     if (it.status_code == 0) {
-                        stopLoad()
                         mAdapter.submitList(it.user_list)
                     } else {
                         toast("网络异常")
@@ -101,7 +87,6 @@ class FollowListActivity : BaseActivity() {
             mViewModel.fansList.collectLatest {
                 if (it != null) {
                     if (it.status_code == 0) {
-                        stopLoad()
                         mAdapter.submitList(it.user_list)
                     } else {
                         toast("网络异常")
@@ -116,7 +101,6 @@ class FollowListActivity : BaseActivity() {
                     if (data.status_code == 0){
                         getData()  //刷新数据，用数据来说话
                     }else{
-                        stopLoad()
                         toast("网络异常")
                     }
                 }

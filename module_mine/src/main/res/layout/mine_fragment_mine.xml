@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/mine_fragment_mine_linear_follow_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24.11dp"
@@ -125,12 +125,12 @@
 
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/mine_fragment_mine_linear_fans_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="33.32dp"
             android:orientation="vertical"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintStart_toEndOf="@+id/mine_fragment_mine_linear_follow_text"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -161,7 +161,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout">
+            app:layout_constraintTop_toTopOf="@+id/mine_fragment_mine_linear_follow_text">
 
             <TextView
                 android:id="@+id/mine_fragment_mine_tv_follow"

@@ -18,6 +18,7 @@ data class AuthorBean(
     val signature: String,
     val total_favorited: Int,
     val work_count: Int,
+    val time : Long,
     var isTop : Boolean,
     var isOpen : Boolean
 ) : Serializable

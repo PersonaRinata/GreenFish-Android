@@ -19,7 +19,7 @@
             <TextView
                 android:id="@+id/chat_item_friends_list_isTop"
                 android:layout_width="100dp"
-                android:layout_height="46dp"
+                android:layout_height="match_parent"
                 android:background="#4741E0"
                 android:gravity="center"
                 android:paddingStart="16dp"
@@ -31,7 +31,7 @@
             <TextView
                 android:id="@+id/chat_item_friends_list_delete"
                 android:layout_width="82dp"
-                android:layout_height="46dp"
+                android:layout_height="match_parent"
                 android:background="#ED535C"
                 android:gravity="center"
                 android:paddingStart="16dp"

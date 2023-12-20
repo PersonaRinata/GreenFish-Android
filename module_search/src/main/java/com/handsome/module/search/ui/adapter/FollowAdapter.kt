@@ -79,9 +79,11 @@ class FollowAdapter : PagingDataAdapter<AuthorBean, FollowAdapter.MyHolder>(myDi
                 if (item.is_follow) {
                     text = "已关注"
                     setBackgroundResource(R.drawable.search_shape_list_have_follow_bg)
+                    setTextColor(resources.getColor(R.color.white,null))
                 } else {
                     text = "关注"
                     setBackgroundResource(R.drawable.search_shape_list_follow_bg)
+                    setTextColor(resources.getColor(R.color.search_follow_text_color,null))
                 }
             }
             if (item.department != ""){

@@ -58,7 +58,7 @@
     <TextView
         android:id="@+id/mine_item_friends_list_tv_message"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="2.99dp"
         android:textColor="@color/fish_font_level4_color"
         android:textSize="11sp"
@@ -66,7 +66,7 @@
         android:layout_marginBottom="1.49dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mine_item_friends_list_img_official"
-        tools:text="官方认证医师" />
+        android:text="官方认证医师" />
 
     <TextView
         android:id="@+id/mine_item_follow_tv_follow"
@@ -74,8 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="16dp"
-        android:layout_weight="0.50"
-        android:background="@drawable/mine_layer_list_follow_bg"
+        android:background="@drawable/mine_shape_list_follow_bg"
         android:gravity="center"
         android:paddingStart="24.11dp"
         android:paddingTop="3.84dp"

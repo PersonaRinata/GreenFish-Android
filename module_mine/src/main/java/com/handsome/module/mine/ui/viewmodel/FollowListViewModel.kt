@@ -35,7 +35,8 @@ class FollowListViewModel : ViewModel() {
 
     fun followUser(toUserId : Long , actionId: Int){
         viewModelScope.launch(myCoroutineExceptionHandler) {
-            _mutableFollowUser.emit(MineApiService.INSTANCE.followUser(toUserId,actionId))
+            val resultBean = MineApiService.INSTANCE.followUser(toUserId,actionId)
+            _mutableFollowUser.emit(StatusBean(resultBean.status_code,resultBean.status_msg+System.currentTimeMillis()))
         }
     }
 }

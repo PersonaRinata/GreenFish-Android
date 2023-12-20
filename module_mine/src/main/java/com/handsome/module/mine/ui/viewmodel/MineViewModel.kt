@@ -24,7 +24,7 @@ class MineViewModel : BaseViewModel() {
     private val _isDoctor = MutableStateFlow<JudgeDoctorBean?>(null)
     val isDoctor get() = _isDoctor.asStateFlow()
 
-    private val _mutableFollowUser = MutableStateFlow<Pair<StatusBean,Int>?>(null)
+    private val _mutableFollowUser = MutableStateFlow<StatusBean?>(null)
     val followUser get() = _mutableFollowUser.asStateFlow()
 
     fun getUserInfo(userId : Long){
@@ -40,9 +40,11 @@ class MineViewModel : BaseViewModel() {
     }
 
 
-    fun followUser(toUserId : Long , actionId: Int){
+    fun followUser(toUserId : Long,isFollow: Boolean){
         viewModelScope.launch(myCoroutineExceptionHandler) {
-            _mutableFollowUser.emit(MineApiService.INSTANCE.followUser(toUserId,actionId) to actionId)
+            val actionId = if (isFollow) 2 else 1
+            val resultBean = MineApiService.INSTANCE.followUser(toUserId,actionId)
+            _mutableFollowUser.emit(StatusBean(resultBean.status_code,resultBean.status_msg+System.currentTimeMillis()))
         }
     }
 

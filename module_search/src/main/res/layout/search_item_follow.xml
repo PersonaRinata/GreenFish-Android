@@ -62,11 +62,9 @@
         android:layout_marginStart="2.99dp"
         android:textColor="@color/fish_font_level4_color"
         android:textSize="11sp"
-        android:layout_marginTop="1.49dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mine_item_friends_list_img_official"
-        app:layout_constraintTop_toTopOf="@+id/mine_item_friends_list_img_official"
-        tools:text="官方认证医师" />
+        android:text="官方认证医师" />
 
     <TextView
         android:id="@+id/mine_item_follow_tv_follow"

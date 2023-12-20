@@ -7,36 +7,41 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import com.handsome.lib.util.base.BaseFragment
-import com.handsome.lib.util.extention.setImageFromUrl
-import com.handsome.lib.util.extention.toast
-import com.handsome.lib.util.util.shareText
-import com.handsome.module.search.R
-import com.handsome.module.search.databinding.VideoFragmentVideoBinding
 import com.handsome.api.video.bean.VideoBean
 import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.api.server.service.IMineService
+import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.gone
+import com.handsome.lib.util.extention.setImageFromUrl
+import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.service.impl
+import com.handsome.lib.util.util.shareText
+import com.handsome.module.search.R
+import com.handsome.module.search.databinding.VideoFragmentVideoBinding
 import com.handsome.module.video.ui.dialog.CommentDialog
 import com.handsome.module.video.ui.viewmodel.VideoFragmentViewModel
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import com.handsome.module.video.util.makeLog
 import xyz.doikki.videocontroller.StandardVideoController
 import xyz.doikki.videoplayer.player.BaseVideoView.SCREEN_SCALE_MATCH_PARENT
 
+/**
+ * 关注和喜欢系统
+ *
+ * 原本喜欢，喜欢数量100个，喜欢状态
+ * 再次点击，喜欢数量99个，不喜欢状态
+ * 再次点击，喜欢书香100个，喜欢状态
+ *
+ * 原本不喜欢，喜欢数量100个，不喜欢状态
+ * 再次点击，喜欢数量101个，喜欢状态
+ * 再次点击，喜欢书香100个，不喜欢状态
+ */
 class VideoFragment : BaseFragment() {
     private val mBinding by lazy { VideoFragmentVideoBinding.inflate(layoutInflater) }
     private val mViewModel by viewModels<VideoFragmentViewModel>()
     private val mUserInfo by lazy { IAccountService::class.impl.getUserInfo() }
     private val mVideo by arguments<VideoBean>()
-    private var likeNumber : Long = 0L
-    private var isLike : Boolean = false
-    private var isCanLike : Boolean = true
-
+    private var isLike: Boolean = false
     private var isFollow = false
-    private var isCanFollow : Boolean = true
 
 
     override fun onCreateView(
@@ -54,54 +59,6 @@ class VideoFragment : BaseFragment() {
         initOthers()
     }
 
-    private fun initObserve() {
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            mViewModel.videoLike.collectLatest {
-                Log.d("lx", "videoFragment: like $it ")
-                if (it != null){
-                    if (it.status_code == 0){
-                        with(mBinding.videoFragmentCommentImgLike){
-                            if (!isLike) {
-                                setImageResource(R.drawable.video_ic_like)
-                                likeNumber++
-                            } else {
-                                setImageResource(R.drawable.video_ic_unlike)
-                                likeNumber--
-                            }
-                            isLike = !isLike
-                            mBinding.videoFragmentTvLikeNumber.text = likeNumber.toString()
-                        }
-                    }else{
-                        toast("点赞失败")
-                    }
-                    isCanLike = true
-                }
-            }
-        }
-        viewLifecycleOwner.lifecycleScope.launch {
-            mViewModel.followUser.collectLatest {
-                Log.d("lx", "videoFragment: follow $it ")
-                if (it != null){
-                    if(it.status_code == 0){
-                        with(mBinding.videoFragmentTvFollow){
-                            if (!isFollow){
-                                text = "已关注"
-                                setBackgroundResource(R.drawable.video_shape_follow_have_bg)
-                            }else{
-                                text = "关注"
-                                setBackgroundResource(R.drawable.video_shape_follow_bg)
-                            }
-                            isFollow = !isFollow
-                        }
-                    }else{
-                        toast("网络异常")
-                    }
-                    isCanFollow = true
-                }
-            }
-        }
-    }
 
     private fun initOthers() {
         initUser()  //用户头像和名称
@@ -111,8 +68,62 @@ class VideoFragment : BaseFragment() {
         initFollow()
     }
 
+    private fun initObserve() {
+        mViewModel.videoLike.collectLaunch {
+            Log.d("lx", "videoFragment: like $it ")
+            if (it != null) {
+                if (it.status_code == 0) {
+                    mBinding.videoFragmentTvLikeNumber.text = if (isLike) {
+                        (mBinding.videoFragmentTvLikeNumber.text.toString().toInt() - 1).toString()
+                    } else {
+                        (mBinding.videoFragmentTvLikeNumber.text.toString().toInt() + 1).toString()
+                    }
+                    // 最后才改变操作之后的喜欢与不喜欢
+                    isLike = !isLike
+                    makeLog("islike=${isLike}")
+                    setLikeBg(isLike)
+                } else {
+                    toast("点赞失败")
+                }
+            }
+        }
+        mViewModel.followUser.collectLaunch {
+            Log.d("lx", "videoFragment: follow $it ")
+            if (it != null) {
+                if (it.status_code == 0) {
+                    isFollow = !isFollow
+                    setFollowBg(isFollow)
+                } else {
+                    toast("网络异常")
+                }
+            }
+        }
+    }
+
+    private fun setFollowBg(isFollow: Boolean) {
+        with(mBinding.videoFragmentTvFollow) {
+            if (isFollow) {
+                text = "已关注"
+                setBackgroundResource(R.drawable.video_shape_follow_have_bg)
+            } else {
+                text = "关注"
+                setBackgroundResource(R.drawable.video_shape_follow_bg)
+            }
+        }
+    }
+
+    private fun setLikeBg(isLike: Boolean) {
+        with(mBinding.videoFragmentCommentImgLike) {
+            if (isLike) {
+                setImageResource(R.drawable.video_ic_like)
+            } else {
+                setImageResource(R.drawable.video_ic_unlike)
+            }
+        }
+    }
+
     private fun initUser() {
-        with(mBinding){
+        with(mBinding) {
             val pic = mVideo.author.avatar
             if (pic != "") videoFragmentImgUser.setImageFromUrl(pic)
             videoFragmentTvUserName.text = mVideo.author.name
@@ -127,43 +138,29 @@ class VideoFragment : BaseFragment() {
     }
 
     private fun initFollow() {
-        with(mBinding.videoFragmentTvFollow){
-            if (mUserInfo == null){
+        with(mBinding.videoFragmentTvFollow) {
+            if (mUserInfo == null) {
                 toast("您还没有登录哦~")
                 return
             }
-            if (mVideo.id == mUserInfo!!.user_id){
+            if (mVideo.author.id == mUserInfo!!.user_id) {
                 mBinding.videoFragmentTvFollow.gone()
                 return
             }
             isFollow = mVideo.author.is_follow
-            if (isFollow){
-                text = "已关注"
-                setBackgroundResource(R.drawable.video_shape_follow_have_bg)
-            }else{
-                text = "关注"
-                setBackgroundResource(R.drawable.video_shape_follow_bg)
-            }
+            setFollowBg(isFollow)
             setOnClickListener {
-                if(isCanFollow){
-                    mViewModel.followUser(mVideo.author.id, actionId = if (isFollow) 2 else 1)
-                    isCanFollow = false
-                }else{
-                    toast("关注太频繁了哦~")
-                }
+                mViewModel.followUser(mVideo.author.id,isFollow)
             }
         }
     }
 
     private fun initShare() {
         mBinding.apply {
-            var shareNum = 0
-            videoFragmentTvShareNumber.text = shareNum.toString()
             videoFragmentImgShare.setOnClickListener {
-                val shareText = "作者：${mVideo.author} \n 描述：${mVideo.title} \n 视频链接：${mVideo.play_url}"
+                val shareText =
+                    "作者：${mVideo.author} \n 描述：${mVideo.title} \n 视频链接：${mVideo.play_url}"
                 requireActivity().shareText(shareText)
-                shareNum ++
-                videoFragmentTvShareNumber.text = shareNum.toString()
             }
         }
     }
@@ -172,30 +169,19 @@ class VideoFragment : BaseFragment() {
         mBinding.apply {
             videoFragmentTvCommentNumber.text = mVideo.comment_count.toString()
             videoFragmentImgComment.setOnClickListener {
-                CommentDialog.newInstance(mVideo.id).show(childFragmentManager,"CommentDialog")
+                CommentDialog.newInstance(mVideo.id).show(childFragmentManager, "CommentDialog")
             }
         }
     }
 
     private fun initLike() {
-        likeNumber = mVideo.favorite_count.toLong()
-        mBinding.apply {
-            videoFragmentTvLikeNumber.text = likeNumber.toString()
-            videoFragmentCommentImgLike.apply {
-                isLike = mVideo.is_favorite
-                if (isLike) {
-                    setImageResource(R.drawable.video_ic_like)
-                } else {
-                    setImageResource(R.drawable.video_ic_unlike)
-                }
+        with(mBinding) {
+            videoFragmentTvLikeNumber.text = mVideo.favorite_count.toString()
+            isLike = mVideo.is_favorite
+            setLikeBg(isLike)
+            with(videoFragmentCommentImgLike) {
                 setOnClickListener {
-                    if(isCanLike){
-                        // 1 是喜欢， 2 是不喜欢
-                        mViewModel.updateLikeNum(mVideo.id,if (!isLike) 1 else 2)
-                        isCanLike = false
-                    }else{
-                        toast("点赞太频繁了哦~")
-                    }
+                    mViewModel.updateLikeNum(mVideo.id, isLike)
                 }
             }
         }

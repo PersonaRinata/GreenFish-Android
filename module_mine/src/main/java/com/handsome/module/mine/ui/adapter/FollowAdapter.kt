@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.api.video.bean.AuthorBean
-import com.handsome.lib.util.extention.gone
+import com.handsome.lib.util.extention.invisible
 import com.handsome.lib.util.extention.setImageFromUrl
 import com.handsome.lib.util.extention.visible
 import com.handsome.module.mine.R
@@ -79,18 +79,20 @@ class FollowAdapter : ListAdapter<AuthorBean, FollowAdapter.MyHolder>(myDiffUtil
                 if (item.is_follow) {
                     text = "已关注"
                     setBackgroundResource(R.drawable.mine_shape_list_have_follow_bg)
+                    setTextColor(resources.getColor(R.color.white,null))
                 } else {
                     text = "关注"
-                    setBackgroundResource(R.drawable.mine_layer_list_follow_bg)
+                    setBackgroundResource(R.drawable.mine_shape_list_follow_bg)
+                    setTextColor(resources.getColor(R.color.mine_follow_text_color,null))
                 }
             }
             if (item.department != ""){
                 mineItemFriendsListImgOfficial.visible()
                 mineItemFriendsListTvMessage.visible()
-                mineItemFriendsListTvFans.gone()
+                mineItemFriendsListTvFans.invisible()
             }else{
-                mineItemFriendsListImgOfficial.gone()
-                mineItemFriendsListTvMessage.gone()
+                mineItemFriendsListImgOfficial.invisible()
+                mineItemFriendsListTvMessage.invisible()
                 val text = "粉丝数：${item.follower_count}"
                 mineItemFriendsListTvFans.text = text
                 mineItemFriendsListTvFans.visible()

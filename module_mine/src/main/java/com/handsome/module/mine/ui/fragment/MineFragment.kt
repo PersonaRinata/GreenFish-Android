@@ -51,8 +51,9 @@ class MineFragment : BaseFragment() {
     private val mBinding by lazy { MineFragmentMineBinding.inflate(layoutInflater) }
     private val mCurrentUserId by arguments<Long>()   // 这个是获得当前user的id，不一定是自己
     private val mUserInfo by lazy { IAccountService::class.impl.getUserInfo() }  //这个是获得用户本人的信息，一定是自己
-    private var mCurrentUserInfo : AuthorBean? = null
+    private var mCurrentUserInfo: AuthorBean? = null
     private val mViewModel by viewModels<MineViewModel>()
+    private var mIsFollow = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,11 +73,11 @@ class MineFragment : BaseFragment() {
 
     // 初始化关注聊天和病例的可见度的方法
     private fun initVisible() {
-        if (mCurrentUserId == mUserInfo?.user_id){
+        if (mCurrentUserId == mUserInfo?.user_id) {
             // 证明是本人，显示病例
             mBinding.mineFragmentMineConstrainHealthRecord.visible()
             mBinding.mineFragmentMineLinearFollowAndChat.gone()
-        }else{
+        } else {
             // 不是本人，访问他人，显示关注按钮和私聊按钮
             mBinding.mineFragmentMineConstrainHealthRecord.gone()
             mBinding.mineFragmentMineLinearFollowAndChat.visible()
@@ -86,11 +87,19 @@ class MineFragment : BaseFragment() {
 
     private fun initClick() {
         with(mBinding) {
-            mineFragmentMineTvFansNum.setOnClickListener {
-                FollowListActivity.startAction(requireContext(),mCurrentUserId,FollowListActivity.FollowType.FANS)
+            mineFragmentMineLinearFansText.setOnClickListener {
+                FollowListActivity.startAction(
+                    requireContext(),
+                    mCurrentUserId,
+                    FollowListActivity.FollowType.FANS
+                )
             }
-            mineFragmentMineTvFollowNum.setOnClickListener {
-                FollowListActivity.startAction(requireContext(),mCurrentUserId,FollowListActivity.FollowType.FOLLOWS)
+            mineFragmentMineLinearFollowText.setOnClickListener {
+                FollowListActivity.startAction(
+                    requireContext(),
+                    mCurrentUserId,
+                    FollowListActivity.FollowType.FOLLOWS
+                )
             }
             mineFragmentMineImgUser.setOnClickListener {
                 // 更换头像
@@ -101,9 +110,7 @@ class MineFragment : BaseFragment() {
             }
             mineFragmentMineTvFollow.setOnSingleClickListener {
                 mCurrentUserInfo?.let {
-                // 如果当前在关注，那么取消关注0，如果不在关注，那么关注1
-                    var actionId = if (it.is_follow) 0 else 1
-                    mViewModel.followUser(mCurrentUserId,0)
+                    mViewModel.followUser(mCurrentUserId, mIsFollow)
                 }
             }
             mineFragmentMineConstrainHealthRecord.setOnClickListener {
@@ -112,14 +119,14 @@ class MineFragment : BaseFragment() {
             }
             mineFragmentMineLinearPrivateChat.setOnClickListener {
                 mUserInfo?.let {
-                    IChatService::class.impl.startContentListActivity(it.user_id,mCurrentUserId)
+                    IChatService::class.impl.startContentListActivity(it.user_id, mCurrentUserId)
                 }
             }
         }
     }
 
 
-    private fun initVpTab(){
+    private fun initVpTab() {
         initVp()
         initTabLayout()
     }
@@ -127,8 +134,18 @@ class MineFragment : BaseFragment() {
     private fun initVp() {
         // tab + vp
         val fragmentVpAdapter = FragmentVpAdapter(this).apply {
-            add { VideoFlowFragment.newInstance(VideoFlowFragment.MineType.TYPE_PUBLISH,mCurrentUserId) }
-            add { VideoFlowFragment.newInstance(VideoFlowFragment.MineType.TYPE_LIKE,mCurrentUserId) }
+            add {
+                VideoFlowFragment.newInstance(
+                    VideoFlowFragment.MineType.TYPE_PUBLISH,
+                    mCurrentUserId
+                )
+            }
+            add {
+                VideoFlowFragment.newInstance(
+                    VideoFlowFragment.MineType.TYPE_LIKE,
+                    mCurrentUserId
+                )
+            }
         }
         with(mBinding.mineFragmentMineVp) {
             adapter = fragmentVpAdapter
@@ -165,48 +182,57 @@ class MineFragment : BaseFragment() {
 
     private fun initObserve() {
         mViewModel.userInfo.collectLaunch {
-            if (it != null){
-                if (it.status_code == 0){
+            if (it != null) {
+                if (it.status_code == 0) {
                     val userInfo = it.user
                     mCurrentUserInfo = userInfo
                     with(mBinding) {
-                        mineFragmentMineTvUserName.text =userInfo.name
+                        mineFragmentMineTvUserName.text = userInfo.name
                         if (userInfo.avatar != "") mineFragmentMineImgUser.setImageFromUrl(userInfo.name)
                         mineFragmentMineTvDescribe.text = userInfo.signature
                         mineFragmentMineTvFollowNum.text = userInfo.follow_count.toString()
                         mineFragmentMineTvFansNum.text = userInfo.follower_count.toString()
-                        // 由于默认是不显示的，所以如果有部门就是医生，显示出来。
-                        if (userInfo.department != "") mBinding.mineFragmentMineLinearOfficial.visible()
+                        if (userInfo.department != "") {
+                            mBinding.mineFragmentMineLinearOfficial.visible()
+                        } else {
+                            mBinding.mineFragmentMineLinearOfficial.visible()
+                        }
+                        mIsFollow = userInfo.is_follow
                     }
-                }else{
+                } else {
                     toast("网络错误")
                 }
             }
         }
         mViewModel.uploadImg.collectLaunch {
-            if (it != null){
-                if (it.status_code == 0){
+            if (it != null) {
+                if (it.status_code == 0) {
                     toast("头像更换成功")
-                }else{
+                } else {
                     toast("网络错误")
                 }
             }
         }
         mViewModel.followUser.collectLaunch {
-            if (it != null){
-                if (it.first.status_code == 0){
-                    if (it.second == 1){ // 如果是关注操作，则显示已经关注
-                        with(mBinding.mineFragmentMineTvFollow) {
-                            setBackgroundResource(R.drawable.mine_shape_follow_have_bg)
-                            text = "已关注"
-                        }
-                    }else{  // 如果是取消关注操作
-                        with(mBinding.mineFragmentMineTvFollow) {
-                            setBackgroundResource(R.drawable.mine_shape_follow_bg)
-                            text = "关注"
-                        }
-                    }
+            if (it != null) {
+                if (it.status_code == 0) {
+                    mIsFollow = !mIsFollow
+                    setFollowBg(mIsFollow)
+                } else {
+                    toast("网络错误")
                 }
+            }
+        }
+    }
+
+    private fun setFollowBg(isFollow: Boolean) {
+        with(mBinding.mineFragmentMineTvFollow) {
+            text = if (isFollow) { // 如果是关注操作，则显示已经关注
+                setBackgroundResource(R.drawable.mine_shape_follow_have_bg)
+                "已关注"
+            } else {  // 如果是取消关注操作
+                setBackgroundResource(R.drawable.mine_shape_follow_bg)
+                "关注"
             }
         }
     }
@@ -219,7 +245,7 @@ class MineFragment : BaseFragment() {
 
     private fun checkPermission(): Boolean {
         return requireActivity().checkSelfPermission(Manifest.permission.READ_CALENDAR) == PackageManager.PERMISSION_GRANTED
-                &&  requireActivity().checkSelfPermission(Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED
+                && requireActivity().checkSelfPermission(Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun getImgFromLocal() {
@@ -284,18 +310,18 @@ class MineFragment : BaseFragment() {
             )
         )
         options.setToolbarColor(
-            ContextCompat.getColor(requireContext(),  R.color.white)
+            ContextCompat.getColor(requireContext(), R.color.white)
         )
         // 不显示网格线
-        options.setShowCropGrid(false);
+        options.setShowCropGrid(false)
         options.setStatusBarColor(
-            ContextCompat.getColor(requireContext(),   R.color.teal_200)
+            ContextCompat.getColor(requireContext(), R.color.teal_200)
         )
         options.setCircleDimmedLayer(true)
         uCrop.withOptions(options)
             .withAspectRatio(300f, 300f)
             .withMaxResultSize(300, 300)
-            .start(requireContext(),this)
+            .start(requireContext(), this)
     }
 
     /**
@@ -312,7 +338,7 @@ class MineFragment : BaseFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("lx", "状态码 requestCode = ${requestCode} ")
+        Log.d("lx", "状态码 requestCode = $requestCode ")
 
         if (resultCode != Activity.RESULT_OK) return
 
@@ -359,7 +385,7 @@ class MineFragment : BaseFragment() {
                 destinationFile.name,
                 destinationFile.getRequestBody()
             )
-           mViewModel.uploadImg(fileBody)
+            mViewModel.uploadImg(fileBody)
         } catch (e: IOException) {
             e.printStackTrace()
             toast("图片加载失败")
@@ -370,8 +396,8 @@ class MineFragment : BaseFragment() {
     /**
      * 必须通过newInstance来调用，通过不同的userId来达到不同的效果
      */
-    companion object{
-        fun newInstance(userId : Long) = MineFragment().apply {
+    companion object {
+        fun newInstance(userId: Long) = MineFragment().apply {
             arguments = bundleOf(
                 this::mCurrentUserId.name to userId
             )
