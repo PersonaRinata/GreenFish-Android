@@ -127,6 +127,7 @@ class ContentListActivity : BaseActivity() {
     companion object {
         fun startAction(context: Context, selfId: Long, otherId: Long) {
             val intent = Intent(context, ContentListActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.putExtra("selfId", selfId)
             intent.putExtra("otherId", otherId)
             context.startActivity(intent)

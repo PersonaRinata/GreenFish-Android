@@ -2,7 +2,9 @@ package com.handsome.module.chat.ui.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.handsome.lib.util.base.BaseViewModel
+import com.handsome.lib.util.util.myCoroutineExceptionHandler
 import com.handsome.module.chat.bean.ContentListBean
+import com.handsome.module.chat.bean.IsDoctorBean
 import com.handsome.module.chat.bean.StatusBean
 import com.handsome.module.chat.net.ChatApiService
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,15 +22,25 @@ class ContentListViewModel: BaseViewModel() {
     val uploadMessage : StateFlow<StatusBean?>
         get() = _uploadMessage.asStateFlow()
 
+    private val _isDoctor = MutableStateFlow<IsDoctorBean?>(null)
+    val isDoctor : StateFlow<IsDoctorBean?>
+        get() = _isDoctor.asStateFlow()
+
     fun getContentList(otherId : Long,preTime : Long){
-        viewModelScope.launch {
+        viewModelScope.launch(myCoroutineExceptionHandler) {
             _contentList.emit(ChatApiService.INSTANCE.getContentList(otherId,preTime))
         }
     }
 
     fun uploadMessage(otherId: Long,content : String){
-        viewModelScope.launch {
+        viewModelScope.launch(myCoroutineExceptionHandler) {
             _uploadMessage.emit(ChatApiService.INSTANCE.uploadMessage(otherId,content))
+        }
+    }
+
+    fun isDoctor(){
+        viewModelScope.launch(myCoroutineExceptionHandler) {
+            _isDoctor.emit(ChatApiService.INSTANCE.isDoctor())
         }
     }
 }

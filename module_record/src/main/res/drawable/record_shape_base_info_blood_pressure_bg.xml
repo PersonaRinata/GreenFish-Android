@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners
+        android:bottomRightRadius="8.46dp"
+        android:topLeftRadius="8.46dp" />
+    <gradient
+        android:angle="270"
+        android:endColor="@color/record_base_info_item_blood_end_bg"
+        android:startColor="@color/record_base_info_item_blood_start_bg" />
+    />
+</shape>

@@ -2,15 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8.46dp"
+    android:layout_marginBottom="8.46dp">
 
     <ImageView
         android:id="@+id/chat_item_chat_right_img_user"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35.53dp"
+        android:layout_height="35.53dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/chat_ic_user"
+        android:src="@drawable/chat_ic_doctor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,14 +21,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/chat_shape_message_bg"
-        android:maxWidth="300dp"
-        android:paddingTop="4dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="4dp"
-        android:paddingStart="8dp"
+        android:background="@drawable/chat_shape_content_right_bg"
+        android:maxWidth="206.81dp"
+        android:paddingTop="7.19dp"
+        android:paddingEnd="14.33dp"
+        android:paddingBottom="8.18dp"
+        android:paddingStart="14.38dp"
+        android:textSize="15.22sp"
         android:layout_marginEnd="12dp"
-        android:text="你早上吃饭了没有?"
+        android:text="医生我肚子有点不舒服?"
+        android:textColor="@color/chat_content_right_text_color"
         app:layout_constraintEnd_toStartOf="@+id/chat_item_chat_right_img_user"
         app:layout_constraintTop_toTopOf="parent" />
 

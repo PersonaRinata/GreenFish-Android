@@ -7,4 +7,36 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="record_bg">#F4F5F9</color>
+
+
+    <color name="record_base_info_text_bg">#D2F9F6</color>
+    <color name="record_base_info_text_color">#4FAEBB</color>
+
+
+    <color name="record_no_disease_bg">#7AD0C9</color>
+    <color name="record_disease_info_color">#7AD0C9</color>
+    <color name="record_have_disease_bg">#EE8383</color>
+
+    <color name="record_base_info_item_bg">#F5F6FA</color>
+    <color name="record_base_info_item_text_color">#666666</color>
+    <color name="record_base_info_item_sport_sleep_text_color">#343434</color>
+
+    <color name="record_base_info_item_tall_start_bg">#F0945E</color>
+    <color name="record_base_info_item_tall_end_bg">#F3AE6B</color>
+
+    <color name="record_base_info_item_weight_start_bg">#7BC2F9</color>
+    <color name="record_base_info_item_weight_end_bg">#7DD1EC</color>
+
+    <color name="record_base_info_item_blood_start_bg">#EE85AA</color>
+    <color name="record_base_info_item_blood_end_bg">#EF93C8</color>
+
+    <color name="record_base_info_item_sugar_start_bg">#9091F8</color>
+    <color name="record_base_info_item_sugar_end_bg">#9EA7F9</color>
+
+    <color name="record_btn_start_color">#7DE3CA</color>
+    <color name="record_btn_end_color">#95E2D4</color>
+
 </resources>

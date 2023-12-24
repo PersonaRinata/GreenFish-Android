@@ -55,8 +55,10 @@ class ChatFragment : BaseFragment() {
         mViewModel.chatList.collectLaunch {
             if (it != null) {
                 if (it.status_code == 0) {
-                    // 这里因为远端没有设置字段，所以其实也就和submitList结果一样
-                    mAdapter.submitListToOrder(it.user_list)
+                    if (it.user_list != null){
+                        // 这里因为远端没有设置字段，所以其实也就和submitList结果一样
+                        mAdapter.submitListToOrder(it.user_list)
+                    }
                 } else {
                     toast("消息请求失败")
                 }

@@ -9,6 +9,7 @@ import androidx.viewbinding.ViewBinding
 import com.handsome.module.chat.bean.SingleContentBean
 import com.handsome.module.chat.databinding.ChatItemChatLeftBinding
 import com.handsome.module.chat.databinding.ChatItemChatRightBinding
+import com.handsome.module.chat.wight.selectable.SelectableTextViewHelper
 
 /**
  * 聊天的具体内容列表
@@ -43,12 +44,18 @@ class ContentListAdapter(private val ids : Pair<Long,Long>) : ListAdapter<Single
     }
 
     inner class LeftHolder(private val lBinding : ChatItemChatLeftBinding) : MyHolder(lBinding) {
+        init {
+            SelectableTextViewHelper(lBinding.chatItemChatLeftTvMessage)
+        }
         override fun bind(data: SingleContentBean) {
             lBinding.chatItemChatLeftTvMessage.text = data.content
         }
     }
 
     inner class RightHolder(private val rBinding  : ChatItemChatRightBinding) : MyHolder(rBinding) {
+        init {
+            SelectableTextViewHelper(rBinding.chatItemChatRightTvMessage)
+        }
         override fun bind(data: SingleContentBean) {
             rBinding.chatItemChatRightTvMessage.text = data.content
         }

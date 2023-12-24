@@ -3,6 +3,7 @@ package com.handsome.module.chat.net
 import com.handsome.lib.util.network.ApiGenerator
 import com.handsome.module.chat.bean.ChatFriendsList
 import com.handsome.module.chat.bean.ContentListBean
+import com.handsome.module.chat.bean.IsDoctorBean
 import com.handsome.module.chat.bean.StatusBean
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -18,6 +19,9 @@ interface ChatApiService {
 
     @POST("message/action/")
     suspend fun uploadMessage(@Query("to_user_id") otherId: Long,@Query("content") content : String,@Query("action_type") type : Int = 1) : StatusBean
+
+    @GET("user/judge/doctor")
+    suspend fun isDoctor() : IsDoctorBean
 
     companion object{
         val INSTANCE by lazy {

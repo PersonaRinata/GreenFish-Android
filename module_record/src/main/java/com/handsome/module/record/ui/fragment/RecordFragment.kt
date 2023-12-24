@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.handsome.lib.api.server.MAIN_RECORD
 import com.handsome.lib.util.base.BaseFragment
-import com.handsome.module.record.databinding.RecordFramentPersonalizationBinding
+import com.handsome.module.record.databinding.RecordFramentRecordBinding
 
 @Route(name = MAIN_RECORD, path = MAIN_RECORD)
 class RecordFragment : BaseFragment() {
-    private val mBinding by lazy { RecordFramentPersonalizationBinding.inflate(layoutInflater) }
+    private val mBinding by lazy { RecordFramentRecordBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater,

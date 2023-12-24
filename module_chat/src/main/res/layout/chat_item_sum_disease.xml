@@ -3,11 +3,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="私人定制，个性咨询"
-        android:textSize="100sp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
