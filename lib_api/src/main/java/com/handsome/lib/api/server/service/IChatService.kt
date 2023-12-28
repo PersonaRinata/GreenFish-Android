@@ -4,6 +4,6 @@ import com.alibaba.android.arouter.facade.template.IProvider
 
 interface IChatService : IProvider {
 
-    fun startContentListActivity(selfId : Long,otherId : Long)
+    fun startContentListActivity(selfId : Long,otherId : Long,otherName : String)
 
 }

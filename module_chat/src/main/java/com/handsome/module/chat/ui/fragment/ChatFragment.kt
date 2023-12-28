@@ -68,8 +68,8 @@ class ChatFragment : BaseFragment() {
 
     private fun initRv() {
         mAdapter = ChatListAdapter(mUserInfo!!.user_id).apply {
-            setOnClickChatItem { selfId, otherId ->
-                ContentListActivity.startAction(requireContext(),selfId,otherId)
+            setOnClickChatItem { selfId, otherId,otherName ->
+                ContentListActivity.startAction(requireContext(),selfId,otherId,otherName)
             }
             setOnClickDelete {
                 deleteItem(it)

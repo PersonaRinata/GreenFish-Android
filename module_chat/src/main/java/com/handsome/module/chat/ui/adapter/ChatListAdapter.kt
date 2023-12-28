@@ -46,9 +46,9 @@ class ChatListAdapter(private val selfId : Long) : ListAdapter<AuthorBean,ChatLi
         this.mOnItemSlideBack = func
     }
 
-    private var mOnClickChatItem : ((selfId:Long,otherId:Long)->Unit)? = null
+    private var mOnClickChatItem : ((selfId:Long,otherId:Long,otherName : String)->Unit)? = null
 
-    fun setOnClickChatItem(onClickChatItem : (selfId:Long,otherId:Long)->Unit){
+    fun setOnClickChatItem(onClickChatItem : (selfId:Long,otherId:Long,otherName : String)->Unit){
         this.mOnClickChatItem = onClickChatItem
     }
 
@@ -89,7 +89,7 @@ class ChatListAdapter(private val selfId : Long) : ListAdapter<AuthorBean,ChatLi
             with(binding){
                 chatItemFriendsListSlide.setOnTapTouchListener {
                     // 跳转到新的activity
-                    mOnClickChatItem?.invoke(selfId,getItem(adapterPosition).id)
+                    mOnClickChatItem?.invoke(selfId,getItem(adapterPosition).id,getItem(adapterPosition).name)
                 }
                 chatItemFriendsListIsTop.setOnClickListener{
                     mOnClickTop?.invoke(getItem(adapterPosition),binding.chatItemFriendsListIsTop)

@@ -10,7 +10,12 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.lib.util.base.BaseActivity
+import com.handsome.lib.util.extention.gone
 import com.handsome.lib.util.extention.toast
+import com.handsome.lib.util.extention.visible
+import com.handsome.module.chat.bean.IssueListBean
+import com.handsome.module.chat.bean.SingleContentBean
+import com.handsome.module.chat.bean.SumDiseaseBean
 import com.handsome.module.chat.databinding.ChatActivityContentListBinding
 import com.handsome.module.chat.ui.adapter.ContentListAdapter
 import com.handsome.module.chat.ui.viewmodel.ContentListViewModel
@@ -21,6 +26,7 @@ class ContentListActivity : BaseActivity() {
     private lateinit var mAdapter: ContentListAdapter
     private val selfId: Long by lazy { intent.getLongExtra("selfId", -1) }
     private val otherId: Long by lazy { intent.getLongExtra("otherId", -1) }
+    private val otherName  by lazy { intent.getStringExtra("otherName") }
     private var mHandler: Handler? = null
     private var mRunnable: Runnable? = null
     private var lastMessageTime: Long = 0   //最后一条消息的时间，其实也可以通过adapter来获得
@@ -32,10 +38,16 @@ class ContentListActivity : BaseActivity() {
             toast("用户信息错误")
             return
         }
+        mBinding.chatContentListTvUserName.text = otherName
         initClick()
         initRv()
         initObserve()
         postSingle(lastMessageTime)
+        isDoctor()
+    }
+
+    private fun isDoctor() {
+        mViewModel.isDoctor()
     }
 
     private fun initClick() {
@@ -45,6 +57,12 @@ class ContentListActivity : BaseActivity() {
             }
             chatContentListTvSend.setOnClickListener {
                 sendMessage()
+            }
+            chatActivityContentListLinearGetRecord.setOnClickListener {
+                mViewModel.getIssueList(otherId)
+            }
+            chatActivityContentListLinearSumDisease.setOnClickListener {
+                mViewModel.sumDisease(otherId)
             }
         }
     }
@@ -62,25 +80,52 @@ class ContentListActivity : BaseActivity() {
         mViewModel.getContentList(otherId, lastMessageTime)
     }
 
+    private fun scrollToRvEnd(){
+        with(mBinding.chatActivityContentListRv){
+            post {
+                smoothScrollToPosition(computeVerticalScrollRange())
+            }
+        }
+    }
+
+    private fun addItemsToAdapter(contentBeans : List<SingleContentBean>){
+        val messageList = ArrayList<ContentListAdapter.ContentListData.TypeLeftRight>()
+        contentBeans.forEach {
+            messageList.add(ContentListAdapter.ContentListData.TypeLeftRight(it))
+        }
+        val list = mAdapter.currentList.toMutableList()
+        list.addAll(messageList)
+        mAdapter.submitList(list)
+        val lastData = list[list.size - 1]
+        if (lastData is ContentListAdapter.ContentListData.TypeLeftRight){
+            lastMessageTime = lastData.singleContentBean.create_time
+        }
+    }
+
+    private fun addItemToAdapter(sumDisease : SumDiseaseBean){
+        val list = mAdapter.currentList.toMutableList()
+        list.add(ContentListAdapter.ContentListData.TypeSumDisease(sumDisease))
+        mAdapter.submitList(list)
+    }
+
+    private fun addItemToAdapter(issueList : IssueListBean){
+        val list = mAdapter.currentList.toMutableList()
+        list.add(ContentListAdapter.ContentListData.TypeIssueList(issueList))
+        mAdapter.submitList(list)
+    }
+
     private fun initObserve() {
         // 由于stateflow在结果相等的时候不会观察到，所以我们利用这点，直接handler一直请求。
         mViewModel.contentList.collectLaunch {
-            Log.d("lx", "initObserve start:${it} ")
             if (it != null) {
                 if (it.status_code == 0) {
-                    val list = mAdapter.currentList.toMutableList()
                     if (it.message_list != null) {
-                        list.addAll(it.message_list)
-                        mAdapter.submitList(list)
-                        lastMessageTime = list[list.size - 1].create_time
-                        mBinding.chatActivityContentListRv.post {
-                            mBinding.chatActivityContentListRv.smoothScrollToPosition(mBinding.chatActivityContentListRv.computeVerticalScrollRange())
-                        }
+                        addItemsToAdapter(it.message_list)
+                        scrollToRvEnd()
                     }
                 } else {
                     toast("获取消息列表失败！")
                 }
-                Log.d("lx", "initObserve end:${it} ")
             }
         }
         mViewModel.uploadMessage.collectLaunch {
@@ -89,6 +134,43 @@ class ContentListActivity : BaseActivity() {
                     toast("发送成功~")
                 } else {
                     toast("获取消息列表失败！")
+                }
+            }
+        }
+        mViewModel.sumDisease.collectLaunch {
+            if (it != null) {
+                if (it.status_code == 0) {
+                    addItemToAdapter(it)
+                    scrollToRvEnd()
+                } else {
+                    toast("连接异常，请重试~")
+                }
+            }
+        }
+        mViewModel.issueList.collectLaunch{
+            if (it != null) {
+                if (it.status_code == 0) {
+                    addItemToAdapter(it)
+                    scrollToRvEnd()
+                } else {
+                    toast("连接异常，请重试~")
+                }
+            }
+        }
+        mViewModel.isDoctor.collectLaunch{
+            if (it != null){
+                if (it.status_code == 0){
+                    with(mBinding){
+                        if (it.department == ""){
+                            chatActivityContentListLinearSumDisease.gone()
+                            chatActivityContentListLinearGetRecord.gone()
+                        }else{
+                            chatActivityContentListLinearSumDisease.visible()
+                            chatActivityContentListLinearGetRecord.visible()
+                        }
+                    }
+                }else{
+                    toast("连接异常，请重试~")
                 }
             }
         }
@@ -125,11 +207,12 @@ class ContentListActivity : BaseActivity() {
     }
 
     companion object {
-        fun startAction(context: Context, selfId: Long, otherId: Long) {
+        fun startAction(context: Context, selfId: Long, otherId: Long,otherName : String) {
             val intent = Intent(context, ContentListActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.putExtra("selfId", selfId)
             intent.putExtra("otherId", otherId)
+            intent.putExtra("otherName", otherName)
             context.startActivity(intent)
         }
     }

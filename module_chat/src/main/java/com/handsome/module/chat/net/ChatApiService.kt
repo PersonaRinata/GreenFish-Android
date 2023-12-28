@@ -4,7 +4,9 @@ import com.handsome.lib.util.network.ApiGenerator
 import com.handsome.module.chat.bean.ChatFriendsList
 import com.handsome.module.chat.bean.ContentListBean
 import com.handsome.module.chat.bean.IsDoctorBean
+import com.handsome.module.chat.bean.IssueListBean
 import com.handsome.module.chat.bean.StatusBean
+import com.handsome.module.chat.bean.SumDiseaseBean
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -22,6 +24,12 @@ interface ChatApiService {
 
     @GET("user/judge/doctor")
     suspend fun isDoctor() : IsDoctorBean
+
+    @GET("issuelist")
+    suspend fun getIssueList(@Query("user_id") userId : Long) : IssueListBean
+
+    @GET("aigc/issuelist")
+    suspend fun getSumDisease(@Query("user_id") userId : Long) : SumDiseaseBean
 
     companion object{
         val INSTANCE by lazy {

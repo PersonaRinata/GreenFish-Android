@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <corners android:radius="10dp"/>
+    <corners android:radius="41.87dp"/>
 
-    <solid android:color="#BF6495ED"/>
+    <gradient android:startColor="@color/chat_send_start_color"
+        android:endColor="@color/chat_send_end_color"/>
 
 </shape>

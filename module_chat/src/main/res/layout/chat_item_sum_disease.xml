@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24.53dp"
+    android:layout_marginBottom="24.53dp"
+    android:layout_marginStart="21.57dp"
+    android:layout_marginEnd="21.57dp"
+    android:background="@drawable/chat_shape_sum_disease_bg">
+
+
+    <ImageView
+        android:id="@+id/chat_item_sum_disease_img"
+        android:layout_width="14.37dp"
+        android:layout_height="14.3dp"
+        android:src="@drawable/chat_ic_sum"
+        android:layout_marginStart="32.99dp"
+        android:layout_marginTop="25.32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/chat_item_sum_disease_tv_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="快速总结病情"
+        android:layout_marginStart="8.47dp"
+        android:textColor="@color/chat_sum_disease_hint_color"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/chat_item_sum_disease_img"
+        app:layout_constraintStart_toEndOf="@+id/chat_item_sum_disease_img"
+        app:layout_constraintTop_toTopOf="@+id/chat_item_sum_disease_img" />
+
+    <TextView
+        android:id="@+id/chat_item_sum_disease_tv_introduction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32.99dp"
+        android:layout_marginEnd="33.41dp"
+        android:layout_marginTop="14.53dp"
+        android:layout_marginBottom="21.66dp"
+        android:text="waiting~"
+        android:textColor="@color/chat_sum_disease_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chat_item_sum_disease_img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

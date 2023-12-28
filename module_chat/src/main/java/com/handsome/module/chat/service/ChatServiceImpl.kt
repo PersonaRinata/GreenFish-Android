@@ -10,8 +10,8 @@ import com.handsome.module.chat.ui.activity.ContentListActivity
 class ChatServiceImpl : IChatService {
     private lateinit var mContext : Context
 
-    override fun startContentListActivity(selfId: Long, otherId: Long) {
-        ContentListActivity.startAction(mContext,selfId,otherId)
+    override fun startContentListActivity(selfId: Long, otherId: Long,otherName : String) {
+        ContentListActivity.startAction(mContext,selfId,otherId,otherName)
     }
 
     override fun init(context: Context) {

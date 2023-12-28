@@ -35,4 +35,13 @@
     <color name="chat_cursor_color">#2DD6B4</color>
     <color name="chat_select_bg">#C5EFEA</color>
 
+    <color name="chat_send_et_color">#F4F4F4</color>
+    <color name="chat_send_et_hint_color">#A4A4A4</color>
+    <color name="chat_send_start_color">#95E2D4</color>
+    <color name="chat_send_end_color">#7DE3CA</color>
+    <color name="chat_util_get_sum_text_color">#666666</color>
+
+    <color name="chat_sum_disease_text_color">#666666</color>
+    <color name="chat_sum_disease_hint_color">#474747</color>
+
 </resources>

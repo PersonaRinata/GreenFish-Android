@@ -5,7 +5,9 @@ import com.handsome.lib.util.base.BaseViewModel
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
 import com.handsome.module.chat.bean.ContentListBean
 import com.handsome.module.chat.bean.IsDoctorBean
+import com.handsome.module.chat.bean.IssueListBean
 import com.handsome.module.chat.bean.StatusBean
+import com.handsome.module.chat.bean.SumDiseaseBean
 import com.handsome.module.chat.net.ChatApiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,6 +28,14 @@ class ContentListViewModel: BaseViewModel() {
     val isDoctor : StateFlow<IsDoctorBean?>
         get() = _isDoctor.asStateFlow()
 
+    private val _issueList = MutableStateFlow<IssueListBean?>(null)
+    val issueList : StateFlow<IssueListBean?>
+        get() = _issueList.asStateFlow()
+
+    private val _sumDisease = MutableStateFlow<SumDiseaseBean?>(null)
+    val sumDisease : StateFlow<SumDiseaseBean?>
+        get() = _sumDisease.asStateFlow()
+
     fun getContentList(otherId : Long,preTime : Long){
         viewModelScope.launch(myCoroutineExceptionHandler) {
             _contentList.emit(ChatApiService.INSTANCE.getContentList(otherId,preTime))
@@ -41,6 +51,18 @@ class ContentListViewModel: BaseViewModel() {
     fun isDoctor(){
         viewModelScope.launch(myCoroutineExceptionHandler) {
             _isDoctor.emit(ChatApiService.INSTANCE.isDoctor())
+        }
+    }
+
+    fun getIssueList(userId : Long){
+        viewModelScope.launch(myCoroutineExceptionHandler) {
+            _issueList.emit(ChatApiService.INSTANCE.getIssueList(userId))
+        }
+    }
+
+    fun sumDisease(userId : Long){
+        viewModelScope.launch(myCoroutineExceptionHandler) {
+            _sumDisease.emit(ChatApiService.INSTANCE.getSumDisease(userId))
         }
     }
 }

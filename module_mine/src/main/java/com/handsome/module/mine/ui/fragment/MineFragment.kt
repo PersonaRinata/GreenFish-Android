@@ -119,7 +119,9 @@ class MineFragment : BaseFragment() {
             }
             mineFragmentMineLinearPrivateChat.setOnClickListener {
                 mUserInfo?.let {
-                    IChatService::class.impl.startContentListActivity(it.user_id, mCurrentUserId)
+                    mCurrentUserInfo?.let { it1 ->
+                        IChatService::class.impl.startContentListActivity(it.user_id, mCurrentUserId, it1.name)
+                    }
                 }
             }
         }

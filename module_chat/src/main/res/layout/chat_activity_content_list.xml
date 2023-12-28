@@ -41,6 +41,7 @@
                 android:text="用户"
                 android:textStyle="bold"
                 android:textSize="16.92sp"
+                android:textColor="@color/fish_font_level4_color"
                 android:layout_marginTop="11.84dp"
                 android:layout_marginBottom="11.52dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -59,49 +60,134 @@
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
             app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:id="@+id/chat_activity_content_list_linear_get_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10.15dp"
+                android:layout_marginTop="9.73dp"
+                android:layout_marginBottom="9.73dp"
+                android:background="@drawable/chat_shape_et_send_bg"
+                app:layout_constraintBottom_toTopOf="@+id/chat_content_list_et_send"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="13.96dp"
+                    android:src="@drawable/chat_ic_record" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5.59dp"
+                    android:layout_marginTop="4.72dp"
+                    android:layout_marginEnd="13.45dp"
+                    android:layout_marginBottom="4.34dp"
+                    android:gravity="center"
+                    android:text="获取健康档案"
+                    android:textColor="@color/chat_util_get_sum_text_color"
+                    android:textSize="12.78sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/chat_activity_content_list_linear_sum_disease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10.15dp"
+                android:layout_marginTop="9.73dp"
+                android:layout_marginBottom="9.73dp"
+                android:background="@drawable/chat_shape_et_send_bg"
+                app:layout_constraintBottom_toTopOf="@+id/chat_content_list_et_send"
+                app:layout_constraintStart_toEndOf="@+id/chat_activity_content_list_linear_get_record"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="13.96dp"
+                    android:src="@drawable/chat_ic_sum" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5.59dp"
+                    android:layout_marginTop="4.72dp"
+                    android:layout_marginEnd="13.45dp"
+                    android:layout_marginBottom="4.34dp"
+                    android:gravity="center"
+                    android:text="快速总结病情"
+                    android:textColor="@color/chat_util_get_sum_text_color"
+                    android:textSize="12.78sp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/chat_activity_content_list_view_placeholders"
+                android:layout_width="match_parent"
+                android:layout_height="12.94dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toTopOf="@+id/chat_content_list_et_send"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/chat_content_list_et_send"
                 android:layout_width="0dp"
-                android:layout_weight="4"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/chat_shape_send_comment_bg"
-                android:hint="点击进入输入"
+                android:layout_marginStart="10.15dp"
+                android:layout_marginEnd="7.19dp"
+                android:layout_marginBottom="12.69dp"
+                android:layout_weight="4"
+                android:background="@drawable/chat_shape_et_send_bg"
+                android:hint="输入你想说的话"
                 android:imeOptions="actionSearch"
-                android:maxLines="1"
                 android:maxLength="20"
-                android:paddingStart="17dp"
-                android:paddingTop="9.5dp"
+                android:maxLines="1"
+                android:paddingStart="21.57dp"
+                android:paddingTop="9.73dp"
                 android:paddingEnd="19dp"
-                android:paddingBottom="9.5dp"
+                android:paddingBottom="9.64dp"
                 android:singleLine="true"
                 android:textColor="@color/black"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/chat_send_et_hint_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/chat_content_list_tv_send"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="Autofill,TextFields" />
 
             <TextView
                 android:id="@+id/chat_content_list_tv_send"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="发送"
-                android:background="@drawable/chat_shape_send_bg"
-                android:textSize="20sp"
-                android:layout_marginTop="2.6dp"
-                android:layout_marginBottom="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginEnd="10.57sp"
+                android:layout_marginBottom="12.69dp"
+                android:background="@drawable/chat_shape_send_bg"
                 android:gravity="center"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"/>
+                android:paddingStart="21.57dp"
+                android:paddingTop="7.61dp"
+                android:paddingEnd="21.15dp"
+                android:paddingBottom="6.76dp"
+                android:text="发送"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
