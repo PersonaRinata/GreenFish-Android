@@ -279,19 +279,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mine_fragment_mine_tab_layout" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/mine_fragment_mine_float_btn_publish"
+    <FrameLayout
+        android:id="@+id/mine_fragment_mine_frame_publish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="42.28dp"
         android:layout_marginEnd="20.34dp"
-        app:borderWidth="0dp"
-        android:scaleType="center"
-        android:elevation="0dp"
-        app:elevation="0dp"
-        android:src="@drawable/mine_ic_publish"
+        android:background="@drawable/mine_shape_publish_bg"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12.54dp"
+            android:layout_marginStart="12.54dp"
+            android:layout_marginBottom="12.16dp"
+            android:layout_marginEnd="12.16dp"
+            android:src="@drawable/mine_ic_publish"/>
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

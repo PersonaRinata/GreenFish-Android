@@ -105,7 +105,7 @@ class MineFragment : BaseFragment() {
                 // 更换头像
                 getImgFromLocal()
             }
-            mineFragmentMineFloatBtnPublish.setOnClickListener {
+            mineFragmentMineFramePublish.setOnClickListener {
                 IPublishService::class.impl.startPublishActivity()
             }
             mineFragmentMineTvFollow.setOnSingleClickListener {

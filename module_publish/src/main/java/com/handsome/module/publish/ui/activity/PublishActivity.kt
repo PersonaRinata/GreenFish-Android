@@ -55,6 +55,7 @@ class PublishActivity : BaseActivity() {
                 unLoading()
                 SuccessAndExitDialog(this).apply {
                     setOnClickConfirm {
+                        dismiss()
                         finishAfterTransition()
                     }
                 }.show()
@@ -81,10 +82,13 @@ class PublishActivity : BaseActivity() {
         mBinding.publishImgForeground.setOnClickListener {
             getVideoFromLocal()
         }
-        mBinding.publishBtnPublish.setOnClickListener {
+        mBinding.publishTvPublish.setOnClickListener {
             loading()
             val title = mBinding.publishEtDescribe.text.toString()
             uploadVideo(videoFile,title)
+        }
+        mBinding.publishImgBack.setOnClickListener {
+            finishAfterTransition()
         }
     }
 
@@ -142,12 +146,20 @@ class PublishActivity : BaseActivity() {
                     // 在这里处理获取到的第一帧视频图片（即 Bitmap 对象）
                     // 例如，将 Bitmap 显示到 ImageView 中
                     mBinding.publishImgForeground.setImageBitmap(resource)
+                    hintAdd()
                 }
                 override fun onLoadCleared(placeholder: Drawable?) {
                     // 图像加载已被取消时执行
                     mBinding.publishImgForeground.setImageResource(R.drawable.publish_ic_picture_error)
                 }
             })
+    }
+
+    // 当前界面已经有视频了，添加视频的img和提示文字隐藏
+    private fun hintAdd(){
+        with(mBinding) {
+            publishActivityPublishLinearAdd.gone()
+        }
     }
 
     /**

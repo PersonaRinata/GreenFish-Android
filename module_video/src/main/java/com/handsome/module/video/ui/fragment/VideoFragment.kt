@@ -61,11 +61,18 @@ class VideoFragment : BaseFragment() {
 
 
     private fun initOthers() {
+        initBack()
         initUser()  //用户头像和名称
         initLike()
         initComment()
         initShare()
         initFollow()
+    }
+
+    private fun initBack() {
+        mBinding.videoFragmentImgBack.setOnClickListener {
+            requireActivity().finishAfterTransition()
+        }
     }
 
     private fun initObserve() {
