@@ -10,6 +10,7 @@
         android:theme="@style/Theme.YiQu">
 
         <activity android:name=".ui.activity.ContentListActivity"
+            android:theme="@style/Theme.YiQu"
             android:exported="true"/>
 
     </application>

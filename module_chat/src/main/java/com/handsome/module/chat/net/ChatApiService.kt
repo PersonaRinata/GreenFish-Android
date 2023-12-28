@@ -1,6 +1,7 @@
 package com.handsome.module.chat.net
 
 import com.handsome.lib.util.network.ApiGenerator
+import com.handsome.module.chat.bean.AskAiResultBean
 import com.handsome.module.chat.bean.ChatFriendsList
 import com.handsome.module.chat.bean.ContentListBean
 import com.handsome.module.chat.bean.IsDoctorBean
@@ -30,6 +31,9 @@ interface ChatApiService {
 
     @GET("aigc/issuelist")
     suspend fun getSumDisease(@Query("user_id") userId : Long) : SumDiseaseBean
+
+    @POST("aigc/word")
+    suspend fun getAskAiResult(@Query("content") content: String) : AskAiResultBean
 
     companion object{
         val INSTANCE by lazy {
