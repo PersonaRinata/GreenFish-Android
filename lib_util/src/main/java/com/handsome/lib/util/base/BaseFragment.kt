@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -29,6 +30,15 @@ abstract class BaseFragment : Fragment() , View.OnClickListener{
     ) {
         owner.lifecycleScope.launch {
             collect{ action.invoke(it) }
+        }
+    }
+
+    open fun<T> LiveData<T>.observing(
+        owner: LifecycleOwner =  viewLifecycleOwner,
+        action : (value : T) -> Unit
+    ){
+        observe(owner){
+            action.invoke(it)
         }
     }
 }

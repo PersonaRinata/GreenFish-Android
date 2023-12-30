@@ -5,7 +5,7 @@
         android:topLeftRadius="8.46dp" />
     <gradient
         android:angle="270"
-        android:endColor="@color/record_base_info_item_tall_end_bg"
-        android:startColor="@color/record_base_info_item_tall_start_bg" />
+        android:endColor="@color/record_base_info_item_heart_rate_end_bg"
+        android:startColor="@color/record_base_info_item_heart_rate_start_bg" />
     />
 </shape>

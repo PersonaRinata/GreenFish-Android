@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/record_bg"
+        android:fitsSystemWindows="true">
+
+        <FrameLayout
+            android:id="@+id/record_activity_record_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="11.84dp"
+                android:layout_marginBottom="11.52dp"
+                android:text="健康档案"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/fish_font_level4_color"
+                android:textSize="16.92sp" />
+
+            <ImageView
+                android:id="@+id/record_activity_update_img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/record_ic_back"
+                android:layout_marginStart="33.83dp"
+                android:layout_gravity="center_vertical"/>
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_fragment_record_linear_self_introduction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="14.97dp"
+            android:background="@drawable/record_shape_self_introduction_change_bg"
+            app:layout_constraintTop_toBottomOf="@+id/record_activity_record_toolbar">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="21dp"
+                android:src="@drawable/record_ic_self_introduction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6.85dp"
+                android:gravity="center"
+                android:text="自我描述"
+                android:textColor="@color/record_hint_self_introduction_text_color"
+                android:textSize="16.21sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:src="@drawable/record_shape_edit"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+            <EditText
+                android:id="@+id/record_fragment_record_tv_self_introduction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@android:color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="9.19dp"
+                android:layout_marginBottom="26.29dp"
+                android:textSize="14.12sp"
+                android:textColor="@color/record_self_introduction_text_color"
+                android:text="我感到非常疲倦和无精打采，经常头痛和肌肉酸痛。我还经常感到恶心和食欲不振，有时候还会出现呕吐和腹泻的症状。我对抗组胺药物过敏。"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/record_activity_update_linear_body_base_info"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/record_shape_self_introduction_change_bg"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/record_fragment_record_linear_self_introduction">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14.2dp">
+
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别"
+                    android:textSize="14.38sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23.83dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/record_activity_update_et_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="22.81dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="14.38sp"
+                    android:text="女"/>
+
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.42dp"
+                android:layout_marginTop="13.41dp"
+                android:layout_marginStart="23.83dp"
+                android:layout_marginEnd="23.43dp"
+                android:background="@color/record_hint_line_bg"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14.2dp">
+
+                <TextView
+                    android:id="@+id/birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="年龄"
+                    android:textSize="14.38sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23.83dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <EditText
+                    android:id="@+id/record_activity_update_et_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="22.81dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="14.38sp"
+                    android:text="19"/>
+
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.42dp"
+                android:layout_marginTop="13.41dp"
+                android:layout_marginStart="23.83dp"
+                android:layout_marginEnd="23.43dp"
+                android:background="@color/record_hint_line_bg"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14.2dp">
+
+                <TextView
+                    android:id="@+id/tall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23.83dp"
+                    android:text="身高"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="14.38sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <EditText
+                    android:id="@+id/record_activity_update_et_tall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4.87dp"
+                    android:background="@android:color/transparent"
+                    android:text="185"
+                    android:minWidth="15dp"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="14.38sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cm"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/cm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="22.13dp"
+                    android:text="cm"
+                    android:textSize="14.38sp"
+                    android:textColor="@color/record_edit_unit_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.42dp"
+                android:layout_marginTop="13.41dp"
+                android:layout_marginStart="23.83dp"
+                android:layout_marginEnd="23.43dp"
+                android:background="@color/record_hint_line_bg"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14.2dp">
+
+                <TextView
+                    android:id="@+id/weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23.83dp"
+                    android:text="体重"
+                    android:textSize="14.38sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/fish_font_level4_color"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/record_activity_update_et_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4.87dp"
+                    android:background="@android:color/transparent"
+                    android:text="70"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="14.38sp"
+                    android:minWidth="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/kg"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/kg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="22.13dp"
+                    android:text="kg"
+                    android:textSize="14.38sp"
+                    android:textColor="@color/record_edit_unit_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/record_activity_record_linear_extra_info"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/record_shape_self_introduction_change_bg"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/record_activity_update_linear_body_base_info">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14.2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23.83dp"
+                    android:text="最近血糖"
+                    android:textSize="14.38sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/fish_font_level4_color"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/record_activity_update_et_blood_sugar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4.87dp"
+                    android:background="@android:color/transparent"
+                    android:text="5.3"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="14.38sp"
+                    android:minWidth="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mmol"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/mmol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="22.13dp"
+                    android:text="mmol"
+                    android:textSize="14.38sp"
+                    android:textColor="@color/record_edit_unit_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.42dp"
+                android:layout_marginTop="13.41dp"
+                android:layout_marginStart="23.83dp"
+                android:layout_marginEnd="23.43dp"
+                android:background="@color/record_hint_line_bg"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14.2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23.83dp"
+                    android:text="最近血压"
+                    android:textSize="14.38sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/fish_font_level4_color"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/record_activity_update_et_blood_pressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4.87dp"
+                    android:background="@android:color/transparent"
+                    android:text="70"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="14.38sp"
+                    android:minWidth="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mmHg"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/mmHg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="22.13dp"
+                    android:text="mmHg"
+                    android:textSize="14.38sp"
+                    android:textColor="@color/record_edit_unit_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.42dp"
+                android:layout_marginTop="13.41dp"
+                android:layout_marginStart="23.83dp"
+                android:layout_marginEnd="23.43dp"
+                android:background="@color/record_hint_line_bg"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14.2dp">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23.83dp"
+                    android:text="最近心率"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="14.38sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <EditText
+                    android:id="@+id/record_activity_update_et_heart_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4.87dp"
+                    android:background="@android:color/transparent"
+                    android:text="185"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="14.38sp"
+                    android:minWidth="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/min"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="22.13dp"
+                    android:text="次/min"
+                    android:textSize="14.38sp"
+                    android:textColor="@color/record_edit_unit_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.42dp"
+                android:layout_marginTop="13.41dp"
+                android:layout_marginStart="23.83dp"
+                android:layout_marginEnd="23.43dp"
+                android:background="@color/record_hint_line_bg"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14.2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="家族病史"
+                    android:textSize="14.38sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23.83dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/record_activity_update_et_family_disease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="22.81dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="14.38sp"
+                    android:minWidth="15dp"
+                    android:text="哮喘、过敏症"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/record_activity_record_update_tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保存信息"
+            android:textColor="@color/white"
+            android:textSize="14.38sp"
+            android:paddingTop="2.92dp"
+            android:paddingBottom="6.22dp"
+            android:paddingStart="29.6dp"
+            android:paddingEnd="28.7dp"
+            android:layout_marginTop="30.11dp"
+            android:background="@drawable/record_shape_edit_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/record_activity_record_linear_extra_info" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -23,6 +24,15 @@ abstract class BaseActivity : AppCompatActivity() {
     ) {
         owner.lifecycleScope.launch {
             collect{ action.invoke(it) }
+        }
+    }
+
+    fun<T> LiveData<T>.observing(
+        owner: LifecycleOwner = this@BaseActivity,
+        action : (value : T) -> Unit
+    ){
+        observe(owner){
+            action.invoke(it)
         }
     }
 

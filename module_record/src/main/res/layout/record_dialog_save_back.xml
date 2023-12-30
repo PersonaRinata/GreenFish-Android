@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        app:layout_constraintVertical_bias="0.45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="303dp"
+            android:layout_height="197dp">
+
+            <LinearLayout
+                android:id="@+id/noclassLinearlayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="55.38dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="您还没有保存哦，是否退出？"
+                    android:textColor="@color/fish_font_level3_color"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/record_dialog_save_back_confirm"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="92dp"
+                android:layout_height="36dp"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:background="@drawable/record_shape_confirm"
+                android:textSize="15sp"
+                android:layout_marginStart="49.5dp"
+                android:layout_marginTop="26.27dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/noclassLinearlayout2" />
+
+            <Button
+                android:id="@+id/record_dialog_save_back_cancel"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="92dp"
+                android:layout_height="36dp"
+                android:text="取消"
+                android:textColor="@color/white"
+                android:background="@drawable/record_shape_cancel"
+                android:layout_marginEnd="49.5dp"
+                android:layout_marginTop="26.27dp"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/noclassLinearlayout2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

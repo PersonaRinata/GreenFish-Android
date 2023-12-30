@@ -7,6 +7,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.YiQu" />
+        android:theme="@style/Theme.YiQu">
+
+        <activity android:name=".ui.activity.RecordActivity"
+            android:exported="true"/>
+
+        <activity android:name=".ui.activity.UpdateIssueListActivity"
+            android:exported="true"/>
+
+
+    </application>
 
 </manifest>

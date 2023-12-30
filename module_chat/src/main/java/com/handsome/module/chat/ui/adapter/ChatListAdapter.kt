@@ -8,14 +8,11 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.handsome.lib.util.util.timeStampToTime
 import com.handsome.module.chat.bean.AuthorBean
 import com.handsome.module.chat.databinding.ChatItemSingleFriendBinding
 import com.handsome.module.chat.wight.OnSlideChangedListener
 import com.handsome.module.chat.wight.SlideMenuLayout
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 /**
  * @param selfId 参数的作用是跳转的时候传递进新的contentListActivity
@@ -77,11 +74,7 @@ class ChatListAdapter(private val selfId : Long) : ListAdapter<AuthorBean,ChatLi
                 }else{
                     chatItemFriendsListSlide.closeRightSlide()
                 }
-                val timestamp: Long = data.time
-                val instant = Instant.ofEpochSecond(timestamp / 1000000000, timestamp % 1000000000)
-                val localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
-                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") // 格式化日期时间
-                val formattedDateTime = localDateTime.format(formatter)
+                val formattedDateTime = timeStampToTime(data.time)
                 chatItemFriendsListTvTime.text = formattedDateTime
             }
         }

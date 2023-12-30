@@ -5,7 +5,7 @@
         android:topLeftRadius="8.46dp" />
     <gradient
         android:angle="270"
-        android:endColor="@color/record_base_info_item_weight_end_bg"
-        android:startColor="@color/record_base_info_item_weight_start_bg" />
+        android:endColor="@color/record_base_info_item_family_disease_end_bg"
+        android:startColor="@color/record_base_info_item_family_disease_start_bg" />
     />
 </shape>

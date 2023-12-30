@@ -15,20 +15,23 @@
     <color name="record_base_info_text_bg">#D2F9F6</color>
     <color name="record_base_info_text_color">#4FAEBB</color>
 
+    <color name="record_tall_height_text_bg">#FFE9EF</color>
+    <color name="record_tall_height_text_color">#E44D73</color>
+
 
     <color name="record_no_disease_bg">#7AD0C9</color>
     <color name="record_disease_info_color">#7AD0C9</color>
     <color name="record_have_disease_bg">#EE8383</color>
 
-    <color name="record_base_info_item_bg">#F5F6FA</color>
+    <color name="record_self_introduction_color">#F5F6FA</color>
     <color name="record_base_info_item_text_color">#666666</color>
     <color name="record_base_info_item_sport_sleep_text_color">#343434</color>
 
-    <color name="record_base_info_item_tall_start_bg">#F0945E</color>
-    <color name="record_base_info_item_tall_end_bg">#F3AE6B</color>
+    <color name="record_base_info_item_heart_rate_start_bg">#F0945E</color>
+    <color name="record_base_info_item_heart_rate_end_bg">#F3AE6B</color>
 
-    <color name="record_base_info_item_weight_start_bg">#7BC2F9</color>
-    <color name="record_base_info_item_weight_end_bg">#7DD1EC</color>
+    <color name="record_base_info_item_family_disease_start_bg">#7BC2F9</color>
+    <color name="record_base_info_item_family_disease_end_bg">#7DD1EC</color>
 
     <color name="record_base_info_item_blood_start_bg">#EE85AA</color>
     <color name="record_base_info_item_blood_end_bg">#EF93C8</color>
@@ -38,5 +41,28 @@
 
     <color name="record_btn_start_color">#7DE3CA</color>
     <color name="record_btn_end_color">#95E2D4</color>
+
+    <color name="record_hint_update_time_text_color">#929292</color>
+
+    <color name="record_hint_self_introduction_text_color">#343434</color>
+    <color name="record_self_introduction_text_color">#525252</color>
+
+    <color name="record_disease_history_result_text_color">#535353</color>
+    <color name="record_disease_history_medicine_text_color">#565656</color>
+
+    <color name="record_disease_history_hint_doctor_text_color">#646464</color>
+    <color name="record_disease_history_doctor_text_color">#797979</color>
+
+
+    <color name="record_disease_history_hint_time_text_color">#949494</color>
+
+    <color name="record_confirm_bg">#95E2D4</color>
+    <color name="record_cancel_bg">#7DE3CA</color>
+
+    <color name="record_hint_line_bg">#EEEEEE</color>
+    <color name="record_edit_unit_color">#999999</color>
+
+    <color name="record_edit_save_start">#95E2D4</color>
+    <color name="record_edit_save_end">#7DE3CA</color>
 
 </resources>

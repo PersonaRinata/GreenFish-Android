@@ -5,435 +5,507 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        android:scrollbars="none"
         android:background="@color/record_bg">
 
-        <FrameLayout
-            android:id="@+id/record_fragment_personalization_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="11.84dp"
-                android:layout_marginBottom="11.52dp"
-                android:text="健康档案"
-                android:textStyle="bold"
-                android:textColor="@color/fish_font_level4_color"
-                android:textSize="16.92sp" />
-
-        </FrameLayout>
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/record_fragment_record_constrain_all_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/record_shape_issue_list_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/record_fragment_personalization_toolbar">
+            android:fitsSystemWindows="true">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/record_fragment_personalization_img_user"
-                android:layout_width="52.86dp"
-                android:layout_height="52.86dp"
-                android:layout_marginTop="21.15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/record_fragment_personalization_tv_username"
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:id="@+id/record_fragment_personalization_toolbar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="用户"
-                android:textSize="17.76sp"
-                android:layout_marginTop="5.92dp"
+                android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/record_fragment_personalization_img_user" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7.56dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/record_fragment_personalization_tv_username">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/record_fragment_personalization_tv_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/record_shape_base_info_bg"
-                    android:paddingStart="5.08dp"
-                    android:paddingTop="1.69dp"
-                    android:paddingEnd="4.92dp"
-                    android:paddingBottom="1.19dp"
-                    android:text="女"
-                    android:textColor="@color/record_base_info_text_color" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="11.84dp"
+                    android:layout_marginBottom="11.52dp"
+                    android:text="健康档案"
+                    android:textStyle="bold"
+                    android:textColor="@color/fish_font_level4_color"
+                    android:textSize="16.92sp" />
+
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/record_fragment_record_constrain_all_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16.92dp"
+                android:layout_marginStart="10.15dp"
+                android:layout_marginEnd="10.15dp"
+                android:background="@drawable/record_shape_issue_list_bg"
+                app:layout_constraintTop_toBottomOf="@+id/record_fragment_personalization_toolbar">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/record_fragment_personalization_img_user"
+                    android:layout_width="52.86dp"
+                    android:layout_height="52.86dp"
+                    android:layout_marginTop="21.15dp"
+                    app:shapeAppearance="@style/Circle"
+                    android:background="@color/teal_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/record_fragment_personalization_tv_age"
+                    android:id="@+id/record_fragment_personalization_tv_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="11dp"
-                    android:background="@drawable/record_shape_base_info_bg"
-                    android:paddingStart="5.08dp"
-                    android:paddingTop="1.69dp"
-                    android:paddingEnd="4.92dp"
-                    android:paddingBottom="1.19dp"
-                    android:text="19岁"
-                    android:textColor="@color/record_base_info_text_color" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/record_fragment_record_linear_tall_and_weight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20.72dp"
-                android:layout_marginEnd="20.72dp"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="2.96dp"
-                    android:layout_marginEnd="2.96dp"
-                    android:layout_marginBottom="2.96dp"
-                    android:background="@drawable/record_shape_base_info_item_bg">
-
-                    <TextView
-                        android:id="@+id/record_fragment_record_tv_tall_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="身高"
-                        android:paddingStart="11dp"
-                        android:paddingEnd="10.56dp"
-                        android:paddingTop="1.27dp"
-                        android:paddingBottom="1.92dp"
-                        android:background="@drawable/record_shape_base_info_tall_bg"
-                        android:layout_gravity="start|top"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20.3dp"
-                        android:layout_marginBottom="16.41dp"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:id="@+id/record_fragment_record_tv_tall_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:textSize="20.3sp"
-                            android:textStyle="bold"
-                            android:text="185"/>
-
-                        <TextView
-                            android:id="@+id/record_fragment_record_tv_tall_cm"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15.65sp"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:layout_marginStart="12.48dp"
-                            android:text="cm"/>
-
-                    </LinearLayout>
-
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="2.96dp"
-                    android:layout_marginEnd="2.96dp"
-                    android:layout_marginBottom="2.96dp"
-                    android:background="@drawable/record_shape_base_info_item_bg">
-
-                    <TextView
-                        android:id="@+id/record_fragment_record_tv_weight_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="体重"
-                        android:paddingStart="11dp"
-                        android:paddingEnd="10.56dp"
-                        android:paddingTop="1.27dp"
-                        android:paddingBottom="1.92dp"
-                        android:background="@drawable/record_shape_base_info_weight_bg"
-                        android:layout_gravity="start|top"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20.3dp"
-                        android:layout_marginBottom="16.41dp"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:id="@+id/record_fragment_record_tv_weight_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:textSize="20.3sp"
-                            android:textStyle="bold"
-                            android:text="70"/>
-
-                        <TextView
-                            android:id="@+id/record_fragment_record_tv_weight_kg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15.65sp"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:layout_marginStart="12.48dp"
-                            android:text="kg"/>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/record_fragment_record_linear_pressure_and_sugar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20.72dp"
-                android:layout_marginEnd="20.72dp"
-                app:layout_constraintTop_toBottomOf="@+id/record_fragment_record_linear_tall_and_weight">
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="2.96dp"
-                    android:layout_marginEnd="2.96dp"
-                    android:layout_marginTop="2.96dp"
-                    android:background="@drawable/record_shape_base_info_item_bg">
-
-                    <TextView
-                        android:id="@+id/record_fragment_record_tv_blood_pressure_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="最近血压"
-                        android:paddingStart="11dp"
-                        android:paddingEnd="10.56dp"
-                        android:paddingTop="1.27dp"
-                        android:paddingBottom="1.92dp"
-                        android:background="@drawable/record_shape_base_info_blood_pressure_bg"
-                        android:layout_gravity="start|top"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20.3dp"
-                        android:layout_marginBottom="16.41dp"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:id="@+id/record_fragment_record_tv_blood_pressure_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:textSize="16.49sp"
-                            android:textStyle="bold"
-                            android:text="140/60"/>
-
-                        <TextView
-                            android:id="@+id/record_fragment_record_tv_blood_pressure_mmHg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14.38sp"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:layout_marginStart="12.48dp"
-                            android:text="mmHg"/>
-
-                    </LinearLayout>
-
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="2.96dp"
-                    android:layout_marginEnd="2.96dp"
-                    android:layout_marginTop="2.96dp"
-                    android:background="@drawable/record_shape_base_info_item_bg">
-
-                    <TextView
-                        android:id="@+id/record_fragment_record_tv_blood_sugar_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="最近血糖"
-                        android:paddingStart="11dp"
-                        android:paddingEnd="10.56dp"
-                        android:paddingTop="1.27dp"
-                        android:paddingBottom="1.92dp"
-                        android:background="@drawable/record_shape_base_info_blood_sugar_bg"
-                        android:layout_gravity="start|top"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20.3dp"
-                        android:layout_marginBottom="16.41dp"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:id="@+id/record_fragment_record_tv_blood_sugar_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:textSize="16.49sp"
-                            android:textStyle="bold"
-                            android:text="5.3"/>
-
-                        <TextView
-                            android:id="@+id/record_fragment_record_tv_blood_sugar_mmol"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14.38sp"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:layout_marginStart="12.48dp"
-                            android:text="mmol/L"/>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/record_fragment_record_linear_sport_and_sleep"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20.72dp"
-                android:layout_marginEnd="20.72dp"
-                app:layout_constraintTop_toBottomOf="@+id/record_fragment_record_linear_pressure_and_sugar">
+                    android:layout_marginTop="5.92dp"
+                    android:text="用户"
+                    android:textSize="17.76sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/record_fragment_personalization_img_user" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="2.96dp"
-                    android:layout_marginEnd="2.96dp"
-                    android:layout_marginTop="23.68dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/record_shape_base_info_item_bg">
+                    android:layout_marginTop="7.56dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/record_fragment_personalization_tv_username">
 
                     <TextView
-                        android:id="@+id/record_fragment_record_tv_sport_times_name"
+                        android:id="@+id/record_fragment_personalization_tv_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="运动频率"
-                        android:textColor="@color/record_base_info_item_sport_sleep_text_color"
+                        android:background="@drawable/record_shape_base_info_bg"
+                        android:paddingStart="5.08dp"
+                        android:paddingTop="1.69dp"
+                        android:paddingEnd="4.92dp"
+                        android:paddingBottom="1.19dp"
+                        android:textSize="11.84sp"
+                        android:text="女"
+                        android:textColor="@color/record_base_info_text_color" />
+
+                    <TextView
+                        android:id="@+id/record_fragment_personalization_tv_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="11dp"
-                        android:layout_marginTop="11.84dp"
-                        android:layout_gravity="start|top"/>
+                        android:background="@drawable/record_shape_base_info_bg"
+                        android:paddingStart="5.08dp"
+                        android:paddingTop="1.69dp"
+                        android:paddingEnd="4.92dp"
+                        android:paddingBottom="1.19dp"
+                        android:textSize="11.84sp"
+                        android:text="19岁"
+                        android:textColor="@color/record_base_info_text_color" />
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/record_fragment_record_tv_tall_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20.3dp"
-                        android:layout_marginBottom="14.37dp"
-                        android:layout_marginStart="11dp">
+                        android:layout_marginStart="11dp"
+                        android:background="@drawable/record_shape_tall_height_bg"
+                        android:paddingStart="5.08dp"
+                        android:paddingTop="1.69dp"
+                        android:paddingEnd="4.92dp"
+                        android:paddingBottom="1.19dp"
+                        android:text="168cm"
+                        android:textSize="11.84sp"
+                        android:textColor="@color/record_tall_height_text_color" />
 
-                        <TextView
-                            android:id="@+id/record_fragment_record_tv_sport_average_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="10.57sp"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:text="平均"/>
-
-                        <TextView
-                            android:id="@+id/record_fragment_record_tv_sport_times_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:textSize="16.07sp"
-                            android:textStyle="bold"
-                            android:layout_marginStart="2.53dp"
-                            android:text="一周3次"/>
-
-                    </LinearLayout>
-
+                    <TextView
+                        android:id="@+id/record_fragment_record_tv_weight_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="11dp"
+                        android:background="@drawable/record_shape_tall_height_bg"
+                        android:paddingStart="5.08dp"
+                        android:paddingTop="1.69dp"
+                        android:paddingEnd="4.92dp"
+                        android:paddingBottom="1.19dp"
+                        android:text="54kg"
+                        android:textSize="11.84sp"
+                        android:textColor="@color/record_tall_height_text_color" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:id="@+id/record_fragment_record_linear_tall_and_weight"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="2.96dp"
-                    android:layout_marginEnd="2.96dp"
-                    android:layout_marginTop="23.68dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/record_shape_base_info_item_bg">
+                    android:layout_marginStart="23.68dp"
+                    android:layout_marginTop="24.12dp"
+                    android:layout_marginEnd="23.68dp"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-                    <TextView
-                        android:id="@+id/record_fragment_record_tv_sleep_quality_name"
-                        android:layout_width="wrap_content"
+                    <FrameLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="睡眠质量"
-                        android:textColor="@color/record_base_info_item_sport_sleep_text_color"
-                        android:layout_marginStart="11dp"
-                        android:layout_marginTop="11.84dp"
-                        android:layout_gravity="start|top"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20.3dp"
-                        android:layout_marginBottom="14.37dp"
-                        android:layout_marginStart="11dp">
+                        android:layout_marginStart="2.96dp"
+                        android:layout_marginEnd="2.96dp"
+                        android:layout_marginBottom="2.96dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/record_shape_self_introduction_bg">
 
                         <TextView
-                            android:id="@+id/record_fragment_record_tv_sleep_average_name"
+                            android:id="@+id/record_fragment_record_tv_tall_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="10.57sp"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:text="平均"/>
+                            android:layout_gravity="start|top"
+                            android:background="@drawable/record_shape_base_info_blood_sugar_bg"
+                            android:paddingStart="11.42dp"
+                            android:paddingTop="1.27dp"
+                            android:paddingEnd="10.98dp"
+                            android:paddingBottom="1.92dp"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:text="最近血糖" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20.3dp"
+                            android:layout_marginBottom="16.41dp">
+
+                            <TextView
+                                android:id="@+id/record_fragment_record_tv_sugar_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="185"
+                                android:textColor="@color/record_base_info_item_text_color"
+                                android:textSize="16.49sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/record_fragment_record_tv_sugar_mmol"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12.48dp"
+                                android:text="mmol/L"
+                                android:textColor="@color/record_base_info_item_text_color"
+                                android:textSize="14.38sp" />
+
+                        </LinearLayout>
 
                         <TextView
-                            android:id="@+id/record_fragment_record_tv_sleep_quality_value"
+                            android:id="@+id/record_fragment_record_tv_sugar_update_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/record_base_info_item_text_color"
-                            android:textSize="16.07sp"
-                            android:textStyle="bold"
-                            android:layout_marginStart="2.53dp"
-                            android:text="5.3小时"/>
+                            android:layout_gravity="end|top"
+                            android:layout_marginEnd="15.24dp"
+                            android:layout_marginTop="3.81dp"
+                            android:textColor="@color/record_hint_update_time_text_color"
+                            android:textSize="8.98sp"
+                            android:text="2023/12/23"/>
 
-                    </LinearLayout>
 
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2.96dp"
+                        android:layout_marginEnd="2.96dp"
+                        android:layout_marginBottom="2.96dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/record_shape_self_introduction_bg">
+
+                        <TextView
+                            android:id="@+id/record_fragment_record_tv_weight_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|top"
+                            android:background="@drawable/record_shape_base_info_blood_pressure_bg"
+                            android:paddingStart="11.42dp"
+                            android:paddingTop="1.27dp"
+                            android:paddingEnd="10.98dp"
+                            android:paddingBottom="1.92dp"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:text="最近血压" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20.3dp"
+                            android:layout_marginBottom="16.41dp">
+
+                            <TextView
+                                android:id="@+id/record_fragment_record_tv_blood_pressure_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="140/60"
+                                android:textColor="@color/record_base_info_item_text_color"
+                                android:textSize="16.49sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/record_fragment_record_tv_blood_pressure_mmHg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12.48dp"
+                                android:text="mmHg"
+                                android:textColor="@color/record_base_info_item_text_color"
+                                android:textSize="14.38sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/record_fragment_record_tv_blood_pressure_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|top"
+                            android:layout_marginEnd="15.24dp"
+                            android:layout_marginTop="3.81dp"
+                            android:textColor="@color/record_hint_update_time_text_color"
+                            android:textSize="8.98sp"
+                            android:text="2023/12/23"/>
+
+                    </FrameLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:id="@id/record_fragment_record_linear_pressure_and_sugar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20.72dp"
+                    android:layout_marginEnd="20.72dp"
+                    app:layout_constraintTop_toBottomOf="@+id/record_fragment_record_linear_tall_and_weight">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2.96dp"
+                        android:layout_marginTop="2.96dp"
+                        android:layout_marginEnd="2.96dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/record_shape_self_introduction_bg">
+
+                        <TextView
+                            android:id="@+id/record_fragment_record_tv_blood_pressure_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|top"
+                            android:background="@drawable/record_shape_base_info_heart_rate_bg"
+                            android:paddingStart="11.42dp"
+                            android:paddingTop="1.27dp"
+                            android:paddingEnd="10.98dp"
+                            android:paddingBottom="1.92dp"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:text="最近心率" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20.3dp"
+                            android:layout_marginBottom="16.41dp">
+
+                            <TextView
+                                android:id="@+id/record_fragment_record_tv_heart_rate_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="75"
+                                android:textColor="@color/record_base_info_item_text_color"
+                                android:textSize="16.49sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/record_fragment_record_tv_heart_rate_time_min"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12.48dp"
+                                android:text="次/min"
+                                android:textColor="@color/record_base_info_item_text_color"
+                                android:textSize="14.38sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/record_fragment_record_tv_heart_rate_update_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|top"
+                            android:layout_marginEnd="15.24dp"
+                            android:layout_marginTop="3.81dp"
+                            android:textColor="@color/record_hint_update_time_text_color"
+                            android:textSize="8.98sp"
+                            android:text="2023/12/23"/>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2.96dp"
+                        android:layout_marginTop="2.96dp"
+                        android:layout_marginEnd="2.96dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/record_shape_self_introduction_bg">
+
+                        <TextView
+                            android:id="@+id/record_fragment_record_tv_blood_sugar_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|top"
+                            android:background="@drawable/record_shape_base_info_family_disease_bg"
+                            android:paddingStart="11.42dp"
+                            android:paddingTop="1.27dp"
+                            android:paddingEnd="10.98dp"
+                            android:paddingBottom="1.92dp"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:text="家族病史" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20.3dp"
+                            android:layout_marginBottom="16.41dp">
+
+                            <TextView
+                                android:id="@+id/record_fragment_record_tv_family_disease_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="过敏、哮喘"
+                                android:textColor="@color/record_base_info_item_text_color"
+                                android:textSize="16.49sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/record_fragment_record_tv_family_disease_update_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|top"
+                            android:layout_marginEnd="15.24dp"
+                            android:layout_marginTop="3.81dp"
+                            android:textColor="@color/record_hint_update_time_text_color"
+                            android:textSize="8.98sp"
+                            android:text="2023/12/23"/>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/record_fragment_record_linear_self_introduction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23.68dp"
+                    android:layout_marginEnd="23.68dp"
+                    android:layout_marginTop="14.97dp"
+                    android:background="@drawable/record_shape_self_introduction_bg"
+                    app:layout_constraintTop_toBottomOf="@+id/record_fragment_record_linear_pressure_and_sugar">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16.07dp"
+                        android:layout_marginTop="11dp"
+                        android:src="@drawable/record_ic_self_introduction"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5.38dp"
+                        android:gravity="center"
+                        android:text="自我描述"
+                        android:textSize="12.69sp"
+                        android:textColor="@color/record_hint_self_introduction_text_color"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                        app:layout_constraintStart_toEndOf="@+id/imageView" />
+
+                    <TextView
+                        android:id="@+id/record_fragment_record_tv_self_introduction"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="16.07dp"
+                        android:layout_marginEnd="13.11dp"
+                        android:layout_marginTop="7.63dp"
+                        android:layout_marginBottom="16.2dp"
+                        android:textSize="12.53sp"
+                        android:textColor="@color/record_self_introduction_text_color"
+                        android:text="我感到非常疲倦和无精打采，经常头痛和肌肉酸痛。我还经常感到恶心和食欲不振，有时候还会出现呕吐和腹泻的症状。我对抗组胺药物过敏。"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="23.68dp"
+                    android:layout_marginTop="10.88dp"
+                    android:layout_marginEnd="23.68dp"
+                    android:layout_marginBottom="46.17dp"
+                    android:background="@drawable/record_shape_self_introduction_bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/record_fragment_record_linear_self_introduction">
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16.07dp"
+                        android:layout_marginTop="11dp"
+                        android:src="@drawable/record_ic_last_disease"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5.38dp"
+                        android:gravity="center"
+                        android:text="过往病史"
+                        android:textColor="@color/record_hint_self_introduction_text_color"
+                        android:textSize="12.69sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView1"
+                        app:layout_constraintStart_toEndOf="@+id/imageView1"
+                        app:layout_constraintTop_toTopOf="@+id/imageView1" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/record_fragment_record_rv_disease_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3.48dp"
+                        android:paddingBottom="11.52dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:id="@+id/record_fragment_record_tv_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="33.83dp"
-                android:layout_marginBottom="43.56dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/record_shape_btn_bg"
                 android:paddingStart="29.6dp"
                 android:paddingTop="5.92dp"
@@ -442,14 +514,14 @@
                 android:text="记录信息"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/record_fragment_record_constrain_all_info"
+                android:layout_marginBottom="43.86dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/record_fragment_record_linear_sport_and_sleep" />
+                app:layout_constraintTop_toBottomOf="@+id/record_fragment_record_constrain_all_info" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </ScrollView>
 </FrameLayout>
