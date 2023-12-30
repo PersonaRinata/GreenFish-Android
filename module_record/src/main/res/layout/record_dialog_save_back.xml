@@ -34,19 +34,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="您还没有保存哦，是否退出？"
+                    android:text="直接退出不会保存，是否退出？"
                     android:textColor="@color/fish_font_level3_color"
                     android:textSize="15sp" />
 
             </LinearLayout>
 
-            <Button
+            <TextView
                 android:id="@+id/record_dialog_save_back_confirm"
-                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="92dp"
                 android:layout_height="36dp"
                 android:text="确定"
                 android:textColor="@color/white"
+                android:gravity="center"
                 android:background="@drawable/record_shape_confirm"
                 android:textSize="15sp"
                 android:layout_marginStart="49.5dp"
@@ -54,12 +54,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/noclassLinearlayout2" />
 
-            <Button
+            <TextView
                 android:id="@+id/record_dialog_save_back_cancel"
-                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="92dp"
                 android:layout_height="36dp"
                 android:text="取消"
+                android:gravity="center"
                 android:textColor="@color/white"
                 android:background="@drawable/record_shape_cancel"
                 android:layout_marginEnd="49.5dp"

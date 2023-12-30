@@ -12,7 +12,6 @@ data class IssueListBean(
         val body_info: BodyInfo?,
         val disease_relation: DiseaseRelation?,
         val gender: Boolean,
-        val userID: String,
         val username: String
     )  : Serializable{
         data class BodyInfo(

@@ -2,11 +2,17 @@ package com.handsome.lib.util.util
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 
+/**
+ * 这个是毫秒级别的转
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 fun timeStampToTime(timestamp : Long?) : String{
     if (timestamp == null) return ""
@@ -16,6 +22,16 @@ fun timeStampToTime(timestamp : Long?) : String{
     return localDateTime.format(formatter)
 }
 
-fun getCurrentTimeMillis(): Long {
-    return System.currentTimeMillis()
+/**
+ * 这个是普通的时间戳转换
+ */
+fun timeToDate(timestamp: Long?): String {
+    if (timestamp == null) return ""
+    val date = Date(timestamp * 1000)
+    val sdf = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+    return sdf.format(date)
+}
+
+fun getCurrentTimeStamp() : Long{
+    return System.currentTimeMillis() / 1000
 }

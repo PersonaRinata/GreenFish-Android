@@ -15,7 +15,7 @@ import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.setImageFromUrl
 import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.service.impl
-import com.handsome.lib.util.util.timeStampToTime
+import com.handsome.lib.util.util.timeToDate
 import com.handsome.module.record.bean.IssueListBean
 import com.handsome.module.record.databinding.RecordFramentRecordBinding
 import com.handsome.module.record.ui.activity.UpdateIssueListActivity
@@ -50,7 +50,7 @@ class RecordFragment : BaseFragment() {
         mBinding.recordFragmentRecordTvUpdate.setOnClickListener {
             // 跳转到记录界面
             if (mViewModel.issueList.value != null){
-                UpdateIssueListActivity.startAction(requireContext(),mViewModel.issueList.value!!.issue_list)
+                UpdateIssueListActivity.startAction(requireContext(),mViewModel.issueList.value!!.issue_list,mUserInfo!!.user_id)
             }else{
                 toast("网络异常，请重试")
             }
@@ -79,7 +79,7 @@ class RecordFragment : BaseFragment() {
 
             val bodyInfo =  userInfo.body_info
             bodyInfo?.let {
-                val updateTime = timeStampToTime(it.update_time)
+                val updateTime = timeToDate(it.update_time)
                 recordFragmentRecordTvTallValue.text = it.height
                 recordFragmentRecordTvWeightValue.text = it.weight
                 recordFragmentRecordTvSugarValue.text = it.blood_sugar

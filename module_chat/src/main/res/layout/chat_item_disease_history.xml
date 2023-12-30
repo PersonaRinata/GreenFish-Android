@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10.05dp"
+    android:layout_marginBottom="10.05dp"
+    android:layout_marginStart="16.07dp"
+    android:layout_marginEnd="16.12dp">
+
+    <TextView
+        android:id="@+id/record_item_disease_history_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="13.96sp"
+        android:text="流行性感冒"
+        android:textColor="@color/chat_disease_history_result_text_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/record_item_disease_history_tv_medicines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6.64dp"
+        android:text="药单：磷酸奥司他韦胶囊、金花清感颗粒、莲花清瘟胶囊、莲花清瘟胶囊、莲花清瘟胶囊"
+        android:textColor="@color/chat_disease_history_medicine_text_color"
+        android:textSize="11.84sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/record_item_disease_history_result" />
+
+    <TextView
+        android:id="@id/record_item_disease_history_tv_hint_doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="医生："
+        android:layout_marginTop="2.79dp"
+        android:textSize="13.11sp"
+        android:textColor="@color/chat_disease_history_hint_doctor_text_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/record_item_disease_history_tv_medicines" />
+
+    <TextView
+        android:id="@+id/record_item_disease_history_tv_doctors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="张明明（传染科）"
+        android:textColor="@color/chat_disease_history_doctor_text_color"
+        android:textSize="13.11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/record_item_disease_history_tv_hint_doctor"
+        app:layout_constraintStart_toEndOf="@+id/record_item_disease_history_tv_hint_doctor"
+        app:layout_constraintTop_toTopOf="@+id/record_item_disease_history_tv_hint_doctor" />
+
+    <TextView
+        android:id="@+id/record_item_disease_history_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2023/12/23"
+        android:textSize="10.43sp"
+        android:textColor="@color/chat_disease_history_hint_time_text_color"
+        android:layout_marginTop="6.18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/record_item_disease_history_tv_medicines" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

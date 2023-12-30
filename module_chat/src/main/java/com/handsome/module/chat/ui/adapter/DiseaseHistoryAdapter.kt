@@ -1,4 +1,4 @@
-package com.handsome.module.record.ui.adapter
+package com.handsome.module.chat.ui.adapter
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.lib.util.util.timeToDate
-import com.handsome.module.record.bean.IssueListBean
-import com.handsome.module.record.databinding.RecordItemDiseaseHistoryBinding
+import com.handsome.module.chat.bean.IssueListBean
+import com.handsome.module.chat.databinding.ChatItemDiseaseHistoryBinding
 
 class DiseaseHistoryAdapter :
     ListAdapter<IssueListBean.IssueList.DiseaseRelation.HistoryDisease, DiseaseHistoryAdapter.MyHolder>(
@@ -37,7 +37,7 @@ class DiseaseHistoryAdapter :
         }
     }
 
-    inner class MyHolder(private val mBinding: RecordItemDiseaseHistoryBinding) : RecyclerView.ViewHolder(mBinding.root) {
+    inner class MyHolder(private val mBinding: ChatItemDiseaseHistoryBinding) : RecyclerView.ViewHolder(mBinding.root) {
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(data : IssueListBean.IssueList.DiseaseRelation.HistoryDisease){
             mBinding.recordItemDiseaseHistoryResult.text = data.symptom
@@ -53,7 +53,7 @@ class DiseaseHistoryAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        return MyHolder(RecordItemDiseaseHistoryBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return MyHolder(ChatItemDiseaseHistoryBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

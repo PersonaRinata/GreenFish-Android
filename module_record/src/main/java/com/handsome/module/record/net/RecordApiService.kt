@@ -16,7 +16,7 @@ interface RecordApiService {
     fun getIssueList(@Query("user_id") userId : Long) : Single<IssueListBean>
 
     @POST("issuelist/action")
-    fun updateIssueList(@Body issueListBean: UpdateIssueListBean) : Single<StatusBean>
+    fun updateIssueList(@Body issueListBean: UpdateIssueListBean,@Query("userID") userId: Long) : Single<StatusBean>
 
     //获取个人信息的接口
     @GET("user")

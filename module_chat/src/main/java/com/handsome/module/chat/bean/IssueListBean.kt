@@ -7,8 +7,8 @@ data class IssueListBean(
 ) {
     data class IssueList(
         val age: Int,
-        val body_info: BodyInfo,
-        val disease_relation: DiseaseRelation,
+        val body_info: BodyInfo?,
+        val disease_relation: DiseaseRelation?,
         val gender: Boolean,
         val userID: String,
         val username: String
@@ -25,13 +25,13 @@ data class IssueListBean(
         data class DiseaseRelation(
             val disease_introduction: String,
             val family_diseases: String,
-            val history_diseases: List<HistoryDisease>
+            val history_diseases: List<HistoryDisease>?
         ) {
             data class HistoryDisease(
                 val department: String,
                 val medicines: List<String>,
                 val symptom: String,
-                val update_time: Int
+                val update_time: Long
             )
         }
     }

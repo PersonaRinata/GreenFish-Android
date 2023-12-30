@@ -3,6 +3,7 @@ package com.handsome.module.chat.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
@@ -106,10 +107,30 @@ class ContentListAdapter(private val ids : Pair<Long,Long>) : ListAdapter<Conten
     inner class IssueListViewHolder(private val iBinding : ChatItemIssueListBinding) : MyHolder(iBinding){
         override fun bind(data: ContentListData) {
             if (data is ContentListData.TypeIssueList){
-                // todo
+                val issueList = data.issueListBean.issue_list
+                with(iBinding) {
+                    chatItemIssueListTvName.text = issueList.username
+                    chatItemIssueListTvAge.text = issueList.age.toString()
+                    chatItemIssueListTvGender.text = if(issueList.gender) "男" else "女"
+
+                    val bodyInfo = issueList.body_info
+                    bodyInfo?.let {
+                        chatItemIssueListTvHeight.text = it.height
+                        chatItemIssueListTvWeight.text = it.weight
+                        chatItemIssueListTvBloodSugar.text = it.blood_sugar
+                        chatItemIssueListTvBloodPressure.text = it.blood_pressure
+                        chatItemIssueListTvHeartRate.text = it.heart_rate
+                    }
+                    val diseaseRelation =  issueList.disease_relation
+                    diseaseRelation?.let {
+                        chatItemIssueListTvFamilyDisease.text = it.family_diseases
+                        chatItemIssueListTvSelfIntroduction.text =  it.disease_introduction
+                        chatItemIssueListRvDiseaseHistory.layoutManager = LinearLayoutManager(iBinding.root.context)
+                        chatItemIssueListRvDiseaseHistory.adapter = DiseaseHistoryAdapter().apply{submitList(it.history_diseases)}
+                    }
+                }
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
