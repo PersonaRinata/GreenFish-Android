@@ -26,7 +26,7 @@
         <LinearLayout
             android:id="@+id/main_constrain"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="65.97dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,15 +36,17 @@
             <LinearLayout
                 android:id="@+id/main_bottom_linear_find"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_gravity="center"
+                android:layout_marginStart="16dp"
                 android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/main_bottom_img_find"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="23.3dp"
+                    android:layout_height="23.26dp"
+                    android:layout_marginTop="8.04dp"
                     android:src="@drawable/main_ic_find_select"
                     android:layout_gravity="center"/>
 
@@ -52,6 +54,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4.65dp"
                     android:textColor="@color/fish_font_level4_color"
                     android:layout_gravity="center"
                     android:text="发现"/>
@@ -61,15 +65,16 @@
             <LinearLayout
                 android:id="@+id/main_bottom_linear_chat"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/main_bottom_img_chat"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25.2dp"
+                    android:layout_height="23.26dp"
+                    android:layout_marginTop="8.04dp"
                     android:src="@drawable/main_ic_chat"
                     android:layout_gravity="center"/>
 
@@ -77,6 +82,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4.65dp"
                     android:textColor="@color/fish_font_level4_color"
                     android:layout_gravity="center"
                     android:text="咨询"/>
@@ -95,9 +102,10 @@
 
                 <ImageView
                     android:id="@+id/main_bottom_img_green_fish"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="46.94dp"
+                    android:layout_height="46.94dp"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="4.65dp"
                     android:src="@drawable/main_ic_green_fish"
                     app:layout_constraintBottom_toTopOf="@+id/textView"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -110,6 +118,8 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="青鱼"
+                    android:textSize="11sp"
+                    android:layout_marginBottom="13dp"
                     android:textColor="@color/fish_font_level4_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -120,15 +130,16 @@
             <LinearLayout
                 android:id="@+id/main_bottom_linear_health_record"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/main_bottom_img_health_record"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="20.81dp"
+                    android:layout_height="23.26dp"
+                    android:layout_marginTop="8.04dp"
                     android:src="@drawable/main_ic_health_record"
                     android:layout_gravity="center"/>
 
@@ -138,6 +149,8 @@
                     android:gravity="center"
                     android:textColor="@color/fish_font_level4_color"
                     android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4.65dp"
                     android:text="健康档案"/>
 
             </LinearLayout>
@@ -145,15 +158,17 @@
             <LinearLayout
                 android:id="@+id/main_bottom_linear_mine"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_gravity="center"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/main_bottom_img_mine"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="27.1dp"
+                    android:layout_height="21.99dp"
+                    android:layout_marginTop="8.04dp"
                     android:src="@drawable/main_ic_mine"
                     android:layout_gravity="center"/>
 
@@ -161,8 +176,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:layout_marginTop="4.65dp"
                     android:textColor="@color/fish_font_level4_color"
                     android:layout_gravity="center"
+                    android:textSize="11sp"
                     android:text="我的"/>
 
             </LinearLayout>

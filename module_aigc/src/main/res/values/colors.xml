@@ -7,4 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="aigc_chat_hint_text_color">#666666</color>
+    <color name="aigc_chat_send_color">#78E1CC</color>
+    <color name="aigc_chat_message_start_color">#2DD6B4</color>
+    <color name="aigc_chat_message_end_color">#7BC3F8</color>
+
+    <color name="aigc_chat_doctor_color">#F6F8FC</color>
+    <color name="aigc_chat_hint_recommend_doctor_text_color">#9F9F9F</color>
+
+    <color name="aigc_doctor_name_color">#373737</color>
+    <color name="aigc_doctor_department_color">#3FB5A7</color>
+    <color name="aigc_doctor_department_bg">#75CCC7C7</color>
+
+    <color name="aigc_doctor_recommend_btn_bg">#2DD6B4</color>
 </resources>

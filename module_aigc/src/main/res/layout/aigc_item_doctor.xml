@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/aigc_item_doctor_linear"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="13dp"
+    android:layout_marginBottom="13dp"
+    android:layout_marginStart="14dp"
+    android:layout_marginEnd="14dp">
+
+    <ImageView
+        android:id="@+id/aigc_item_doctor_img_user"
+        android:layout_width="60.4dp"
+        android:layout_height="60.4dp"
+        android:src="@drawable/aigc_ic_doctor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/aigc_item_doctor_tv_doctor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="张明明"
+            android:textSize="12.82sp"
+            android:layout_marginStart="10.47dp"
+            android:layout_gravity="center"
+            android:textColor="@color/aigc_doctor_name_color" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2.62dp"
+            android:layout_gravity="center"
+            android:src="@drawable/aigc_ic_arrow" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/aigc_item_doctor_tv_department"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/aigc_shape_department"
+        android:paddingStart="6.96dp"
+        android:paddingTop="2.78dp"
+        android:paddingEnd="6.16dp"
+        android:paddingBottom="3.56dp"
+        android:text="呼吸内科"
+        android:textSize="10.87sp"
+        android:textColor="@color/aigc_doctor_department_color"
+        app:layout_constraintEnd_toEndOf="@+id/aigc_item_doctor_img_user"
+        app:layout_constraintStart_toStartOf="@+id/aigc_item_doctor_img_user"
+        app:layout_constraintTop_toBottomOf="@+id/aigc_item_doctor_tv_doctor_name" />
+
+</LinearLayout>

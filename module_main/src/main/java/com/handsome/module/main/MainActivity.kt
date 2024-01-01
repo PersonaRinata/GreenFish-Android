@@ -91,7 +91,7 @@ class MainActivity : BaseActivity() {
             0 -> { mBinding.mainBottomImgFind.setImageResource(R.drawable.main_ic_find_select) }
             1 -> { mBinding.mainBottomImgChat.setImageResource(R.drawable.main_ic_chat_select) }
 //            2 -> { mBinding.mainBottomImgGreenFish.setImageResource(R.drawable.main_ic_green_fish_select) }
-//            3 -> { mBinding.mainBottomImgHealthRecord.setImageResource(R.drawable.main_ic_health_record_select) }
+            3 -> { mBinding.mainBottomImgHealthRecord.setImageResource(R.drawable.main_ic_health_record_select) }
             4 -> { mBinding.mainBottomImgMine.setImageResource(R.drawable.main_ic_mine_select) }
         }
     }

@@ -1,36 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/aigc_fragment_aigc_et"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/aigc_shape_et_bg"
-        android:hint="让AI更了解你"
-        android:imeOptions="actionSend"
-        android:maxLength="20"
-        android:maxLines="1"
-        android:paddingStart="17dp"
-        android:paddingTop="9.5dp"
-        android:paddingEnd="19dp"
-        android:paddingBottom="9.5dp"
-        android:singleLine="true"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="match_parent"
+        android:background="@drawable/aigc_ic_bg"
+        android:fitsSystemWindows="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shapeableImageView"
+            android:layout_width="79dp"
+            android:layout_height="79dp"
+            android:layout_marginTop="34.63dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/Circle" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/aigc_fragment_aigc_rv_message"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="44.5dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="38.02dp"
+            android:background="@drawable/aigc_shape_chat_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:id="@+id/aigc_fragment_aigc_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="输入你想说的问题吧~"
+                android:imeOptions="actionSend"
+                android:paddingStart="22dp"
+                android:paddingTop="21dp"
+                android:paddingEnd="19dp"
+                android:paddingBottom="24dp"
+                android:singleLine="true"
+                android:textColorHint="@color/aigc_chat_hint_text_color"
+                android:textSize="13.96sp"
+                app:layout_constraintEnd_toStartOf="@+id/aigc_fragment_aigc_tv_recommend_doc"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/aigc_fragment_aigc_tv_recommend_doc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.94dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="12.69dp"
+                android:background="@drawable/aigc_shape_recommend_doc_btn_bg"
+                android:paddingStart="10dp"
+                android:paddingTop="7dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="7dp"
+                android:text="推荐医生"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/aigc_fragment_aigc_tv_send"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/aigc_fragment_aigc_tv_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12.94dp"
+                android:layout_marginEnd="8.84dp"
+                android:layout_marginBottom="12.69dp"
+                android:background="@drawable/aigc_shape_send_bg"
+                android:paddingStart="11dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="9dp"
+                android:paddingBottom="10dp"
+                android:src="@drawable/aigc_ic_send"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
