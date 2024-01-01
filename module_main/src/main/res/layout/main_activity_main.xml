@@ -98,7 +98,7 @@
                 android:layout_gravity="center"
                 android:clipChildren="false"
                 android:background="@color/white"
-                android:layout_weight="1.5">
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/main_bottom_img_green_fish"
@@ -106,7 +106,7 @@
                     android:layout_height="46.94dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="4.65dp"
-                    android:src="@drawable/main_ic_green_fish"
+                    android:src="@drawable/main_ic_aigc"
                     app:layout_constraintBottom_toTopOf="@+id/textView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />

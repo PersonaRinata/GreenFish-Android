@@ -15,8 +15,8 @@
             android:id="@+id/shapeableImageView"
             android:layout_width="79dp"
             android:layout_height="79dp"
-            android:layout_marginTop="34.63dp"
-            android:background="@color/white"
+            android:layout_marginTop="24.63dp"
+            android:src="@drawable/aigc_ic_green_fish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,8 +26,8 @@
             android:id="@+id/aigc_fragment_aigc_rv_message"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="44.5dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginTop="24.5dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
 

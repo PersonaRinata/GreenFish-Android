@@ -19,4 +19,10 @@
         <item name="android:textSize">13.54sp</item> <!-- 修改字体大小 -->
         <item name="color">@color/find_message_tab_select_text_color</item>
     </style>
+
+    <style name="VideoCircle">
+        <item name="cornerFamily">rounded</item>
+        <item name="android:topLeftRadius">8.46dp</item>
+        <item name="android:topRightRadius">8.46dp</item>
+    </style>
 </resources>

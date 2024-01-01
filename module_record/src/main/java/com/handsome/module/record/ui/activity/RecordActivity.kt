@@ -26,6 +26,7 @@ class RecordActivity : BaseActivity() {
     companion object{
         fun startAction(context : Context){
             val intent = Intent(context,RecordActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
     }

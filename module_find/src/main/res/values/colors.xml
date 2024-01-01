@@ -14,4 +14,5 @@
     <color name="find_message_tab_not_select_bg">@android:color/transparent</color>
 
     <color name="find_indicator_color">#2DD6B4</color>
+    <color name="find_video_flow_bg">#F4F5F9</color>
 </resources>
