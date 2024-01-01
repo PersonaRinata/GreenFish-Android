@@ -197,7 +197,7 @@ class MineFragment : BaseFragment() {
                         if (userInfo.department != "") {
                             mBinding.mineFragmentMineLinearOfficial.visible()
                         } else {
-                            mBinding.mineFragmentMineLinearOfficial.visible()
+                            mBinding.mineFragmentMineLinearOfficial.gone()
                         }
                         mIsFollow = userInfo.is_follow
                     }

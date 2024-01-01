@@ -5,10 +5,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_fragment_video_flow_rv"
-        android:layout_marginTop="9.74dp"
-        android:paddingTop="5.08dp"
-        android:paddingStart="7dp"
-        android:paddingEnd="7dp"
+        android:layout_marginTop="7.19dp"
+        android:paddingTop="11dp"
+        android:paddingStart="10.15dp"
+        android:paddingEnd="10.15dp"
         android:background="@color/find_video_flow_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
