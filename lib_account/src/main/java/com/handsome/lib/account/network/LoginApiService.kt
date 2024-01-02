@@ -1,6 +1,6 @@
 package com.handsome.lib.account.network
 
-import com.handsome.lib.api.server.service.IAccountService
+import com.handsome.lib.api.server.bean.LoginBean
 import com.handsome.lib.util.network.ApiStatus
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
@@ -14,7 +14,7 @@ interface LoginApiService {
   fun login(
     @Query("username") username: String,
     @Query("password") password: String
-  ): Single<IAccountService.LoginBean>
+  ): Single<LoginBean>
 
   @GET("user/logout/json")
   fun logout(): Single<ApiStatus>
@@ -24,5 +24,5 @@ interface LoginApiService {
     @Query("username") username: String,
     @Query("password") password: String,
     @Query("repassword") rePassword: String
-  ): Single<IAccountService.LoginBean>
+  ): Single<LoginBean>
 }

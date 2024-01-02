@@ -1,6 +1,7 @@
 package com.handsome.module.login.ui.viewmodel
 
 import androidx.core.content.edit
+import com.handsome.lib.api.server.bean.LoginBean
 import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.util.base.BaseViewModel
 import com.handsome.lib.util.network.ApiGenerator
@@ -72,7 +73,7 @@ class LoginViewModel : BaseViewModel() {
     }
 
     sealed class LoginEvent {
-        data class Success(val bean: IAccountService.LoginBean) : LoginEvent()
+        data class Success(val bean: LoginBean) : LoginEvent()
         data class Fail(val error: Throwable) : LoginEvent()
     }
 }

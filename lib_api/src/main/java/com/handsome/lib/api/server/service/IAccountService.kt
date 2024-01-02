@@ -2,10 +2,10 @@ package com.handsome.lib.api.server.service
 
 import com.alibaba.android.arouter.facade.template.IProvider
 import com.handsome.lib.api.server.Value
+import com.handsome.lib.api.server.bean.LoginBean
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
-import java.io.Serializable
 
 interface IAccountService : IProvider {
 
@@ -35,12 +35,5 @@ interface IAccountService : IProvider {
         rePassword: String
     ): Single<LoginBean>
 
-    data class LoginBean(
-        val status_code: Int,
-        val status_msg: String,
-        val token: String,
-        val user_id: Long,
-        val username : String,
-        val password : String
-    ) : Serializable
+
 }

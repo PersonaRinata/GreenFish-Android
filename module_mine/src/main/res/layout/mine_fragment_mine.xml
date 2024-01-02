@@ -78,8 +78,9 @@
                 android:gravity="center"
                 android:layout_marginStart="3.38dp"
                 android:text="官方认证医师"
-                android:textSize="12.37sp"
-                android:textColor="@color/fish_font_level4_color" />
+                android:paddingTop="2dp"
+                android:textSize="11.87sp"
+                android:textColor="@color/mine_official_text_color" />
 
         </LinearLayout>
 
@@ -216,29 +217,44 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mine_fragment_mine_constrain_health_record"
-            android:layout_width="160.29dp"
-            android:layout_height="53.29dp"
-            android:layout_marginEnd="22.41dp"
+            android:layout_width="158.17dp"
+            android:layout_height="58dp"
+            android:layout_marginEnd="10.15dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shapeableImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@color/teal_200"
+                android:scaleType="fitXY"
+                android:src="@drawable/mine_ic_health_record"
                 app:shapeAppearance="@style/SmallCircle" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15.22dp"
+                android:layout_marginTop="11.38dp"
+                android:text="健康档案"
+                android:textColor="@color/mine_health_record_text_color"
+                android:textSize="11.82sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="健康档案"
-                android:textColor="@color/fish_font_level4_color"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="16.49dp"
+                android:layout_marginTop="4.61dp"
+                android:text="完善个人档案便于医生诊断"
+                android:textColor="@color/mine_health_record_hint_text_color"
+                android:textSize="8.07sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

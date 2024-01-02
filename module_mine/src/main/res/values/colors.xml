@@ -24,4 +24,8 @@
     <color name="mine_list_have_follow_bg">#D0D0D0</color>
 
     <color name="mine_publish_color">#34E4C0</color>
+    <color name="mine_health_record_text_color">#008880</color>
+    <color name="mine_health_record_hint_text_color">#5FA6AA</color>
+
+    <color name="mine_official_text_color">#00A584</color>
 </resources>

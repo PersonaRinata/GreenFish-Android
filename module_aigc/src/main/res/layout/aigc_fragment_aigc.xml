@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/aigc_ic_bg"
+        android:background="@drawable/aigc_ic_aigc_bg"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.imageview.ShapeableImageView

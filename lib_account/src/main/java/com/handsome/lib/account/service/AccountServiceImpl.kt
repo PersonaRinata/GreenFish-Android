@@ -10,6 +10,7 @@ import com.handsome.lib.account.table.LOGIN_INFO
 import com.handsome.lib.account.table.USER_INFO
 import com.handsome.lib.api.server.ACCOUNT_SERVICE
 import com.handsome.lib.api.server.Value
+import com.handsome.lib.api.server.bean.LoginBean
 import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.util.extention.unsafeSubscribeBy
 import com.handsome.lib.util.network.ApiGenerator
@@ -22,12 +23,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 
-/**
- * ...
- * @author 985892345 (Guo Xiangrui)
- * @email 2767465918@qq.com
- * @date 2022/5/29 22:25
- */
+
 @Route(name = ACCOUNT_SERVICE,path = ACCOUNT_SERVICE)
 class AccountServiceImpl : IAccountService {
   
@@ -41,22 +37,22 @@ class AccountServiceImpl : IAccountService {
     }.create(LoginApiService::class.java)
   }
 
-  override fun observeUserInfoState(): Observable<Value<IAccountService.LoginBean>> {
+  override fun observeUserInfoState(): Observable<Value<LoginBean>> {
     return userInfoState.distinctUntilChanged()
   }
 
-  override fun observeUserInfoEvent(): Observable<Value<IAccountService.LoginBean>> {
+  override fun observeUserInfoEvent(): Observable<Value<LoginBean>> {
     return userInfoEvent.distinctUntilChanged()
   }
   
-  override fun getUserInfo(): IAccountService.LoginBean? {
+  override fun getUserInfo(): LoginBean? {
     return userInfoState.value?.value
   }
   
-  private val userInfoState = BehaviorSubject.create<Value<IAccountService.LoginBean>>()
-  private val userInfoEvent = PublishSubject.create<Value<IAccountService.LoginBean>>()
+  private val userInfoState = BehaviorSubject.create<Value<LoginBean>>()
+  private val userInfoEvent = PublishSubject.create<Value<LoginBean>>()
   
-  private fun emitUserInfo(bean: IAccountService.LoginBean?) {
+  private fun emitUserInfo(bean: LoginBean?) {
     val value = Value(bean)
     userInfoState.onNext(value)
     userInfoEvent.onNext(value)
@@ -69,7 +65,7 @@ class AccountServiceImpl : IAccountService {
   override fun login(
     username: String,
     password: String
-  ): Single<IAccountService.LoginBean> {
+  ): Single<LoginBean> {
     return mApiService.login(username, password)
       .doOnSuccess {
         emitUserInfo(it.copy(username = username,password = password))
@@ -91,7 +87,7 @@ class AccountServiceImpl : IAccountService {
     username: String,
     password: String,
     rePassword: String
-  ): Single<IAccountService.LoginBean> {
+  ): Single<LoginBean> {
     return mApiService.register(username, password, rePassword)
       .doOnSuccess {
         emitUserInfo(it.copy(username = username,password = password))
@@ -107,8 +103,8 @@ class AccountServiceImpl : IAccountService {
     // 从本地初始化数据
     val userinfo = userinfoSp.getString(spKey, null)
     try {
-      val loginBean: IAccountService.LoginBean? =
-        gson.fromJson(userinfo, IAccountService.LoginBean::class.java)
+      val loginBean: LoginBean? =
+        gson.fromJson(userinfo, LoginBean::class.java)
       if (loginBean != null) {
         emitUserInfo(loginBean)
       }
