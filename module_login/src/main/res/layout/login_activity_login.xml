@@ -13,7 +13,7 @@
         android:fitsSystemWindows="true">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/login_activity_login_tv_hello1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="29.6dp"
@@ -27,15 +27,15 @@
 
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/login_activity_login_tv_hello2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3.8dp"
             android:text="欢迎使用青鱼医疗"
             android:textColor="@color/login_hello_text_color"
             android:textSize="16.01sp"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="@+id/login_activity_login_tv_hello1"
+            app:layout_constraintTop_toBottomOf="@+id/login_activity_login_tv_hello1" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,10 +45,10 @@
             android:layout_marginTop="31.17dp"
             android:background="@drawable/login_shape_login_bg"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            app:layout_constraintTop_toBottomOf="@+id/login_activity_login_tv_hello2">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/login_activity_login_tv_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="29.6dp"
@@ -61,17 +61,17 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint1"
+                android:id="@+id/login_constrain1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="29.6dp"
                 android:layout_marginTop="31.83dp"
                 android:layout_marginEnd="21.15dp"
                 android:background="@drawable/login_shape_username_password_bg"
-                app:layout_constraintTop_toBottomOf="@+id/textView3">
+                app:layout_constraintTop_toBottomOf="@+id/login_activity_login_tv_hint">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/login_img_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="23.36dp"
@@ -94,23 +94,23 @@
                     android:textSize="12.99sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintStart_toEndOf="@+id/login_img_user"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint2"
+                android:id="@+id/login_constrain2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="29.6dp"
                 android:layout_marginTop="16.98dp"
                 android:layout_marginEnd="21.15dp"
                 android:background="@drawable/login_shape_username_password_bg"
-                app:layout_constraintTop_toBottomOf="@+id/constraint1">
+                app:layout_constraintTop_toBottomOf="@+id/login_constrain1">
 
                 <ImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/login_img_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="23.36dp"
@@ -133,7 +133,7 @@
                     android:inputType="textPassword"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView1"
+                    app:layout_constraintStart_toEndOf="@+id/login_img_password"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,7 +152,7 @@
                 android:layout_marginStart="29.6dp"
                 android:layout_marginEnd="21.15dp"
                 android:layout_marginTop="31.46dp"
-                app:layout_constraintTop_toBottomOf="@+id/constraint2" />
+                app:layout_constraintTop_toBottomOf="@+id/login_constrain2" />
 
             <TextView
                 android:id="@+id/login_tv_register"

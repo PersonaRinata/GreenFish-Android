@@ -26,10 +26,19 @@ class FollowListActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
         initValue()
+        initTopText()
         initObserve()
         initRv()
         initBack()
         getData()
+    }
+
+    private fun initTopText() {
+        val text =  when(mType){
+            FollowType.FOLLOWS -> {"关注列表"}
+            FollowType.FANS -> {"粉丝列表"}
+        }
+        mBinding.mineActivityFollowListTvName.text = text
     }
 
     private fun initBack() {

@@ -49,7 +49,7 @@ class VideoForegroundAdapter : PagingDataAdapter<VideoBean,VideoForegroundAdapte
         val item = getItem(position)
         if (item != null){
             holder.binding.apply {
-                if (item.cover_url != "") searchItemVideoForegroundImgForeground.setImageFromUrl(item.cover_url,R.drawable.search_ic_place_foreground_photo)
+                if (item.cover_url != "") searchItemVideoForegroundImgForeground.setImageFromUrl(item.cover_url,R.drawable.search_ic_place_foreground_photo,R.drawable.search_ic_place_foreground_photo)
                 if (item.author.avatar != "") searchItemVideoForegroundImgUser.setImageFromUrl(item.author.avatar)
                 searchItemVideoForegroundTvLikeNum.text = item.favorite_count.toString()
                 searchItemVideoForegroundTvUsername.text = item.author.name

@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/mine_item_video_foreground_img_user"
             android:layout_width="18dp"
             android:layout_height="18dp"
@@ -45,6 +45,7 @@
             android:layout_marginStart="10.57dp"
             android:layout_marginTop="8.46dp"
             android:src="@drawable/mine_ic_user"
+            app:shapeAppearance="@style/Circle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mine_item_video_foreground_img_foreground" />
 

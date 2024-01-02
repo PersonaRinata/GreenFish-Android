@@ -90,6 +90,12 @@ class UpdateIssueListActivity : BaseActivity() {
         mBinding.recordActivityRecordUpdateTvSave.setOnClickListener {
             mViewModel.updateIssueList(UpdateIssueListBean(getIssueList()), mUserId)
         }
+        mBinding.recordActivityUpdateImgEditIntroduction.setOnClickListener {
+            with(mBinding.recordFragmentRecordTvSelfIntroduction) {
+                requestFocus()
+                if (text.toString().isNotEmpty()) setSelection(text.toString().length)
+            }
+        }
     }
 
     // 退出但是有改变，要弹出是否退出

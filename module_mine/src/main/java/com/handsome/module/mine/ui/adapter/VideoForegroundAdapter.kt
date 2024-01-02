@@ -50,7 +50,7 @@ class VideoForegroundAdapter : ListAdapter<VideoBean,VideoForegroundAdapter.MyHo
         if (item != null){
             holder.binding.apply {
                 if (item.cover_url != "") mineItemVideoForegroundImgForeground.setImageFromUrl(item.cover_url,
-                    R.drawable.mine_ic_place_foreground_photo)
+                    R.drawable.mine_ic_place_foreground_photo,R.drawable.mine_ic_place_foreground_photo)
                 if (item.author.avatar != "") mineItemVideoForegroundImgUser.setImageFromUrl(item.author.avatar)
                 mineItemVideoForegroundTvLikeNum.text = item.favorite_count.toString()
                 mineItemVideoForegroundTvUsername.text = item.author.name

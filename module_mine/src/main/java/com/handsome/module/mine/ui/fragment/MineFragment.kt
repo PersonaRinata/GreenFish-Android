@@ -190,7 +190,7 @@ class MineFragment : BaseFragment() {
                     mCurrentUserInfo = userInfo
                     with(mBinding) {
                         mineFragmentMineTvUserName.text = userInfo.name
-                        if (userInfo.avatar != "") mineFragmentMineImgUser.setImageFromUrl(userInfo.name)
+                        if (userInfo.avatar != "") mineFragmentMineImgUser.setImageFromUrl(userInfo.avatar,R.drawable.mine_ic_user,R.drawable.mine_ic_user)
                         mineFragmentMineTvDescribe.text = userInfo.signature
                         mineFragmentMineTvFollowNum.text = userInfo.follow_count.toString()
                         mineFragmentMineTvFansNum.text = userInfo.follower_count.toString()

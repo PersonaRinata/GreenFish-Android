@@ -25,4 +25,9 @@
         <item name="android:topLeftRadius">8.46dp</item>
         <item name="android:topRightRadius">8.46dp</item>
     </style>
+
+    <style name="Circle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

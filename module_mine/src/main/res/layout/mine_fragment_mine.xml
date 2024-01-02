@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/mine_fragment_mine_linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +20,7 @@
             android:layout_height="77.39dp"
             android:layout_marginStart="20.72dp"
             android:layout_marginTop="24.11dp"
-            android:src="@color/teal_200"
+            android:src="@drawable/mine_ic_user"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -87,11 +87,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout"
+        android:id="@+id/mine_fragment_mine_constraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/mine_fragment_mine_linear1">
 
         <LinearLayout
             android:id="@+id/mine_fragment_mine_linear_follow_text"
@@ -269,7 +269,7 @@
         android:backgroundTint="@android:color/transparent"
         android:longClickable="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_layout"
+        app:layout_constraintTop_toBottomOf="@+id/mine_fragment_mine_constraint"
         app:tabGravity="fill"
         app:tabIndicator="@drawable/mine_layer_indicator"
         app:tabIndicatorColor="@android:color/transparent"

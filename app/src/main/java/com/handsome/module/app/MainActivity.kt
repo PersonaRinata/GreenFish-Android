@@ -9,14 +9,16 @@ import com.handsome.lib.util.service.impl
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.app_activity_main)
+//        setContentView(R.layout.app_activity_main)
+        IMainService::class.impl.startMainActivity()
+        finish()
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return when(event.action){
             MotionEvent.ACTION_DOWN -> {
-                IMainService::class.impl.startMainActivity()
-                finish()
+                //  IMainService::class.impl.startMainActivity()
+                //  finish()
                 true
             }
             else -> {

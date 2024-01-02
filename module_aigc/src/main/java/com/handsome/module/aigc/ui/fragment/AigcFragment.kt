@@ -53,10 +53,20 @@ class AigcFragment : BaseFragment() {
 
     private fun initClick() {
         mBinding.aigcFragmentAigcTvRecommendDoc.setOnClickListener {
-            recommendDoctor(getText())
+            val text = getText()
+            if (text.trim() != ""){
+                recommendDoctor(text)
+            }else{
+                toast("输入不能为空哦~")
+            }
         }
         mBinding.aigcFragmentAigcTvSend.setOnClickListener {
-            askAiQuestion(getText())
+            val text = getText()
+            if (text.trim() != ""){
+                askAiQuestion(text)
+            }else{
+                toast("输入不能为空哦~")
+            }
         }
     }
 

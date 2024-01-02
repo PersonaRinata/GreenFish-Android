@@ -14,22 +14,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/chat_dialog_ask_ai_result_tv_reuslt"
-            android:layout_width="0dp"
+        <ScrollView
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="25dp"
-            android:scrollbars="vertical"
-            android:text="正在生成中~"
-            android:textColor="@color/fish_font_level3_color"
-            android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/chat_dialog_ask_ai_result_btn_confirm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <TextView
+                android:id="@+id/chat_dialog_ask_ai_result_tv_reuslt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="正在生成中~"
+                android:textColor="@color/fish_font_level3_color"
+                android:textSize="15sp" />
+        </ScrollView>
 
         <TextView
             android:id="@+id/chat_dialog_ask_ai_result_btn_confirm"

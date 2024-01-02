@@ -37,13 +37,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/find_item_video_foreground_img_user"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_gravity="center"
             android:layout_marginStart="10.59dp"
             android:layout_marginTop="8dp"
+            app:shapeAppearance="@style/Circle"
             android:src="@drawable/find_ic_user"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/find_item_video_foreground_img_foreground" />
