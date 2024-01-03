@@ -31,9 +31,21 @@ class AigcFragment : BaseFragment() {
     ): View {
         initClick()
         initRv()
+        initKeyBoard()
         initObserve()
         getHistoryData()
         return mBinding.root
+    }
+
+    private fun initKeyBoard() {
+//        // 告诉系统不要自动调整布局以适应系统窗口装饰
+//        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
+//        mBinding.root.viewTreeObserver.addOnGlobalLayoutListener {
+//            val rootHeight = mBinding.root.height
+//            val rect = Rect()
+//            mBinding.root.getWindowVisibleDisplayFrame(rect)
+//            val keyBoardHeight = rootHeight - rect.bottom
+//        }
     }
 
     private fun initRv() {
@@ -41,9 +53,13 @@ class AigcFragment : BaseFragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = mAdapter.apply {
                 setOnClickDoctor {
-                    if (mUserInfo != null){
-                        IChatService::class.impl.startContentListActivity(mUserInfo!!.user_id,it.id,it.name)
-                    }else{
+                    if (mUserInfo != null) {
+                        IChatService::class.impl.startContentListActivity(
+                            mUserInfo!!.user_id,
+                            it.id,
+                            it.name
+                        )
+                    } else {
                         toast("登录过期，请重新登录~")
                     }
                 }
@@ -54,17 +70,17 @@ class AigcFragment : BaseFragment() {
     private fun initClick() {
         mBinding.aigcFragmentAigcTvRecommendDoc.setOnClickListener {
             val text = getText()
-            if (text.trim() != ""){
+            if (text.trim() != "") {
                 recommendDoctor(text)
-            }else{
+            } else {
                 toast("输入不能为空哦~")
             }
         }
         mBinding.aigcFragmentAigcTvSend.setOnClickListener {
             val text = getText()
-            if (text.trim() != ""){
+            if (text.trim() != "") {
                 askAiQuestion(text)
-            }else{
+            } else {
                 toast("输入不能为空哦~")
             }
         }
@@ -74,29 +90,30 @@ class AigcFragment : BaseFragment() {
         mViewModel.aigcHistory()
     }
 
-    private fun askAiQuestion(content : String){
+    private fun askAiQuestion(content: String) {
         mViewModel.askQuestion(content)
-        addHistoryToAdapter(listOf(content),false)
+        addHistoryToAdapter(listOf(content), false)
     }
 
-    private fun recommendDoctor(content : String){
+    private fun recommendDoctor(content: String) {
         mViewModel.recommendDoctor(content)
     }
 
-    private fun scrollToRvEnd(){
-        with(mBinding.aigcFragmentAigcRvMessage){
+    private fun scrollToRvEnd() {
+        with(mBinding.aigcFragmentAigcRvMessage) {
             post {
                 smoothScrollToPosition(computeVerticalScrollRange())
             }
         }
     }
-    private fun getText() : String{
+
+    private fun getText(): String {
         val text = mBinding.aigcFragmentAigcEt.text.toString()
         mBinding.aigcFragmentAigcEt.setText("")
         return text
     }
 
-    private fun addHistoryToAdapter(data: List<String>,isReverse : Boolean){
+    private fun addHistoryToAdapter(data: List<String>, isReverse: Boolean) {
         val messages = ArrayList<MessageAdapter.ContentListData.TypeLeftRight>()
         data.forEach {
             messages.add(MessageAdapter.ContentListData.TypeLeftRight(it))
@@ -105,7 +122,7 @@ class AigcFragment : BaseFragment() {
         addItemsToAdapter(messages)
     }
 
-    private fun addItemsToAdapter(data : List<MessageAdapter.ContentListData>){
+    private fun addItemsToAdapter(data: List<MessageAdapter.ContentListData>) {
         val list = mAdapter.currentList.toMutableList()
         list.addAll(data)
         mAdapter.submitList(list)
@@ -113,26 +130,26 @@ class AigcFragment : BaseFragment() {
 
     private fun initObserve() {
         mViewModel.aigcHistory.observing {
-            if (it.status_code == 0){
-                addHistoryToAdapter(it.msg,true)
+            if (it.status_code == 0) {
+                addHistoryToAdapter(it.msg, true)
                 scrollToRvEnd()
-            }else{
+            } else {
                 toast("网络异常，请重试~")
             }
         }
         mViewModel.askQuestion.observing {
-            if (it.status_code == 0){
-                addHistoryToAdapter(listOf(it.msg),false)
+            if (it.status_code == 0) {
+                addHistoryToAdapter(listOf(it.msg), false)
                 scrollToRvEnd()
-            }else{
+            } else {
                 toast("网络异常，请重试~")
             }
         }
         mViewModel.recommendDoctor.observing {
-            if (it.second.status_code == 0){
+            if (it.second.status_code == 0) {
                 addItemsToAdapter(listOf(MessageAdapter.ContentListData.TypeRecommendDoctor(it.first to it.second.doctor_list)))
                 scrollToRvEnd()
-            }else{
+            } else {
                 toast("网络异常，请重试~")
             }
         }

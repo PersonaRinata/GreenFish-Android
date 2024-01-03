@@ -11,12 +11,13 @@
     android:layout_marginStart="14dp"
     android:layout_marginEnd="14dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/aigc_item_doctor_img_user"
         android:layout_width="60.4dp"
         android:layout_height="60.4dp"
         android:src="@drawable/aigc_ic_doctor"
         android:layout_gravity="center"
+        app:shapeAppearance="@style/Circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

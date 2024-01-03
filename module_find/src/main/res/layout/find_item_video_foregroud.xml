@@ -93,7 +93,6 @@
             android:layout_marginStart="10.59dp"
             android:layout_marginTop="9.72dp"
             android:layout_marginEnd="10.92dp"
-            android:maxLines="2"
             android:paddingBottom="13.52dp"
             android:text="急救常识科普，一分钟 快速学习急救课程"
             android:textColor="@color/fish_font_level4_color"

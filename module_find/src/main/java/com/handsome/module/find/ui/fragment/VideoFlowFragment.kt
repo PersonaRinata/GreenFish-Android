@@ -36,7 +36,9 @@ class VideoFlowFragment : BaseFragment() {
 
     private fun initRv() {
         with(mBinding.mainFragmentVideoFlowRv) {
-            layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
+            layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL).apply {
+                gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+            }
             adapter = mAdapter.apply {
                 setOnClickVideo {
                     IVideoService::class.impl.startVideoActivity(it)
@@ -52,7 +54,9 @@ class VideoFlowFragment : BaseFragment() {
     private fun initObserve() {
         mViewModel.findVideo.observe(viewLifecycleOwner){
             if (it.status_code == 0){
-                mAdapter.submitList(it.video_list)
+                if (!it.video_list.isNullOrEmpty()){
+                    mAdapter.submitList(it.video_list)
+                }
             }else{
                 toast("网络错误")
             }

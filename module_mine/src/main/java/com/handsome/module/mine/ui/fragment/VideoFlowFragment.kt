@@ -1,7 +1,6 @@
 package com.handsome.module.mine.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +43,9 @@ class VideoFlowFragment : BaseFragment() {
 
     private fun initRv() {
         with(mBinding.mainFragmentVideoFlowRv) {
-            layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
+            layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL).apply {
+                gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+            }
             adapter = mAdapter.apply {
                 setOnClickVideo {
                     IVideoService::class.impl.startVideoActivity(it)
@@ -72,7 +73,6 @@ class VideoFlowFragment : BaseFragment() {
             mViewModel.likeVideo.collectLatest {
                 if (it != null) {
                     if (it.status_code == 0) {
-                        Log.d("lx", "videoFlowFragment: observe $it ")
                         mAdapter.submitList(it.video_list)
                     } else {
                         toast("网络错误")
@@ -84,7 +84,6 @@ class VideoFlowFragment : BaseFragment() {
             mViewModel.publishVideo.collectLatest {
                 if (it != null) {
                     if (it.status_code == 0) {
-                        Log.d("lx", "videoFlowFragment: observe $it ")
                         mAdapter.submitList(it.video_list)
                     } else {
                         toast("网络错误")

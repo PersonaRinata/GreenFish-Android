@@ -37,6 +37,7 @@
             android:layout_height="40.6dp"
             android:layout_gravity="center"
             android:src="@drawable/video_ic_doctor"
+            app:shapeAppearance="@style/Circle"
             android:layout_marginBottom="13.96dp"
             android:layout_marginStart="21.99dp"
             app:layout_constraintBottom_toTopOf="@+id/video_fragment_tv_describe"

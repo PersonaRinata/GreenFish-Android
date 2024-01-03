@@ -8,6 +8,9 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.handsome.lib.util.extention.gone
+import com.handsome.lib.util.extention.setImageFromUrl
+import com.handsome.lib.util.extention.visible
 import com.handsome.lib.util.util.timeStampToTime
 import com.handsome.module.chat.bean.AuthorBean
 import com.handsome.module.chat.databinding.ChatItemSingleFriendBinding
@@ -66,6 +69,7 @@ class ChatListAdapter(private val selfId : Long) : ListAdapter<AuthorBean,ChatLi
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(data : AuthorBean){
             with(binding) {
+                if (data.avatar != "") chatItemFriendsListImgUser.setImageFromUrl(data.avatar)
                 chatItemFriendsListTvName.text = data.name
                 chatItemFriendsListTvMessage.text = data.message
                 chatItemFriendsListIsTop.text =if (data.isTop) "取消置顶" else "置顶"
@@ -74,8 +78,13 @@ class ChatListAdapter(private val selfId : Long) : ListAdapter<AuthorBean,ChatLi
                 }else{
                     chatItemFriendsListSlide.closeRightSlide()
                 }
-                val formattedDateTime = timeStampToTime(data.time)
-                chatItemFriendsListTvTime.text = formattedDateTime
+                if(data.time != 0L){
+                    chatItemFriendsListTvTime.visible()
+                    val formattedDateTime = timeStampToTime(data.time)
+                    chatItemFriendsListTvTime.text = formattedDateTime
+                }else{
+                    chatItemFriendsListTvTime.gone()
+                }
             }
         }
         init {

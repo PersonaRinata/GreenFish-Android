@@ -65,7 +65,9 @@ class VideoFlowFragment : BaseFragment() {
             }
         }
         with(mBinding.searchFragmentVideoFlowRv) {
-            layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
+            layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL).apply {
+                gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+            }
             adapter = mAdapter.apply {
                 setOnClickVideo {
                     IVideoService::class.impl.startVideoActivity(it)

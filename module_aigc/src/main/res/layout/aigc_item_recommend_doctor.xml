@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginTop="21dp"
             android:text="具体情况请咨询医师，现根据您的情况为您推荐了以下专家："
             android:textColor="@color/fish_font_level4_color"/>
 

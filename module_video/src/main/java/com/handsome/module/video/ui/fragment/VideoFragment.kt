@@ -67,6 +67,11 @@ class VideoFragment : BaseFragment() {
         initComment()
         initShare()
         initFollow()
+        initTitle()
+    }
+
+    private fun initTitle() {
+        mBinding.videoFragmentTvDescribe.text = mVideo.title
     }
 
     private fun initBack() {
