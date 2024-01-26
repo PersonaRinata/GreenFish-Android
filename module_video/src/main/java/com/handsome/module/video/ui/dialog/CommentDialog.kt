@@ -86,7 +86,7 @@ class CommentDialog : BaseBottomSheetDialogFragment() {
                 if (it != null){
                     if (it.status_code == 0){
                         mAdapter.submitList(it.comment_list)
-                        if (it.comment_list.isNotEmpty()){
+                        if (!it.comment_list.isNullOrEmpty()){
                             val text =  "共${it.comment_list.size}条评论"
                             mBinding.videoDialogCommentTvCommentNumber.text = text
                         }

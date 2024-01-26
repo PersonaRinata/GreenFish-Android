@@ -242,7 +242,7 @@ class MineFragment : BaseFragment() {
     /**
      * 下面是上传图片的操作
      */
-    private val cameraImageFile by lazy { File(requireActivity().getExternalFilesDir(Environment.DIRECTORY_DCIM)?.absolutePath + File.separator + System.currentTimeMillis() + ".png") }
+    private val cameraImageFile by lazy { File(requireActivity().getExternalFilesDir(Environment.DIRECTORY_DCIM)?.absolutePath + File.separator + mCurrentUserId + 1 + ".png") }
     private val destinationFile by lazy { File(requireActivity().getExternalFilesDir(Environment.DIRECTORY_DCIM)?.absolutePath + File.separator + mCurrentUserId + ".png") }
 
     private fun checkPermission(): Boolean {
