@@ -38,7 +38,6 @@ class SearchActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
         initBack()
-        initObserver()
         initHistory()
         initEditText()
         initVp()
@@ -47,6 +46,10 @@ class SearchActivity : BaseActivity() {
     }
 
     private fun initBack() {
+        mBinding.searchActivitySearchImgBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
         val backCallBack = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (mBinding.searchActivitySearchLinearHistory.visibility == View.GONE) {
@@ -66,15 +69,6 @@ class SearchActivity : BaseActivity() {
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
-        }
-    }
-
-    private fun initObserver() {
-        mViewModel.searchContent.collectLaunch {
-            if (!it.isNullOrEmpty()){
-                historyList.add(it)
-                setHistoryList()
-            }
         }
     }
 
@@ -110,6 +104,7 @@ class SearchActivity : BaseActivity() {
         mAdapter = HistoryAdapter().apply {
             setOnClickItem {content ->
                 mBinding.searchActivitySearchEtSearch.setText(content)
+                mBinding.searchActivitySearchEtSearch.setSelection(content.length)
                 sendSearchEvent(content)
             }
         }
@@ -128,6 +123,11 @@ class SearchActivity : BaseActivity() {
 
     private fun sendSearchEvent(content : String){
         showResult()
+        if (content.isNotEmpty()){
+            historyList.add(content)
+            setHistoryList()
+        }
+        gsonSaveToSp(historyList,this.javaClass.name)
         mViewModel.setSearchContent(content)
     }
 
@@ -182,11 +182,6 @@ class SearchActivity : BaseActivity() {
     private fun setTabColor(tab: TabLayout.Tab?,@ColorRes id:Int){
         val textView = tab?.customView?.findViewById<TextView>(R.id.find_tab_message_tv_label)
         textView?.setTextColor(resources.getColor(id,null))
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        gsonSaveToSp(historyList,this.javaClass.name)
     }
 
     companion object{

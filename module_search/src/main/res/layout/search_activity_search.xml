@@ -42,8 +42,11 @@
                 android:paddingTop="8.04dp"
                 android:paddingBottom="8.49dp"
                 android:lines="1"
+                android:maxLines="1"
+                android:inputType="text"
                 android:textColorHint="@color/search_tv_hint_color"
                 android:textSize="13.53sp"
+                android:imeOptions="actionSearch"
                 tools:ignore="RtlSymmetry" />
 
             <ImageView

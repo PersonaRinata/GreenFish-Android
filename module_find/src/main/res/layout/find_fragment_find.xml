@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"
                 android:layout_marginEnd="16dp"
-                android:paddingTop="18dp"
+                android:paddingTop="14dp"
                 android:src="@drawable/find_ic_search" />
 
         </FrameLayout>
