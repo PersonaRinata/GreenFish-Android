@@ -1,12 +1,13 @@
 package com.handsome.module.record.bean
 
+import com.handsome.lib.util.network.IApiWrapper
 import java.io.Serializable
 
 data class IssueListBean(
     val issue_list: IssueList,
-    val status_code: Int,
-    val status_msg: String
-) : Serializable {
+    override val status_code: Int,
+    override val status_msg: String
+) : IApiWrapper {
     data class IssueList(
         val age: Int,
         val body_info: BodyInfo?,

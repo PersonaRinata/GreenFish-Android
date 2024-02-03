@@ -130,7 +130,7 @@ class AigcFragment : BaseFragment() {
 
     private fun initObserve() {
         mViewModel.aigcHistory.observing {
-            if (it.status_code == 0) {
+            if (it.isSuccess(requireActivity())) {
                 addHistoryToAdapter(it.msg, true)
                 scrollToRvEnd()
             } else {
@@ -138,7 +138,7 @@ class AigcFragment : BaseFragment() {
             }
         }
         mViewModel.askQuestion.observing {
-            if (it.status_code == 0) {
+            if (it.isSuccess(requireActivity())) {
                 addHistoryToAdapter(listOf(it.msg), false)
                 scrollToRvEnd()
             } else {
@@ -146,7 +146,7 @@ class AigcFragment : BaseFragment() {
             }
         }
         mViewModel.recommendDoctor.observing {
-            if (it.second.status_code == 0) {
+            if (it.second.isSuccess(requireActivity())) {
                 addItemsToAdapter(listOf(MessageAdapter.ContentListData.TypeRecommendDoctor(it.first to it.second.doctor_list)))
                 scrollToRvEnd()
             } else {

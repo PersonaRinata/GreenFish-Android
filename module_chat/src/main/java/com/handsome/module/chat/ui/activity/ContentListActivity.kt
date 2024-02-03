@@ -118,7 +118,7 @@ class ContentListActivity : BaseActivity() {
         // 由于stateflow在结果相等的时候不会观察到，所以我们利用这点，直接handler一直请求。
         mViewModel.contentList.collectLaunch {
             if (it != null) {
-                if (it.status_code == 0) {
+                if (it.isSuccess(this@ContentListActivity)) {
                     if (it.message_list != null) {
                         addItemsToAdapter(it.message_list)
                         scrollToRvEnd()
@@ -130,7 +130,7 @@ class ContentListActivity : BaseActivity() {
         }
         mViewModel.uploadMessage.collectLaunch {
             if (it != null) {
-                if (it.status_code == 0) {
+                if (it.isSuccess(this@ContentListActivity)) {
                     toast("发送成功~")
                 } else {
                     toast("获取消息列表失败！")
@@ -139,7 +139,7 @@ class ContentListActivity : BaseActivity() {
         }
         mViewModel.sumDisease.collectLaunch {
             if (it != null) {
-                if (it.status_code == 0) {
+                if (it.isSuccess(this@ContentListActivity)) {
                     addItemToAdapter(it)
                     scrollToRvEnd()
                 } else {
@@ -149,7 +149,7 @@ class ContentListActivity : BaseActivity() {
         }
         mViewModel.issueList.collectLaunch{
             if (it != null) {
-                if (it.status_code == 0) {
+                if (it.isSuccess(this@ContentListActivity)) {
                     addItemToAdapter(it)
                     scrollToRvEnd()
                 } else {
@@ -159,7 +159,7 @@ class ContentListActivity : BaseActivity() {
         }
         mViewModel.isDoctor.collectLaunch{
             if (it != null){
-                if (it.status_code == 0){
+                if (it.isSuccess(this@ContentListActivity)){
                     with(mBinding){
                         if (it.department == ""){
                             chatActivityContentListLinearSumDisease.gone()

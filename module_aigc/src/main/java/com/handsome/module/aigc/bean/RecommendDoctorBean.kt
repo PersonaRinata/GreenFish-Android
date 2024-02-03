@@ -1,11 +1,14 @@
 package com.handsome.module.aigc.bean
 
+import com.handsome.lib.util.network.IApiWrapper
+import java.io.Serializable
+
 data class RecommendDoctorBean(
     val department: String,
     val doctor_list: List<Doctor>,
-    val status_code: Int,
-    val status_msg: String
-) {
+    override val status_code: Int,
+    override val status_msg: String
+) : IApiWrapper {
     data class Doctor(
         val avatar: String,
         val background_image: String,
@@ -19,5 +22,5 @@ data class RecommendDoctorBean(
         val signature: String,
         val total_favorited: Int,
         val work_count: Int
-    )
+    ) : Serializable
 }

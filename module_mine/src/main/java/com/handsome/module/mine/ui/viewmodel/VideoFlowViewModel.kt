@@ -1,15 +1,14 @@
 package com.handsome.module.mine.ui.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.handsome.lib.util.util.myCoroutineExceptionHandler
+import com.handsome.lib.util.base.BaseViewModel
+import com.handsome.lib.util.extention.interceptHttpException
 import com.handsome.module.mine.bean.VideoListBean
 import com.handsome.module.mine.net.MineApiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flow
 
-class VideoFlowViewModel : ViewModel() {
+class VideoFlowViewModel : BaseViewModel(){
 
     private val _mutableLikeVideo = MutableStateFlow<VideoListBean?>(null)
     val likeVideo get() = _mutableLikeVideo.asStateFlow()
@@ -18,14 +17,18 @@ class VideoFlowViewModel : ViewModel() {
     val publishVideo get() = _mutablePublishVide.asStateFlow()
 
     fun getLikeVideo(userId : Long){
-        viewModelScope.launch(myCoroutineExceptionHandler) {
-            _mutableLikeVideo.emit(MineApiService.INSTANCE.getUserLike(userId))
+        flow {
+            emit(MineApiService.INSTANCE.getUserLike(userId))
+        }.interceptHttpException {}.collectLaunch {
+            _mutableLikeVideo.emit(it)
         }
     }
 
     fun getUserPublish(userId : Long){
-        viewModelScope.launch(myCoroutineExceptionHandler) {
-            _mutablePublishVide.emit(MineApiService.INSTANCE.getUserPublish(userId))
+        flow {
+            emit(MineApiService.INSTANCE.getUserPublish(userId))
+        }.interceptHttpException {}.collectLaunch {
+            _mutablePublishVide.emit(it)
         }
     }
 

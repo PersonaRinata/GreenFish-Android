@@ -50,8 +50,7 @@ class PublishActivity : BaseActivity() {
 
     private fun initObserve() {
         mViewModel.videoData.collectLaunch {
-            toast("发布成功")
-            if (it.status_code == 0){
+            if (it.isSuccess(this)){
                 unLoading()
                 SuccessAndExitDialog(this).apply {
                     setOnClickConfirm {

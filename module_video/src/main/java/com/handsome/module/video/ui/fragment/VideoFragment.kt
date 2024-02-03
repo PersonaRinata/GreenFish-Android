@@ -84,7 +84,7 @@ class VideoFragment : BaseFragment() {
         mViewModel.videoLike.collectLaunch {
             Log.d("lx", "videoFragment: like $it ")
             if (it != null) {
-                if (it.status_code == 0) {
+                if (it.isSuccess(requireActivity())) {
                     mBinding.videoFragmentTvLikeNumber.text = if (isLike) {
                         (mBinding.videoFragmentTvLikeNumber.text.toString().toInt() - 1).toString()
                     } else {
@@ -102,7 +102,7 @@ class VideoFragment : BaseFragment() {
         mViewModel.followUser.collectLaunch {
             Log.d("lx", "videoFragment: follow $it ")
             if (it != null) {
-                if (it.status_code == 0) {
+                if (it.isSuccess(requireActivity())) {
                     isFollow = !isFollow
                     setFollowBg(isFollow)
                 } else {

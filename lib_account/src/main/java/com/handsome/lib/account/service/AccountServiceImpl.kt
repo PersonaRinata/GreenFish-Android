@@ -1,6 +1,7 @@
 package com.handsome.lib.account.service
 
 import android.content.Context
+import android.util.Log
 import androidx.core.content.edit
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.gson.Gson
@@ -47,6 +48,12 @@ class AccountServiceImpl : IAccountService {
   
   override fun getUserInfo(): LoginBean? {
     return userInfoState.value?.value
+  }
+
+  override fun tokenExpired(){
+    getSp(USER_INFO).edit(){
+      putString(LOGIN_INFO, null)
+    }
   }
   
   private val userInfoState = BehaviorSubject.create<Value<LoginBean>>()
@@ -106,7 +113,9 @@ class AccountServiceImpl : IAccountService {
       val loginBean: LoginBean? =
         gson.fromJson(userinfo, LoginBean::class.java)
       if (loginBean != null) {
+        Log.d("TAG","(AccountServiceImpl.kt:109)-->>loginBean=${loginBean}");
         emitUserInfo(loginBean)
+        ApiGenerator.setToken(loginBean.token)
       }
     } catch (e: JsonSyntaxException) {
       e.printStackTrace()
@@ -115,7 +124,7 @@ class AccountServiceImpl : IAccountService {
     observeUserInfoEvent()
       .unsafeSubscribeBy {
         userinfoSp.edit {
-          putString(spKey, gson.toJson(it))
+          putString(spKey, gson.toJson(it.value))
         }
       }
   }

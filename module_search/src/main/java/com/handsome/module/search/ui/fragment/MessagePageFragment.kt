@@ -62,7 +62,7 @@ class MessagePageFragment : BaseFragment() {
         }
         mViewModel.contentList.collectLaunch {
             if (it != null){
-                if (it.status_code == 0){
+                if (it.isSuccess(requireActivity())){
                     if (it.contentList.isNotEmpty()){
                         mBinding.searchFragmentMessagePageRv.visible()
                         mBinding.searchFragmentMessagePageTvNotFound.invisible()

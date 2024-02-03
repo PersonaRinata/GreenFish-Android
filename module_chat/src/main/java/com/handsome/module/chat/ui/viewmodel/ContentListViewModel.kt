@@ -1,18 +1,17 @@
 package com.handsome.module.chat.ui.viewmodel
 
-import androidx.lifecycle.viewModelScope
 import com.handsome.lib.util.base.BaseViewModel
-import com.handsome.lib.util.util.myCoroutineExceptionHandler
+import com.handsome.lib.util.extention.interceptHttpException
+import com.handsome.lib.util.network.ApiStatus
 import com.handsome.module.chat.bean.ContentListBean
 import com.handsome.module.chat.bean.IsDoctorBean
 import com.handsome.module.chat.bean.IssueListBean
-import com.handsome.module.chat.bean.StatusBean
 import com.handsome.module.chat.bean.SumDiseaseBean
 import com.handsome.module.chat.net.ChatApiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flow
 
 class ContentListViewModel: BaseViewModel() {
 
@@ -20,8 +19,8 @@ class ContentListViewModel: BaseViewModel() {
     val contentList : StateFlow<ContentListBean?>
         get() = _contentList.asStateFlow()
 
-    private val _uploadMessage = MutableStateFlow<StatusBean?>(null)
-    val uploadMessage : StateFlow<StatusBean?>
+    private val _uploadMessage = MutableStateFlow<ApiStatus?>(null)
+    val uploadMessage : StateFlow<ApiStatus?>
         get() = _uploadMessage.asStateFlow()
 
     private val _isDoctor = MutableStateFlow<IsDoctorBean?>(null)
@@ -37,32 +36,42 @@ class ContentListViewModel: BaseViewModel() {
         get() = _sumDisease.asStateFlow()
 
     fun getContentList(otherId : Long,preTime : Long){
-        viewModelScope.launch(myCoroutineExceptionHandler) {
-            _contentList.emit(ChatApiService.INSTANCE.getContentList(otherId,preTime))
+        flow {
+            emit(ChatApiService.INSTANCE.getContentList(otherId,preTime))
+        }.interceptHttpException{}.collectLaunch {
+            _contentList.emit(it)
         }
     }
 
     fun uploadMessage(otherId: Long,content : String){
-        viewModelScope.launch(myCoroutineExceptionHandler) {
-            _uploadMessage.emit(ChatApiService.INSTANCE.uploadMessage(otherId,content))
+        flow {
+            emit(ChatApiService.INSTANCE.uploadMessage(otherId,content))
+        }.interceptHttpException{}.collectLaunch {
+            _uploadMessage.emit(it)
         }
     }
 
     fun isDoctor(){
-        viewModelScope.launch(myCoroutineExceptionHandler) {
-            _isDoctor.emit(ChatApiService.INSTANCE.isDoctor())
+        flow {
+            emit(ChatApiService.INSTANCE.isDoctor())
+        }.interceptHttpException{}.collectLaunch {
+            _isDoctor.emit(it)
         }
     }
 
     fun getIssueList(userId : Long){
-        viewModelScope.launch(myCoroutineExceptionHandler) {
-            _issueList.emit(ChatApiService.INSTANCE.getIssueList(userId))
+        flow {
+            emit(ChatApiService.INSTANCE.getIssueList(userId))
+        }.interceptHttpException{}.collectLaunch {
+            _issueList.emit(it)
         }
     }
 
     fun sumDisease(userId : Long){
-        viewModelScope.launch(myCoroutineExceptionHandler) {
-            _sumDisease.emit(ChatApiService.INSTANCE.getSumDisease(userId))
+        flow {
+            emit(ChatApiService.INSTANCE.getSumDisease(userId))
+        }.interceptHttpException{}.collectLaunch {
+            _sumDisease.emit(it)
         }
     }
 }

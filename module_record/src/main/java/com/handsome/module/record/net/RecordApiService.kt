@@ -1,9 +1,9 @@
 package com.handsome.module.record.net
 
 import com.handsome.lib.util.network.ApiGenerator
+import com.handsome.lib.util.network.ApiStatus
 import com.handsome.module.record.bean.ApiWrapperUserBean
 import com.handsome.module.record.bean.IssueListBean
-import com.handsome.module.record.bean.StatusBean
 import com.handsome.module.record.bean.UpdateIssueListBean
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Body
@@ -16,7 +16,7 @@ interface RecordApiService {
     fun getIssueList(@Query("user_id") userId : Long) : Single<IssueListBean>
 
     @POST("issuelist/action")
-    fun updateIssueList(@Body issueListBean: UpdateIssueListBean,@Query("userID") userId: Long) : Single<StatusBean>
+    fun updateIssueList(@Body issueListBean: UpdateIssueListBean,@Query("userID") userId: Long) : Single<ApiStatus>
 
     //获取个人信息的接口
     @GET("user")

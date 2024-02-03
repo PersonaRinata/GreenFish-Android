@@ -1,9 +1,9 @@
 package com.handsome.module.chat.bean
 
-import java.io.Serializable
+import com.handsome.lib.util.network.IApiWrapper
 
 data class ChatFriendsList(
-    val status_code: Int,
-    val status_msg: String,
+    override val status_code: Int,
+    override val status_msg: String,
     val user_list: List<AuthorBean>?
-) : Serializable
+) : IApiWrapper

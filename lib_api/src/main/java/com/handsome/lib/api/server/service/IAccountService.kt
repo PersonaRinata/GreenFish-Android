@@ -20,6 +20,8 @@ interface IAccountService : IProvider {
 
     fun getUserInfo(): LoginBean?
 
+    fun tokenExpired()
+
     fun isLogin(): Boolean
 
     fun login(

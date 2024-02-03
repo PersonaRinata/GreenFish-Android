@@ -3,7 +3,7 @@ package com.handsome.module.find.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.handsome.lib.util.extention.toast
+import com.handsome.lib.util.extention.catchException
 import com.handsome.lib.util.extention.unsafeSubscribeBy
 import com.handsome.module.find.bean.VideoListBean
 import com.handsome.module.find.net.FindApiService
@@ -18,9 +18,7 @@ class VideoFlowViewModel : ViewModel() {
 
     fun getFindVideo(){
         FindApiService.INSTANCE.getVideoList()
-            .doOnError {
-                toast(it.message)
-            }
+            .catchException {}
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .unsafeSubscribeBy {

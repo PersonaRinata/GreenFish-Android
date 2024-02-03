@@ -41,4 +41,6 @@ dependencies {
     //引入Arouter依赖
     api "com.alibaba:arouter-api:$versions.arouter_version"
     kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
+    
+    implementation(project(":lib_util"))
 }

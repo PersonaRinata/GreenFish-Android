@@ -102,14 +102,14 @@ class RecordFragment : BaseFragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initObserver() {
         mViewModel.issueList.observing{
-            if (it.status_code == 0){
+            if (it.isSuccess(requireActivity())){
                 setBodyInfo(it.issue_list)
             }else{
                 toast("网络异常，请重试~")
             }
         }
         mViewModel.userInfo.observing {
-            if (it.status_code == 0){
+            if (it.isSuccess(requireActivity())){
                 if (it.user.avatar != "") mBinding.recordFragmentPersonalizationImgUser.setImageFromUrl(it.user.avatar)
             }else{
                 toast("网络异常，请重试~")

@@ -72,7 +72,7 @@ class VideoFlowFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch(myCoroutineExceptionHandler) {
             mViewModel.likeVideo.collectLatest {
                 if (it != null) {
-                    if (it.status_code == 0) {
+                    if (it.isSuccess(requireActivity())) {
                         mAdapter.submitList(it.video_list)
                     } else {
                         toast("网络错误")
@@ -83,7 +83,7 @@ class VideoFlowFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch(myCoroutineExceptionHandler) {
             mViewModel.publishVideo.collectLatest {
                 if (it != null) {
-                    if (it.status_code == 0) {
+                    if (it.isSuccess(requireActivity())) {
                         mAdapter.submitList(it.video_list)
                     } else {
                         toast("网络错误")

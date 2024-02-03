@@ -1,5 +1,6 @@
 package com.handsome.module.record.bean
 
+import com.handsome.lib.util.network.IApiWrapper
 import java.io.Serializable
 
 data class AuthorBean(
@@ -19,6 +20,6 @@ data class AuthorBean(
 
 data class ApiWrapperUserBean(
     val user: AuthorBean,
-    val status_code: Int,
-    val status_msg: String,
-) :Serializable
+    override val status_code: Int,
+    override val status_msg: String,
+) :IApiWrapper

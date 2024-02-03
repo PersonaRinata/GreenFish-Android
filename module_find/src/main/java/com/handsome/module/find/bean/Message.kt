@@ -1,12 +1,13 @@
 package com.handsome.module.find.bean
 
+import com.handsome.lib.util.network.IApiWrapper
 import java.io.Serializable
 
 data class ContentList(
-    val status_code: Int,
-    val status_msg: String,
+    override val status_code: Int,
+    override val status_msg: String,
     val contentList : List<SimpleContent>,
-) : Serializable{
+) : IApiWrapper{
     data class SimpleContent(
         val id : Long,  //内容的id
         val pic : String, // 内容的封面

@@ -20,8 +20,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.tabs.TabLayoutMediator
 import com.handsome.api.video.bean.AuthorBean
+import com.handsome.lib.api.server.MAIN_MINE
 import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.api.server.service.IChatService
 import com.handsome.lib.api.server.service.IPublishService
@@ -47,11 +49,12 @@ import java.io.File
 import java.io.IOException
 
 // 后续考虑通过service
+@Route(name = MAIN_MINE,path = MAIN_MINE)
 class MineFragment : BaseFragment() {
     private val mBinding by lazy { MineFragmentMineBinding.inflate(layoutInflater) }
-    private val mCurrentUserId by arguments<Long>()   // 这个是获得当前user的id，不一定是自己
+    private var mCurrentUserId : Long = 0L
     private val mUserInfo by lazy { IAccountService::class.impl.getUserInfo() }  //这个是获得用户本人的信息，一定是自己
-    private var mCurrentUserInfo: AuthorBean? = null
+    private var mCurrentUserInfo: AuthorBean? = null  // 这个是当前查看的user信息
     private val mViewModel by viewModels<MineViewModel>()
     private var mIsFollow = false
 
@@ -60,6 +63,9 @@ class MineFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        mCurrentUserId = requireArguments().getLong(this::mCurrentUserId.name)
+        // 如果是默认值，则获取用户的userId
+        if (mCurrentUserId == -0L) mCurrentUserId = mUserInfo!!.user_id
         initObserve()
         initView()
         return mBinding.root
@@ -185,7 +191,7 @@ class MineFragment : BaseFragment() {
     private fun initObserve() {
         mViewModel.userInfo.collectLaunch {
             if (it != null) {
-                if (it.status_code == 0) {
+                if (it.isSuccess(requireActivity())) {
                     val userInfo = it.user
                     mCurrentUserInfo = userInfo
                     with(mBinding) {
@@ -208,7 +214,7 @@ class MineFragment : BaseFragment() {
         }
         mViewModel.uploadImg.collectLaunch {
             if (it != null) {
-                if (it.status_code == 0) {
+                if (it.isSuccess(requireActivity())) {
                     toast("头像更换成功")
                 } else {
                     toast("网络错误")
@@ -217,7 +223,7 @@ class MineFragment : BaseFragment() {
         }
         mViewModel.followUser.collectLaunch {
             if (it != null) {
-                if (it.status_code == 0) {
+                if (it.isSuccess(requireActivity())) {
                     mIsFollow = !mIsFollow
                     setFollowBg(mIsFollow)
                 } else {
@@ -399,7 +405,7 @@ class MineFragment : BaseFragment() {
      * 必须通过newInstance来调用，通过不同的userId来达到不同的效果
      */
     companion object {
-        fun newInstance(userId: Long) = MineFragment().apply {
+        fun newInstance(userId: Long = 0) = MineFragment().apply {
             arguments = bundleOf(
                 this::mCurrentUserId.name to userId
             )

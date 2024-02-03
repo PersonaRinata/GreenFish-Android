@@ -53,7 +53,7 @@ class VideoFlowFragment : BaseFragment() {
 
     private fun initObserve() {
         mViewModel.findVideo.observe(viewLifecycleOwner){
-            if (it.status_code == 0){
+            if (it.isSuccess(requireActivity())){
                 if (!it.video_list.isNullOrEmpty()){
                     mAdapter.submitList(it.video_list)
                 }

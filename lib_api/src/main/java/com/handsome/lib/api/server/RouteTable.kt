@@ -10,6 +10,7 @@ const val MAIN_AIGC = "/aigc/entry"
 const val MAIN_RECORD = "/record/entry"
 const val MAIN_MINE = "/mine/entry"
 const val LOGIN_ENTRY = "/login/entry"
+const val PERSON_ENTRY = "/person/entry"
 const val MAIN_PUBLISH = "/publish/entry"
 const val MAIN_SEARCH = "/search/entry"
 

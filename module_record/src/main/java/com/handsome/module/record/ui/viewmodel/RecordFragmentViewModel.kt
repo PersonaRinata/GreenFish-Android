@@ -1,9 +1,9 @@
 package com.handsome.module.record.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.handsome.lib.util.base.BaseViewModel
+import com.handsome.lib.util.extention.catchException
 import com.handsome.lib.util.extention.unsafeSubscribeBy
 import com.handsome.module.record.bean.ApiWrapperUserBean
 import com.handsome.module.record.bean.IssueListBean
@@ -24,9 +24,8 @@ class RecordFragmentViewModel : BaseViewModel() {
 
 
     fun getIssueList(userId : Long){
-        RecordApiService.INSTANCE.getIssueList(userId).doOnError {
-            Log.e("lx","(RecordFragmentViewModel.kt:19)-->>${it.message}",it)
-        }
+        RecordApiService.INSTANCE.getIssueList(userId)
+            .catchException {}
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .unsafeSubscribeBy {
@@ -37,9 +36,8 @@ class RecordFragmentViewModel : BaseViewModel() {
 
 
     fun getUserInfo(userId : Long){
-        RecordApiService.INSTANCE.getUserInfo(userId).doOnError {
-            Log.e("lx","(RecordFragmentViewModel.kt:19)-->>${it.message}",it)
-        }
+        RecordApiService.INSTANCE.getUserInfo(userId)
+            .catchException {}
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .unsafeSubscribeBy {

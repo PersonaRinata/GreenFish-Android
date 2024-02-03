@@ -1,9 +1,9 @@
 package com.handsome.module.aigc.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.handsome.lib.util.base.BaseViewModel
+import com.handsome.lib.util.extention.catchException
 import com.handsome.lib.util.extention.unsafeSubscribeBy
 import com.handsome.module.aigc.bean.AskAiBean
 import com.handsome.module.aigc.bean.AskAiHistoryBean
@@ -28,9 +28,7 @@ class AigcViewModel : BaseViewModel() {
 
     fun askQuestion(content : String){
         AigcApiService.INSTANCE.askQuestion(content)
-            .doOnError {
-                Log.e("lx", "askQuestion:${it.message} ",it )
-            }
+            .catchException {}
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .unsafeSubscribeBy {
@@ -40,9 +38,7 @@ class AigcViewModel : BaseViewModel() {
 
     fun aigcHistory(){
         AigcApiService.INSTANCE.getAskAiHistory()
-            .doOnError {
-                Log.e("lx", "askQuestion:${it.message} ",it )
-            }
+            .catchException {}
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .unsafeSubscribeBy {
@@ -52,9 +48,7 @@ class AigcViewModel : BaseViewModel() {
 
     fun recommendDoctor(content: String){
         AigcApiService.INSTANCE.getRecommendDoctor(content)
-            .doOnError {
-                Log.e("lx", "askQuestion:${it.message} ",it )
-            }
+            .catchException {}
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .unsafeSubscribeBy {

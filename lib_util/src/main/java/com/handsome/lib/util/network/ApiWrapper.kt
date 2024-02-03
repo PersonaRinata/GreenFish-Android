@@ -1,32 +1,37 @@
 package com.handsome.lib.util.network
 
+import android.app.Activity
 import com.google.gson.annotations.SerializedName
+import com.handsome.lib.api.server.service.IAccountService
+import com.handsome.lib.api.server.service.ILoginService
+import com.handsome.lib.util.service.impl
 import java.io.Serializable
 
 /**
  * 定义的数据类包装类
  */
-data class ApiWrapper<T>(
-    @SerializedName("data")
-    override val data: T,
-    @SerializedName("errorCode")
-    override val errorCode: Int,
-    @SerializedName("errorMsg")
-    override val errorMsg: String
-) : IApiWrapper<T>
+
+interface IApiWrapper : Serializable {
+    val status_code: Int
+    val status_msg: String
+
+    fun isExpired() : Boolean{
+        return status_code == 500 && status_msg == "token is expired"
+    }
+
+    fun isSuccess(activity : Activity) : Boolean{
+        return if (isExpired()){
+            IAccountService::class.impl.tokenExpired()
+            ILoginService::class.impl.startLoginActivity()
+            activity.finishAfterTransition()
+            false
+        }else status_code == 0
+    }
+}
 
 data class ApiStatus(
-    @SerializedName("errorCode")
-    override val errorCode: Int,
-    @SerializedName("errorMsg")
-    override val errorMsg: String
-) : IApiStatus
-
-interface IApiWrapper<T> : IApiStatus {
-    val data: T
-}
-
-interface IApiStatus : Serializable {
-    val errorCode: Int
-    val errorMsg: String
-}
+    @SerializedName("status_code")
+    override val status_code: Int,
+    @SerializedName("status_msg")
+    override val status_msg: String
+) : IApiWrapper

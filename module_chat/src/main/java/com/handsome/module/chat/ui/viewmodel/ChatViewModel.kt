@@ -1,13 +1,13 @@
 package com.handsome.module.chat.ui.viewmodel
 
-import androidx.lifecycle.viewModelScope
 import com.handsome.lib.util.base.BaseViewModel
+import com.handsome.lib.util.extention.interceptHttpException
 import com.handsome.module.chat.bean.ChatFriendsList
 import com.handsome.module.chat.net.ChatApiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flow
 
 class ChatViewModel : BaseViewModel() {
 
@@ -16,10 +16,10 @@ class ChatViewModel : BaseViewModel() {
         get() = _chatList.asStateFlow()
 
     fun getChatList(userId : Long){
-        viewModelScope.launch {
-            _chatList.emit(ChatApiService.INSTANCE.getFriendChatList(userId))
+        flow {
+            emit(ChatApiService.INSTANCE.getFriendChatList(userId))
+        }.interceptHttpException{}.collectLaunch {
+            _chatList.emit(it)
         }
     }
-
-
 }

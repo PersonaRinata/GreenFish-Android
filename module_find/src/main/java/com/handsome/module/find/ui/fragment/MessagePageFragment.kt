@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.handsome.lib.util.base.BaseFragment
+import com.handsome.lib.util.extention.toast
 import com.handsome.lib.util.util.myCoroutineExceptionHandler
 import com.handsome.module.find.bean.ContentType
 import com.handsome.module.find.databinding.FindFragmentMessagePageBinding
@@ -57,7 +58,11 @@ class MessagePageFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch(myCoroutineExceptionHandler) {
             mViewModel.contentList.collectLatest { data  ->
                 if (data != null){
-                    mAdapter.submitList(data.contentList)
+                    if (data.isSuccess(requireActivity())){
+                        mAdapter.submitList(data.contentList)
+                    }else{
+                        toast("网络异常，请重试~")
+                    }
                 }
             }
         }

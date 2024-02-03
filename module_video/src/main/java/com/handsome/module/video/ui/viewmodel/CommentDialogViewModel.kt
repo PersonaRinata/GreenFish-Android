@@ -1,33 +1,35 @@
 package com.handsome.module.video.ui.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.handsome.lib.util.util.myCoroutineExceptionHandler
+import com.handsome.lib.util.base.BaseViewModel
+import com.handsome.lib.util.extention.interceptHttpException
+import com.handsome.lib.util.network.ApiStatus
 import com.handsome.module.video.bean.CommentBean
-import com.handsome.module.video.bean.StatusBean
 import com.handsome.module.video.net.VideoApiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flow
 
-class CommentDialogViewModel : ViewModel() {
+class CommentDialogViewModel : BaseViewModel() {
 
     private val _mutableVideoComment = MutableStateFlow<CommentBean?>(null)
     val videoComment get() = _mutableVideoComment.asStateFlow()
 
-    private val _mutableSendComment = MutableStateFlow<StatusBean?>(null)
+    private val _mutableSendComment = MutableStateFlow<ApiStatus?>(null)
     val sendComment get() = _mutableSendComment.asStateFlow()
 
     fun getVideoComment(videoId : Long){
-        viewModelScope.launch(myCoroutineExceptionHandler){
-            _mutableVideoComment.emit(VideoApiService.INSTANCE.getVideoComment(videoId))
+        flow {
+            emit(VideoApiService.INSTANCE.getVideoComment(videoId))
+        }.interceptHttpException {}.collectLaunch {
+            _mutableVideoComment.emit(it)
         }
     }
 
     fun sendComment(videoId : Long,commentText : String){
-        viewModelScope.launch(myCoroutineExceptionHandler){
-            _mutableSendComment.emit( VideoApiService.INSTANCE.sendComment(videoId,commentText))
-
+        flow {
+            emit(VideoApiService.INSTANCE.sendComment(videoId,commentText))
+        }.interceptHttpException {}.collectLaunch {
+            _mutableSendComment.emit(it)
         }
     }
 

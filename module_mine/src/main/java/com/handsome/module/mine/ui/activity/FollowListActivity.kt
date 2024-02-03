@@ -83,7 +83,7 @@ class FollowListActivity : BaseActivity() {
         lifecycleScope.launch {
             mViewModel.followList.collectLatest {
                 if (it != null) {
-                    if (it.status_code == 0) {
+                    if (it.isSuccess(this@FollowListActivity)) {
                         mAdapter.submitList(it.user_list)
                     } else {
                         toast("网络异常")
@@ -95,7 +95,7 @@ class FollowListActivity : BaseActivity() {
         lifecycleScope.launch {
             mViewModel.fansList.collectLatest {
                 if (it != null) {
-                    if (it.status_code == 0) {
+                    if (it.isSuccess(this@FollowListActivity)) {
                         mAdapter.submitList(it.user_list)
                     } else {
                         toast("网络异常")
@@ -107,7 +107,7 @@ class FollowListActivity : BaseActivity() {
         lifecycleScope.launch {
             mViewModel.followUser.collectLatest {data ->
                 if (data != null){
-                    if (data.status_code == 0){
+                    if (data.isSuccess(this@FollowListActivity)){
                         getData()  //刷新数据，用数据来说话
                     }else{
                         toast("网络异常")

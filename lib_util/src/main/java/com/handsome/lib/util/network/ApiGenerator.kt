@@ -20,7 +20,7 @@ object ApiGenerator {
     // 但是初始化token的过程变得离谱
     private var token : String? = null
 
-    fun setToken(token : String){
+    fun setToken(token : String?){
         this.token = token
     }
 

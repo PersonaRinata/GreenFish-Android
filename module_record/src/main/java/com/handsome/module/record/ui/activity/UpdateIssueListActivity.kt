@@ -31,7 +31,7 @@ class UpdateIssueListActivity : BaseActivity() {
 
     private fun initObserver() {
         mViewModel.updateIssueList.observing {
-            if (it.status_code == 0) {
+            if (it.isSuccess(this)) {
                 toast("信息保存成功")
             }
         }

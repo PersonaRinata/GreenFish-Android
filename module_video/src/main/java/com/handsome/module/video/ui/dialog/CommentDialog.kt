@@ -71,7 +71,7 @@ class CommentDialog : BaseBottomSheetDialogFragment() {
         viewLifecycleOwner.lifecycleScope.launch(myCoroutineExceptionHandler) {
             mViewModel.sendComment.collectLatest {
                 if (it != null){
-                    if (it.status_code == 0){
+                    if (it.isSuccess(requireActivity())){
                         // 发布成功再次重新请求
                         getCommentData()
                     }else{
@@ -84,7 +84,7 @@ class CommentDialog : BaseBottomSheetDialogFragment() {
             mViewModel.videoComment.collectLatest {
                 Log.d("lx", "videoFragment: observe${it}}")
                 if (it != null){
-                    if (it.status_code == 0){
+                    if (it.isSuccess(requireActivity())){
                         mAdapter.submitList(it.comment_list)
                         if (!it.comment_list.isNullOrEmpty()){
                             val text =  "共${it.comment_list.size}条评论"

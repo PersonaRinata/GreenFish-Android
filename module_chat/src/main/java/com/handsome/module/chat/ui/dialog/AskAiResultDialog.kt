@@ -33,7 +33,7 @@ class AskAiResultDialog : BaseDialogFragment() {
     private fun initObserve() {
         mViewModel.askAi.collectLaunch {
             if (it != null){
-                if (it.status_code == 0){
+                if (it.isSuccess(requireActivity())){
                     setAiText(it.msg)
                 }else{
                     toast("网络异常，请稍后重试~")

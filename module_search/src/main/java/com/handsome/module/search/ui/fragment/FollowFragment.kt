@@ -91,7 +91,7 @@ class FollowFragment : BaseFragment() {
 
         mViewModel.followUser.collectLaunch { data ->
             if (data != null) {
-                if (data.status_code == 0) {
+                if (data.isSuccess(requireActivity())) {
                     mParentViewModel.searchContent.value?.let { getData(it) }  //刷新数据，用数据来说话
                 } else {
                     toast("网络异常")
