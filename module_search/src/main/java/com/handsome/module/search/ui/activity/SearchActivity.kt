@@ -1,5 +1,6 @@
 package com.handsome.module.search.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -31,7 +32,7 @@ import com.handsome.module.search.ui.viewmodel.SearchActivityViewModel
 class SearchActivity : BaseActivity() {
     private val mBinding by lazy { SearchActivitySearchBinding.inflate(layoutInflater) }
     private val mViewModel by viewModels<SearchActivityViewModel>()
-    private lateinit var mAdapter : HistoryAdapter
+    private lateinit var mAdapter: HistoryAdapter
     private val historyList by lazy { LinkedHashSet<String>() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +55,9 @@ class SearchActivity : BaseActivity() {
             override fun handleOnBackPressed() {
                 if (mBinding.searchActivitySearchLinearHistory.visibility == View.GONE) {
                     showHistory()
-                }else{
+                }else if (mBinding.searchActivitySearchTvComplete.visibility == View.VISIBLE) {
+                    deleteComplete()
+                } else {
                     finish()
                 }
             }
@@ -76,17 +79,53 @@ class SearchActivity : BaseActivity() {
         initAdapter()
         initRv()
         initData()
+        initClearClick()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun initClearClick() {
+        with(mBinding) {
+            searchActivitySearchImgGarbage.setOnClickListener {
+                // 对应状态的切换
+                searchActivitySearchTvClearAll.visible()
+                searchActivitySearchTvComplete.visible()
+                searchActivitySearchImgGarbage.gone()
+                mAdapter.isDeleteStatus = true
+                mAdapter.notifyDataSetChanged()
+            }
+            searchActivitySearchTvClearAll.setOnClickListener {
+                historyList.clear()
+                mAdapter.submitList(historyList.toList())
+            }
+            searchActivitySearchTvComplete.setOnClickListener {
+                deleteComplete()
+            }
+        }
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun deleteComplete() {
+        if (mBinding.searchActivitySearchTvComplete.visibility == View.VISIBLE){
+            // 对应状态的切换
+            with(mBinding) {
+                searchActivitySearchTvClearAll.gone()
+                searchActivitySearchTvComplete.gone()
+                searchActivitySearchImgGarbage.visible()
+                mAdapter.isDeleteStatus = false
+                mAdapter.notifyDataSetChanged()
+                saveHistoryList()
+            }
+        }
     }
 
     private fun initData() {
         val lastHistory = objectFromSp<LinkedHashSet<String>>(this.javaClass.name)
-        if (!lastHistory.isNullOrEmpty()){
+        if (!lastHistory.isNullOrEmpty()) {
             historyList.addAll(lastHistory)
             setHistoryList()
         }
     }
 
-    private fun setHistoryList(){
+    private fun setHistoryList() {
         mAdapter.submitList(historyList.toList())
     }
 
@@ -102,10 +141,14 @@ class SearchActivity : BaseActivity() {
 
     private fun initAdapter() {
         mAdapter = HistoryAdapter().apply {
-            setOnClickItem {content ->
+            setOnClickItem { content ->
                 mBinding.searchActivitySearchEtSearch.setText(content)
                 mBinding.searchActivitySearchEtSearch.setSelection(content.length)
                 sendSearchEvent(content)
+            }
+            setOnClickCha {
+                historyList.remove(it)
+                mAdapter.submitList(historyList.toList())
             }
         }
     }
@@ -116,27 +159,32 @@ class SearchActivity : BaseActivity() {
         }
     }
 
-    private fun doSearch(){
+    private fun doSearch() {
         val text = mBinding.searchActivitySearchEtSearch.text.toString()
         sendSearchEvent(text)
     }
 
-    private fun sendSearchEvent(content : String){
+    private fun sendSearchEvent(content: String) {
+        deleteComplete()
         showResult()
-        if (content.isNotEmpty()){
+        if (content.isNotEmpty()) {
             historyList.add(content)
             setHistoryList()
         }
-        gsonSaveToSp(historyList,this.javaClass.name)
+        saveHistoryList()
         mViewModel.setSearchContent(content)
     }
 
-    private fun showResult(){
+    private fun saveHistoryList() {
+        gsonSaveToSp(historyList, this.javaClass.name)
+    }
+
+    private fun showResult() {
         mBinding.searchActivitySearchLinearHistory.gone()
         mBinding.searchActivitySearchLinearResult.visible()
     }
 
-    private fun showHistory(){
+    private fun showHistory() {
         mBinding.searchActivitySearchLinearResult.gone()
         mBinding.searchActivitySearchLinearHistory.visible()
     }
@@ -167,29 +215,31 @@ class SearchActivity : BaseActivity() {
                 tab.customView = binding.root
             }.attach()
             setTabColor(getTabAt(0), R.color.search_tab_select_text_color)
-            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
-                    setTabColor(tab,R.color.search_tab_select_text_color)
+                    setTabColor(tab, R.color.search_tab_select_text_color)
                 }
+
                 override fun onTabUnselected(tab: TabLayout.Tab?) {
-                    setTabColor(tab,R.color.search_tab_no_select_text_color)
+                    setTabColor(tab, R.color.search_tab_no_select_text_color)
                 }
+
                 override fun onTabReselected(tab: TabLayout.Tab?) {}
             })
         }
     }
 
-    private fun setTabColor(tab: TabLayout.Tab?,@ColorRes id:Int){
+    private fun setTabColor(tab: TabLayout.Tab?, @ColorRes id: Int) {
         val textView = tab?.customView?.findViewById<TextView>(R.id.find_tab_message_tv_label)
-        textView?.setTextColor(resources.getColor(id,null))
+        textView?.setTextColor(resources.getColor(id, null))
     }
 
-    companion object{
+    companion object {
         const val SEARCH_VIDEO = "视频"
         const val SEARCH_MESSAGE = "资讯"
         const val SEARCH_USER = "用户"
-        fun startAction(context: Context){
-            val intent = Intent(context,SearchActivity::class.java)
+        fun startAction(context: Context) {
+            val intent = Intent(context, SearchActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }

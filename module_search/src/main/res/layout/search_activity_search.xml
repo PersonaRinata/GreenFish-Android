@@ -72,31 +72,77 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/search_activity_search_linear_history"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="搜索记录"
+                android:textColor="@color/fish_font_level4_color"
                 android:textStyle="bold"
-                android:layout_marginStart="18.91dp"
+                android:textSize="15.65sp"
                 android:layout_marginTop="18.19dp"
-                android:textColor="@color/fish_font_level4_color"/>
+                android:layout_marginStart="18.91dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/search_activity_search_tv_clear_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18.19dp"
+                android:layout_marginEnd="16dp"
+                android:text="清空"
+                android:textSize="14.7sp"
+                android:visibility="gone"
+                android:textColor="@color/search_history_text_clear_all"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintEnd_toStartOf="@+id/search_activity_search_tv_complete"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/search_activity_search_tv_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18.19dp"
+                android:layout_marginEnd="17dp"
+                android:text="完成"
+                android:textSize="14.7sp"
+                android:visibility="gone"
+                android:textColor="@color/search_history_text_complete"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/search_activity_search_img_garbage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_ic_garbage"
+                android:textColor="@color/fish_font_level4_color"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView3" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_activity_search_rv_history"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginTop="4.73dp"
-                android:layout_marginStart="11.855dp"/>
+                android:layout_marginStart="11.855dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/search_activity_search_linear_result"

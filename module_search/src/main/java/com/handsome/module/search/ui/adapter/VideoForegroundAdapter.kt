@@ -7,7 +7,6 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.handsome.api.video.bean.VideoBean
-import com.handsome.lib.util.extention.setImageFromId
 import com.handsome.lib.util.extention.setImageFromUrl
 import com.handsome.module.search.R
 import com.handsome.module.search.databinding.SearchItemVideoForegroudBinding
@@ -50,17 +49,8 @@ class VideoForegroundAdapter : PagingDataAdapter<VideoBean,VideoForegroundAdapte
         if (item != null){
             holder.binding.apply {
                 if (item.cover_url != "") searchItemVideoForegroundImgForeground.setImageFromUrl(item.cover_url,R.drawable.search_ic_place_foreground_photo,R.drawable.search_ic_place_foreground_photo)
-                if (item.author.avatar != "") searchItemVideoForegroundImgUser.setImageFromUrl(item.author.avatar)
-                searchItemVideoForegroundTvLikeNum.text = item.favorite_count.toString()
-                searchItemVideoForegroundTvUsername.text = item.author.name
                 searchItemVideoForegroundTvTitle.text = item.title
-                if (item.is_favorite) {
-                    searchItemVideoForegroundImgLike.setImageFromId(R.drawable.search_ic_like)
-                }else{
-                    searchItemVideoForegroundImgLike.setImageFromId(R.drawable.search_ic_unlike)
-                }
             }
         }
     }
-
 }

@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/search_item_video_foreground_img_foreground"
             android:layout_width="match_parent"
-            android:layout_height="243dp"
+            android:layout_height="323dp"
             android:scaleType="fitXY"
             android:src="@drawable/search_ic_place_foreground_photo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,76 +29,28 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="16.81dp"
-            android:layout_height="16.77dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/search_ic_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/search_item_video_foreground_img_user"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/search_ic_user"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_item_video_foreground_img_foreground"
-            app:shapeAppearance="@style/Circle" />
-
-        <TextView
-            android:id="@+id/search_item_video_foreground_tv_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center"
-            android:layout_marginStart="7.73dp"
-            android:text="医学百科"
-            android:textColor="@color/fish_font_level3_color"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/search_item_video_foreground_img_user"
-            app:layout_constraintStart_toEndOf="@+id/search_item_video_foreground_img_user"
-            app:layout_constraintTop_toTopOf="@+id/search_item_video_foreground_img_user" />
-
-        <ImageView
-            android:id="@+id/search_item_video_foreground_img_like"
-            android:layout_width="15dp"
-            android:layout_height="14dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="4.23dp"
-            android:src="@drawable/search_ic_unlike"
-            app:layout_constraintBottom_toBottomOf="@+id/search_item_video_foreground_img_user"
-            app:layout_constraintEnd_toStartOf="@+id/search_item_video_foreground_tv_like_num"
-            app:layout_constraintTop_toTopOf="@+id/search_item_video_foreground_img_user" />
-
-        <TextView
-            android:id="@+id/search_item_video_foreground_tv_like_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="9.95dp"
-            android:text="0"
-            android:textColor="@color/fish_font_level1_color"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/search_item_video_foreground_img_user"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/search_item_video_foreground_img_user" />
 
         <TextView
             android:id="@+id/search_item_video_foreground_tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10.57dp"
-            android:layout_marginEnd="10.09dp"
-            android:paddingBottom="13.5dp"
+            android:layout_marginStart="10.72dp"
+            android:layout_marginEnd="11.16dp"
+            android:layout_marginBottom="13.66dp"
             android:text="急救常识科普，一分钟 快速学习急救课程"
-            android:textColor="@color/fish_font_level4_color"
+            android:textColor="@color/white"
             android:textSize="14.38sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/search_item_video_foreground_img_foreground"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_item_video_foreground_img_user" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

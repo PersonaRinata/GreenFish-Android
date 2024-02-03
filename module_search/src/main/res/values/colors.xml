@@ -33,5 +33,7 @@
 
 
     <color name="search_history_bg">#F6F5FA</color>
+    <color name="search_history_text_clear_all">#A2A2A2</color>
+    <color name="search_history_text_complete">#666666</color>
 
 </resources>
