@@ -138,7 +138,7 @@ class VideoFragment : BaseFragment() {
         with(mBinding) {
             val pic = mVideo.author.avatar
             if (pic != "") videoFragmentImgUser.setImageFromUrl(pic)
-            videoFragmentTvUserName.text = mVideo.author.name
+            videoFragmentTvUserName.text = mVideo.author.nickname
             //点击事件，获取个人信息，获得到就跳转
             videoFragmentImgUser.setOnClickListener {
                 IMineService::class.impl.startPersonActivity(mVideo.author.id)

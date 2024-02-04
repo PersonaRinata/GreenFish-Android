@@ -58,8 +58,6 @@ class FindFragment : BaseFragment() {
         }
         with(mBinding.findFragmentFindVp) {
             adapter = fragmentVpAdapter
-            // 禁止用户自己滑动
-            isUserInputEnabled = false
         }
         initTabLayout()
     }

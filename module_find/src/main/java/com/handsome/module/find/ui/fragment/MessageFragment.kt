@@ -28,6 +28,7 @@ class MessageFragment : BaseFragment() {
         initTabLayout()
         return mBinding.root
     }
+
     private fun initTabLayout() {
         // 取消tabLayout的长按点击事件
         with(mBinding.findFragmentMessageTabLayout) {
@@ -43,22 +44,24 @@ class MessageFragment : BaseFragment() {
                 binding.findTabMessageTvLabel.text = titles[position]
                 tab.customView = binding.root
             }.attach()
-            setTabColor(getTabAt(0),R.color.find_message_tab_select_text_color)
-            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            setTabColor(getTabAt(0), R.color.find_message_tab_select_text_color)
+            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
-                    setTabColor(tab,R.color.find_message_tab_select_text_color)
+                    setTabColor(tab, R.color.find_message_tab_select_text_color)
                 }
+
                 override fun onTabUnselected(tab: TabLayout.Tab?) {
-                    setTabColor(tab,R.color.find_message_tab_no_select_text_color)
+                    setTabColor(tab, R.color.find_message_tab_no_select_text_color)
                 }
+
                 override fun onTabReselected(tab: TabLayout.Tab?) {}
             })
         }
     }
 
-    private fun setTabColor(tab: TabLayout.Tab?,@ColorRes id:Int){
+    private fun setTabColor(tab: TabLayout.Tab?, @ColorRes id: Int) {
         val textView = tab?.customView?.findViewById<TextView>(R.id.find_tab_message_tv_label)
-        textView?.setTextColor(resources.getColor(id,null))
+        textView?.setTextColor(resources.getColor(id, null))
     }
 
     private fun initVp() {
@@ -67,7 +70,9 @@ class MessageFragment : BaseFragment() {
         fragmentVpAdapter.add { MessagePageFragment.newInstance(ContentType.FOOD) }
         fragmentVpAdapter.add { MessagePageFragment.newInstance(ContentType.LIFE) }
         fragmentVpAdapter.add { MessagePageFragment.newInstance(ContentType.MEDICINE) }
-        mBinding.findFragmentMessageVp2.adapter = fragmentVpAdapter
+        with(mBinding.findFragmentMessageVp2) {
+            adapter = fragmentVpAdapter
+        }
     }
 
     companion object {

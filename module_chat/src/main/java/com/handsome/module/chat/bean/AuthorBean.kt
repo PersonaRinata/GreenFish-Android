@@ -1,10 +1,8 @@
 package com.handsome.module.chat.bean
 
-import com.handsome.lib.util.network.IApiWrapper
+import java.io.Serializable
 
 data class AuthorBean(
-    override val status_code: Int,
-    override val status_msg: String,
     val avatar: String,
     val background_image: String,
     val favorite_count: Int,
@@ -19,6 +17,7 @@ data class AuthorBean(
     val total_favorited: Int,
     val work_count: Int,
     val time : Long,
+    val nickname : String,
     var isTop : Boolean,
     var isOpen : Boolean
-) : IApiWrapper
+) : Serializable

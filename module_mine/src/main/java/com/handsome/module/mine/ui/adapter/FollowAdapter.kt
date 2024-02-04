@@ -74,7 +74,7 @@ class FollowAdapter : ListAdapter<AuthorBean, FollowAdapter.MyHolder>(myDiffUtil
         val item = getItem(position)
         with(holder.binding) {
             if (item.avatar!="") mineItemFriendsListImgUser.setImageFromUrl(item.avatar)
-            mineItemFriendsListTvName.text = item.name
+            mineItemFriendsListTvName.text = item.nickname
             with(mineItemFollowTvFollow) {
                 if (item.is_follow) {
                     text = "已关注"

@@ -16,7 +16,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/search_item_video_foreground_img_foreground"
@@ -27,6 +27,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/search_shape_foregroud_1_bg"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
+            app:layout_constraintHeight_percent="0.148"/>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/search_shape_foregroud_2_bg"
+            app:layout_constraintBottom_toTopOf="@+id/view3"
+            app:layout_constraintHeight_percent="0.086"/>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/search_shape_foregroud_3_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.117"/>
 
         <ImageView
             android:layout_width="35dp"

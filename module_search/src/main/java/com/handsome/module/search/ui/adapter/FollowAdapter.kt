@@ -74,7 +74,7 @@ class FollowAdapter : PagingDataAdapter<AuthorBean, FollowAdapter.MyHolder>(myDi
         val item = getItem(position) ?: return
         with(holder.binding) {
             if (item.avatar!="") mineItemFriendsListImgUser.setImageFromUrl(item.avatar)
-            mineItemFriendsListTvName.text = item.name
+            mineItemFriendsListTvName.text = item.nickname
             with(mineItemFollowTvFollow) {
                 if (item.is_follow) {
                     text = "已关注"

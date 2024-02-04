@@ -36,4 +36,14 @@
     <color name="search_history_text_clear_all">#A2A2A2</color>
     <color name="search_history_text_complete">#666666</color>
 
+<!--    蒙版效果-->
+<!--    0.649-->
+    <color name="search_foreground_1_color">#00000000</color>
+<!--    0.797-->
+    <color name="search_foreground_2_color">#66000000</color>
+<!--    0.883-->
+    <color name="search_foreground_3_color">#99000000</color>
+<!--    1-->
+    <color name="search_foreground_4_color">#E6000000</color>
+
 </resources>

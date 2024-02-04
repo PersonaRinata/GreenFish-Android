@@ -22,14 +22,20 @@
         app:tabTextAppearance="@style/FindMessageTabTextAppearance"
         app:tabTextColor="@color/find_message_tab_no_select_text_color" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/find_fragment_message_vp2"
+    <com.handsome.module.find.wight.NestedScrollableHost
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/find_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/find_fragment_message_tab_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/find_fragment_message_tab_layout">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/find_fragment_message_vp2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/find_bg" />
+
+    </com.handsome.module.find.wight.NestedScrollableHost>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -195,7 +195,6 @@ class SearchActivity : BaseActivity() {
         fragmentVpAdapter.add { MessagePageFragment.newInstance() }
         fragmentVpAdapter.add { FollowFragment.newInstance() }
         mBinding.searchActivitySearchVp.adapter = fragmentVpAdapter
-        mBinding.searchActivitySearchVp.isUserInputEnabled = false
         mBinding.searchActivitySearchVp.offscreenPageLimit = 1
     }
 

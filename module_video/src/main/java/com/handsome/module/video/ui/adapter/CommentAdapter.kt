@@ -56,7 +56,7 @@ class CommentAdapter : ListAdapter<CommentBean.Comment,CommentAdapter.MyHolder>(
         if (item != null){
             holder.binding.apply {
                 if (item.user.avatar != "") videoItemCommentImgUser.setImageFromUrl(item.user.avatar)
-                videoItemCommentTvUserName.text = item.user.name
+                videoItemCommentTvUserName.text = item.user.nickname
                 videoItemCommentTvComment.text = item.content
                 videoItemCommentTvTime.text = item.create_date
             }

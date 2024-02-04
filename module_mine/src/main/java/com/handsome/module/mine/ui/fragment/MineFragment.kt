@@ -126,7 +126,7 @@ class MineFragment : BaseFragment() {
             mineFragmentMineLinearPrivateChat.setOnClickListener {
                 mUserInfo?.let {
                     mCurrentUserInfo?.let { it1 ->
-                        IChatService::class.impl.startContentListActivity(it.user_id, mCurrentUserId, it1.name)
+                        IChatService::class.impl.startContentListActivity(it.user_id, mCurrentUserId, it1.nickname)
                     }
                 }
             }
@@ -157,8 +157,6 @@ class MineFragment : BaseFragment() {
         }
         with(mBinding.mineFragmentMineVp) {
             adapter = fragmentVpAdapter
-            // 禁止用户自己滑动
-            isUserInputEnabled = false
         }
         initTabLayout()
     }
@@ -195,7 +193,8 @@ class MineFragment : BaseFragment() {
                     val userInfo = it.user
                     mCurrentUserInfo = userInfo
                     with(mBinding) {
-                        mineFragmentMineTvUserName.text = userInfo.name
+                        mineFragmentMineTvUserName.text = userInfo.nickname
+                        Log.d("lx","(MineFragment.kt:199)-->>${userInfo.avatar}")
                         if (userInfo.avatar != "") mineFragmentMineImgUser.setImageFromUrl(userInfo.avatar,R.drawable.mine_ic_user,R.drawable.mine_ic_user)
                         mineFragmentMineTvDescribe.text = userInfo.signature
                         mineFragmentMineTvFollowNum.text = userInfo.follow_count.toString()

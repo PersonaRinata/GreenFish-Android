@@ -15,7 +15,8 @@ data class AuthorBean(
     val name: String,
     val signature: String,
     val total_favorited: Int,
-    val work_count: Int
+    val work_count: Int,
+    val nickname : String,
 ) : Serializable
 
 data class ApiWrapperUserBean(

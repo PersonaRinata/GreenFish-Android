@@ -29,9 +29,16 @@ class VideoFlowFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         initRv()
+        initRefresh()
         initObserve()
         getData()
         return mBinding.root
+    }
+
+    private fun initRefresh() {
+        mBinding.findFragmentVideoFlowRefresh.setOnRefreshListener {
+            getData()
+        }
     }
 
     private fun initRv() {
@@ -56,6 +63,7 @@ class VideoFlowFragment : BaseFragment() {
             if (it.isSuccess(requireActivity())){
                 if (!it.video_list.isNullOrEmpty()){
                     mAdapter.submitList(it.video_list)
+                    mBinding.findFragmentVideoFlowRefresh.isRefreshing = false
                 }
             }else{
                 toast("网络错误")

@@ -92,7 +92,7 @@ class AigcFragment : BaseFragment() {
 
     private fun askAiQuestion(content: String) {
         mViewModel.askQuestion(content)
-        addHistoryToAdapter(listOf(content), false)
+        addHistoryToAdapter(listOf(content))
     }
 
     private fun recommendDoctor(content: String) {
@@ -113,12 +113,11 @@ class AigcFragment : BaseFragment() {
         return text
     }
 
-    private fun addHistoryToAdapter(data: List<String>, isReverse: Boolean) {
+    private fun addHistoryToAdapter(data: List<String>) {
         val messages = ArrayList<MessageAdapter.ContentListData.TypeLeftRight>()
         data.forEach {
             messages.add(MessageAdapter.ContentListData.TypeLeftRight(it))
         }
-        if (isReverse) messages.reverse()
         addItemsToAdapter(messages)
     }
 
@@ -131,7 +130,7 @@ class AigcFragment : BaseFragment() {
     private fun initObserve() {
         mViewModel.aigcHistory.observing {
             if (it.isSuccess(requireActivity())) {
-                addHistoryToAdapter(it.msg, true)
+                addHistoryToAdapter(it.msg)
                 scrollToRvEnd()
             } else {
                 toast("网络异常，请重试~")
@@ -139,7 +138,7 @@ class AigcFragment : BaseFragment() {
         }
         mViewModel.askQuestion.observing {
             if (it.isSuccess(requireActivity())) {
-                addHistoryToAdapter(listOf(it.msg), false)
+                addHistoryToAdapter(listOf(it.msg))
                 scrollToRvEnd()
             } else {
                 toast("网络异常，请重试~")
