@@ -1,12 +1,12 @@
 package com.handsome.module.video.ui.dialog
 
 import android.app.Dialog
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -32,22 +32,35 @@ class CommentDialog : BaseBottomSheetDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
-        // 设置样式,dialog不跟随软键盘弹起
-        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         initEditPop()
         return dialog
     }
 
     private fun initEditPop() {
-//        mBinding.root.viewTreeObserver.addOnGlobalLayoutListener {
-//            val r = Rect()
-//            mBinding.root.getWindowVisibleDisplayFrame(r)
-//            Log.d("lx", "r-bottom:${r.bottom} r-top:${r.top} ")
-//            val screenHeight: Int = mBinding.root.rootView.height
-//            Log.d("lx", "screenHeight:${screenHeight} ")
-//            val keyboardHeight: Int = screenHeight - r.bottom
-//            mBinding.videoDialogCommentConstrainEditAndSend.setPadding(0,0,0,1013)
-//        }
+        var lastHeight = 0
+        mBinding.root.viewTreeObserver.addOnGlobalLayoutListener {
+            val root = mBinding.root.parent.parent.parent as ViewGroup
+            root.setPadding(0,0,0,0)
+            val rootHeight = root.height
+            val rect = Rect()
+            mBinding.root.getWindowVisibleDisplayFrame(rect)
+            val keyBoardHeight = rootHeight - rect.bottom
+            if (keyBoardHeight != lastHeight){
+                with(mBinding.videoDialogCommentConstrainEditAndSend) {
+                    if (keyBoardHeight > rootHeight * 0.25) {
+                        setPadding(
+                            paddingLeft,
+                            paddingTop,
+                            paddingRight,
+                            keyBoardHeight
+                        )
+                    } else {
+                        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom - lastHeight)
+                    }
+                }
+                lastHeight = keyBoardHeight
+            }
+        }
 
     }
 

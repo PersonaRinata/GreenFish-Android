@@ -1,5 +1,6 @@
 package com.handsome.module.aigc.ui.fragment
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,13 +40,30 @@ class AigcFragment : BaseFragment() {
 
     private fun initKeyBoard() {
 //        // 告诉系统不要自动调整布局以适应系统窗口装饰
-//        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
-//        mBinding.root.viewTreeObserver.addOnGlobalLayoutListener {
-//            val rootHeight = mBinding.root.height
-//            val rect = Rect()
-//            mBinding.root.getWindowVisibleDisplayFrame(rect)
-//            val keyBoardHeight = rootHeight - rect.bottom
-//        }
+//        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        // 这里默认为adjustSize，设不设置都可
+        var lastHeight = 0
+        mBinding.root.viewTreeObserver.addOnGlobalLayoutListener {
+            val rootHeight = mBinding.root.height
+            val rect = Rect()
+            mBinding.root.getWindowVisibleDisplayFrame(rect)
+            val keyBoardHeight = rootHeight - rect.bottom
+            if (keyBoardHeight != lastHeight){
+                with(mBinding.aigcFragmentAigcConstrain) {
+                    if (keyBoardHeight > rootHeight * 0.25) {
+                        setPadding(
+                            paddingLeft,
+                            paddingTop,
+                            paddingRight,
+                            keyBoardHeight - 48
+                        )
+                    } else {
+                        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom - lastHeight + 48)
+                    }
+                }
+                lastHeight = keyBoardHeight
+            }
+        }
     }
 
     private fun initRv() {
