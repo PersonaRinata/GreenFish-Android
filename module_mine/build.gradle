@@ -83,4 +83,8 @@ dependencies {
     implementation(project(":module_video:api_video"))
     //依赖Arouter注解处理器
     kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
+    implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 }

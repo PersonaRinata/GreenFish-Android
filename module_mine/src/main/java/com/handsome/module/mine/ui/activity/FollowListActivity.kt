@@ -105,13 +105,11 @@ class FollowListActivity : BaseActivity() {
         }
 
         lifecycleScope.launch {
-            mViewModel.followUser.collectLatest {data ->
-                if (data != null){
-                    if (data.isSuccess(this@FollowListActivity)){
-                        getData()  //刷新数据，用数据来说话
-                    }else{
-                        toast("网络异常")
-                    }
+            mViewModel.followUser.observing {data ->
+                if (data.isSuccess(this@FollowListActivity)){
+                    getData()  //刷新数据，用数据来说话
+                }else{
+                    toast("网络异常")
                 }
             }
         }

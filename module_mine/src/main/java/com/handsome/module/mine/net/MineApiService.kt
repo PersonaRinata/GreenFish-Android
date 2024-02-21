@@ -6,6 +6,7 @@ import com.handsome.module.mine.bean.FollowBean
 import com.handsome.module.mine.bean.JudgeDoctorBean
 import com.handsome.module.mine.bean.StatusBean
 import com.handsome.module.mine.bean.VideoListBean
+import io.reactivex.rxjava3.core.Single
 import okhttp3.MultipartBody
 import retrofit2.http.GET
 import retrofit2.http.Multipart
@@ -47,17 +48,17 @@ interface MineApiService {
 
     // 关注操作
     @POST("relation/action")
-    suspend fun followUser(
+    fun followUser(
         @Query("to_user_id") to_user_id: Long,
         @Query("action_type") action_type: Int,
-    ): StatusBean
+    ): Single<StatusBean>
 
     // 上传图片接口
     @Multipart
     @POST("user/avatar")
-    suspend fun uploadPhoto(
+    fun uploadPhoto(
         @Part data : MultipartBody.Part,
-    ) : StatusBean
+    ) : Single<StatusBean>
 
     @GET("user/judge/doctor")
     suspend fun judgeDoctor() : JudgeDoctorBean

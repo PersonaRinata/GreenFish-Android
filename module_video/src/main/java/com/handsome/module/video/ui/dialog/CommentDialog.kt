@@ -40,12 +40,12 @@ class CommentDialog : BaseBottomSheetDialogFragment() {
         var lastHeight = 0
         mBinding.root.viewTreeObserver.addOnGlobalLayoutListener {
             val root = mBinding.root.parent.parent.parent as ViewGroup
-            root.setPadding(0,0,0,0)
+            root.setPadding(0, 0, 0, 0)
             val rootHeight = root.height
             val rect = Rect()
             mBinding.root.getWindowVisibleDisplayFrame(rect)
             val keyBoardHeight = rootHeight - rect.bottom
-            if (keyBoardHeight != lastHeight){
+            if (keyBoardHeight != lastHeight) {
                 with(mBinding.videoDialogCommentConstrainEditAndSend) {
                     if (keyBoardHeight > rootHeight * 0.25) {
                         setPadding(
@@ -55,7 +55,12 @@ class CommentDialog : BaseBottomSheetDialogFragment() {
                             keyBoardHeight
                         )
                     } else {
-                        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom - lastHeight)
+                        setPadding(
+                            paddingLeft,
+                            paddingTop,
+                            paddingRight,
+                            paddingBottom - lastHeight
+                        )
                     }
                 }
                 lastHeight = keyBoardHeight
@@ -75,19 +80,19 @@ class CommentDialog : BaseBottomSheetDialogFragment() {
         return mBinding.root
     }
 
-    private fun getCommentData(){
+    private fun getCommentData() {
         mViewModel.getVideoComment(mVideoId)
     }
 
 
     private fun initObserve() {
         viewLifecycleOwner.lifecycleScope.launch(myCoroutineExceptionHandler) {
-            mViewModel.sendComment.collectLatest {
-                if (it != null){
-                    if (it.isSuccess(requireActivity())){
+            mViewModel.sendComment.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    if (it.isSuccess(requireActivity())) {
                         // 发布成功再次重新请求
                         getCommentData()
-                    }else{
+                    } else {
                         toast("发布失败")
                     }
                 }
@@ -96,14 +101,14 @@ class CommentDialog : BaseBottomSheetDialogFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             mViewModel.videoComment.collectLatest {
                 Log.d("lx", "videoFragment: observe${it}}")
-                if (it != null){
-                    if (it.isSuccess(requireActivity())){
+                if (it != null) {
+                    if (it.isSuccess(requireActivity())) {
                         mAdapter.submitList(it.comment_list)
-                        if (!it.comment_list.isNullOrEmpty()){
-                            val text =  "共${it.comment_list.size}条评论"
+                        if (!it.comment_list.isNullOrEmpty()) {
+                            val text = "共${it.comment_list.size}条评论"
                             mBinding.videoDialogCommentTvCommentNumber.text = text
                         }
-                    }else{
+                    } else {
                         toast("网络异常")
                     }
                 }
@@ -117,9 +122,9 @@ class CommentDialog : BaseBottomSheetDialogFragment() {
                 dialog?.cancel()
             }
             videoDialogCommentRv.apply {
-                layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
                 adapter = mAdapter.apply {
-                    setOnClickUser {userId ->
+                    setOnClickUser { userId ->
                         IMineService::class.impl.startPersonActivity(userId)
                     }
                 }
@@ -127,13 +132,16 @@ class CommentDialog : BaseBottomSheetDialogFragment() {
             videoDialogCommentTvSend.setOnClickListener {
                 val commentText = videoDialogCommentEtComment.text.toString().trim()
                 // 加入候选队列
-                if (commentText != "") mViewModel.sendComment(mVideoId,commentText)
+                if (commentText != "") {
+                    mViewModel.sendComment(mVideoId, commentText)
+                    videoDialogCommentEtComment.setText("")
+                }
             }
         }
     }
 
-    companion object{
-        fun newInstance(videoId : Long) = CommentDialog().apply {
+    companion object {
+        fun newInstance(videoId: Long) = CommentDialog().apply {
             arguments = bundleOf(
                 this::mVideoId.name to videoId
             )

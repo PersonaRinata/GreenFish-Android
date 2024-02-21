@@ -211,23 +211,19 @@ class MineFragment : BaseFragment() {
                 }
             }
         }
-        mViewModel.uploadImg.collectLaunch {
-            if (it != null) {
-                if (it.isSuccess(requireActivity())) {
-                    toast("头像更换成功")
-                } else {
-                    toast("网络错误")
-                }
+        mViewModel.uploadImg.observing {
+            if (it.isSuccess(requireActivity())) {
+                toast("头像更换成功")
+            } else {
+                toast("网络错误")
             }
         }
-        mViewModel.followUser.collectLaunch {
-            if (it != null) {
-                if (it.isSuccess(requireActivity())) {
-                    mIsFollow = !mIsFollow
-                    setFollowBg(mIsFollow)
-                } else {
-                    toast("网络错误")
-                }
+        mViewModel.followUser.observing {
+            if (it.isSuccess(requireActivity())) {
+                mIsFollow = !mIsFollow
+                setFollowBg(mIsFollow)
+            } else {
+                toast("网络错误")
             }
         }
     }

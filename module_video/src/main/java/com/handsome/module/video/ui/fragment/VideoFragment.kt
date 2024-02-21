@@ -1,7 +1,6 @@
 package com.handsome.module.video.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,6 @@ import com.handsome.module.search.R
 import com.handsome.module.search.databinding.VideoFragmentVideoBinding
 import com.handsome.module.video.ui.dialog.CommentDialog
 import com.handsome.module.video.ui.viewmodel.VideoFragmentViewModel
-import com.handsome.module.video.util.makeLog
 import xyz.doikki.videocontroller.StandardVideoController
 import xyz.doikki.videoplayer.player.BaseVideoView.SCREEN_SCALE_MATCH_PARENT
 
@@ -81,33 +79,26 @@ class VideoFragment : BaseFragment() {
     }
 
     private fun initObserve() {
-        mViewModel.videoLike.collectLaunch {
-            Log.d("lx", "videoFragment: like $it ")
-            if (it != null) {
-                if (it.isSuccess(requireActivity())) {
-                    mBinding.videoFragmentTvLikeNumber.text = if (isLike) {
-                        (mBinding.videoFragmentTvLikeNumber.text.toString().toInt() - 1).toString()
-                    } else {
-                        (mBinding.videoFragmentTvLikeNumber.text.toString().toInt() + 1).toString()
-                    }
-                    // 最后才改变操作之后的喜欢与不喜欢
-                    isLike = !isLike
-                    makeLog("islike=${isLike}")
-                    setLikeBg(isLike)
+        mViewModel.videoLike.observing {
+            if (it.isSuccess(requireActivity())) {
+                mBinding.videoFragmentTvLikeNumber.text = if (isLike) {
+                    (mBinding.videoFragmentTvLikeNumber.text.toString().toInt() - 1).toString()
                 } else {
-                    toast("点赞失败")
+                    (mBinding.videoFragmentTvLikeNumber.text.toString().toInt() + 1).toString()
                 }
+                // 最后才改变操作之后的喜欢与不喜欢
+                isLike = !isLike
+                setLikeBg(isLike)
+            } else {
+                toast("点赞失败")
             }
         }
-        mViewModel.followUser.collectLaunch {
-            Log.d("lx", "videoFragment: follow $it ")
-            if (it != null) {
-                if (it.isSuccess(requireActivity())) {
-                    isFollow = !isFollow
-                    setFollowBg(isFollow)
-                } else {
-                    toast("网络异常")
-                }
+        mViewModel.followUser.observing {
+            if (it.isSuccess(requireActivity())) {
+                isFollow = !isFollow
+                setFollowBg(isFollow)
+            } else {
+                toast("网络异常")
             }
         }
     }

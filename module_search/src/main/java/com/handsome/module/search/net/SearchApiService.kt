@@ -4,6 +4,7 @@ import com.handsome.lib.util.network.ApiGenerator
 import com.handsome.lib.util.network.ApiStatus
 import com.handsome.module.search.bean.SearchUserBean
 import com.handsome.module.search.bean.SearchVideoBean
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -17,10 +18,10 @@ interface SearchApiService {
 
     // 关注操作
     @POST("relation/action")
-    suspend fun followUser(
+    fun followUser(
         @Query("to_user_id") to_user_id: Long,
         @Query("action_type") action_type: Int,
-    ): ApiStatus
+    ): Single<ApiStatus>
 
     companion object{
         val INSTANCE by lazy {
