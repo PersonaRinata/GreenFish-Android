@@ -3,7 +3,6 @@ package com.handsome.module.mine.net
 import com.handsome.api.video.bean.ApiWrapperUserBean
 import com.handsome.lib.util.network.ApiGenerator
 import com.handsome.module.mine.bean.FollowBean
-import com.handsome.module.mine.bean.JudgeDoctorBean
 import com.handsome.module.mine.bean.StatusBean
 import com.handsome.module.mine.bean.VideoListBean
 import io.reactivex.rxjava3.core.Single
@@ -59,9 +58,6 @@ interface MineApiService {
     fun uploadPhoto(
         @Part data : MultipartBody.Part,
     ) : Single<StatusBean>
-
-    @GET("user/judge/doctor")
-    suspend fun judgeDoctor() : JudgeDoctorBean
 
     companion object {
         val INSTANCE by lazy {

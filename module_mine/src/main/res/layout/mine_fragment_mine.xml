@@ -84,6 +84,32 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/mine_fragment_mine_linear_out_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="13.4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="15.45dp"
+                android:layout_height="17dp"
+                android:layout_gravity="center"
+                android:src="@drawable/mine_ic_out_login" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="退出"
+                android:textColor="@color/mine_out_login_text_color"
+                android:textSize="9.87sp" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

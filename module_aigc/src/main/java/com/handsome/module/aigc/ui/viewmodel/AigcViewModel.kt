@@ -7,6 +7,9 @@ import com.handsome.lib.util.extention.catchException
 import com.handsome.lib.util.extention.unsafeSubscribeBy
 import com.handsome.module.aigc.bean.AskAiBean
 import com.handsome.module.aigc.bean.AskAiHistoryBean
+import com.handsome.module.aigc.bean.DifferentModel
+import com.handsome.module.aigc.bean.JudgeDoctorBean
+import com.handsome.module.aigc.bean.ModelChatBean
 import com.handsome.module.aigc.bean.RecommendDoctorBean
 import com.handsome.module.aigc.net.AigcApiService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -25,6 +28,33 @@ class AigcViewModel : BaseViewModel() {
     private val _recommendDoctor = MutableLiveData<Pair<String,RecommendDoctorBean>>()
     val recommendDoctor : LiveData<Pair<String,RecommendDoctorBean>>
         get() = _recommendDoctor
+
+    private val _isDoctor = MutableLiveData<JudgeDoctorBean>()
+    val isDoctor : LiveData<JudgeDoctorBean>
+        get() = _isDoctor
+
+
+    private val _doctorModel = MutableLiveData(DifferentModel.COMMON)
+    val doctorModel : LiveData<DifferentModel>
+        get() = _doctorModel
+
+    private val _askModelQuestion = MutableLiveData<Pair<String,ModelChatBean>>()
+    val askModelQuestion : LiveData<Pair<String,ModelChatBean>>
+        get() = _askModelQuestion
+
+    fun setDoctorModel(differentModel: DifferentModel){
+        _doctorModel.value = differentModel
+    }
+
+    fun askModelQuestion(category: String,query : String){
+        AigcApiService.INSTANCE.postModelChat(query,category)
+            .catchException {}
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .unsafeSubscribeBy {
+                _askModelQuestion.postValue(query to it)
+            }
+    }
 
     fun askQuestion(content : String){
         AigcApiService.INSTANCE.askQuestion(content)
@@ -53,6 +83,16 @@ class AigcViewModel : BaseViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .unsafeSubscribeBy {
                 _recommendDoctor.postValue(content to it)
+            }
+    }
+
+    fun isDoctor(){
+        AigcApiService.INSTANCE.judgeDoctor()
+            .catchException {}
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .unsafeSubscribeBy {
+                _isDoctor.postValue(it)
             }
     }
 

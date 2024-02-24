@@ -177,6 +177,10 @@ class VideoFragment : BaseFragment() {
         }
     }
 
+    private fun updateLikeStatus(){
+        mViewModel.updateLikeNum(mVideo.id, isLike)
+    }
+
     private fun initLike() {
         with(mBinding) {
             videoFragmentTvLikeNumber.text = mVideo.favorite_count.toString()
@@ -184,7 +188,12 @@ class VideoFragment : BaseFragment() {
             setLikeBg(isLike)
             with(videoFragmentCommentImgLike) {
                 setOnClickListener {
-                    mViewModel.updateLikeNum(mVideo.id, isLike)
+                    updateLikeStatus()
+                }
+            }
+            videoFragmentVideoGroupLove.setOnDoubleTap {
+                if (!isLike){
+                    updateLikeStatus()
                 }
             }
         }

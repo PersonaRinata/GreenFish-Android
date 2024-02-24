@@ -42,6 +42,7 @@ import com.handsome.lib.util.service.impl
 import com.handsome.module.mine.R
 import com.handsome.module.mine.databinding.MineFragmentMineBinding
 import com.handsome.module.mine.ui.activity.FollowListActivity
+import com.handsome.module.mine.ui.dialog.QuitLoginDialog
 import com.handsome.module.mine.ui.viewmodel.MineViewModel
 import com.yalantis.ucrop.UCrop
 import okhttp3.MultipartBody
@@ -130,6 +131,17 @@ class MineFragment : BaseFragment() {
                     }
                 }
             }
+            mineFragmentMineLinearOutLogin.setOnClickListener {
+                QuitLoginDialog.newInstance().apply {
+                    setOnClickConfirm {
+                        dismiss()
+                        IAccountService::class.impl.logout(requireActivity())
+                    }
+                    setOnClickCancel {
+                        dismiss()
+                    }
+                }.show(childFragmentManager,"QuitLoginDialog")
+            }
         }
     }
 
@@ -194,7 +206,6 @@ class MineFragment : BaseFragment() {
                     mCurrentUserInfo = userInfo
                     with(mBinding) {
                         mineFragmentMineTvUserName.text = userInfo.nickname
-                        Log.d("lx","(MineFragment.kt:199)-->>${userInfo.avatar}")
                         if (userInfo.avatar != "") mineFragmentMineImgUser.setImageFromUrl(userInfo.avatar,R.drawable.mine_ic_user,R.drawable.mine_ic_user)
                         mineFragmentMineTvDescribe.text = userInfo.signature
                         mineFragmentMineTvFollowNum.text = userInfo.follow_count.toString()

@@ -1,5 +1,6 @@
 package com.handsome.lib.account.service
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import androidx.core.content.edit
@@ -13,11 +14,11 @@ import com.handsome.lib.api.server.ACCOUNT_SERVICE
 import com.handsome.lib.api.server.Value
 import com.handsome.lib.api.server.bean.LoginBean
 import com.handsome.lib.api.server.service.IAccountService
+import com.handsome.lib.api.server.service.ILoginService
 import com.handsome.lib.util.extention.unsafeSubscribeBy
 import com.handsome.lib.util.network.ApiGenerator
 import com.handsome.lib.util.service.impl
 import com.handsome.lib.util.util.getSp
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -80,14 +81,18 @@ class AccountServiceImpl : IAccountService {
       .map { it }
   }
   
-  override fun logout(): Completable {
-    return mApiService.logout()
-      .doOnSuccess {
-        mCookieService.clearCookie()
-        emitUserInfo(null)
-      }.flatMapCompletable {
-        Completable.complete()
-      }.subscribeOn(Schedulers.io())
+  override fun logout(activity: Activity){
+//    return mApiService.logout()
+//      .doOnSuccess {
+//        mCookieService.clearCookie()
+//        emitUserInfo(null)
+//      }.flatMapCompletable {
+//        Completable.complete()
+//      }.subscribeOn(Schedulers.io())
+    emitUserInfo(null)
+    ILoginService::class.impl.startLoginActivity()
+    activity.finishAfterTransition()
+
   }
   
   override fun register(

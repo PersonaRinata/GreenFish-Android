@@ -1,4 +1,4 @@
-package com.handsome.module.mine.bean
+package com.handsome.module.aigc.bean
 
 import com.handsome.lib.util.network.IApiWrapper
 

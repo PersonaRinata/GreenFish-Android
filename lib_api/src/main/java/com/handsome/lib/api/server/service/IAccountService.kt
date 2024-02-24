@@ -1,9 +1,9 @@
 package com.handsome.lib.api.server.service
 
+import android.app.Activity
 import com.alibaba.android.arouter.facade.template.IProvider
 import com.handsome.lib.api.server.Value
 import com.handsome.lib.api.server.bean.LoginBean
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
@@ -29,7 +29,7 @@ interface IAccountService : IProvider {
         password: String
     ): Single<LoginBean>
 
-    fun logout(): Completable
+    fun logout(activity: Activity)
 
     fun register(
         username: String,

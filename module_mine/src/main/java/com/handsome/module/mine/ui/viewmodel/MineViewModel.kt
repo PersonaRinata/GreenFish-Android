@@ -7,7 +7,6 @@ import com.handsome.lib.util.base.BaseViewModel
 import com.handsome.lib.util.extention.catchException
 import com.handsome.lib.util.extention.interceptHttpException
 import com.handsome.lib.util.extention.unsafeSubscribeBy
-import com.handsome.module.mine.bean.JudgeDoctorBean
 import com.handsome.module.mine.bean.StatusBean
 import com.handsome.module.mine.net.MineApiService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -26,9 +25,6 @@ class MineViewModel : BaseViewModel() {
     private val _uploadImg = MutableLiveData<StatusBean>()
     val uploadImg : LiveData<StatusBean>
         get() = _uploadImg
-
-    private val _isDoctor = MutableStateFlow<JudgeDoctorBean?>(null)
-    val isDoctor get() = _isDoctor.asStateFlow()
 
     private val _mutableFollowUser = MutableLiveData<StatusBean>()
     val followUser : LiveData<StatusBean>

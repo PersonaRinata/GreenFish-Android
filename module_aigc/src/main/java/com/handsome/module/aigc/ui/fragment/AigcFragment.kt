@@ -13,9 +13,12 @@ import com.handsome.lib.api.server.service.IAccountService
 import com.handsome.lib.api.server.service.IChatService
 import com.handsome.lib.util.base.BaseFragment
 import com.handsome.lib.util.extention.toast
+import com.handsome.lib.util.extention.visible
 import com.handsome.lib.util.service.impl
+import com.handsome.module.aigc.bean.DifferentModel
 import com.handsome.module.aigc.databinding.AigcFragmentAigcBinding
 import com.handsome.module.aigc.ui.adapter.MessageAdapter
+import com.handsome.module.aigc.ui.dialog.AigcModelBottomDialogFragment
 import com.handsome.module.aigc.ui.viewmodel.AigcViewModel
 
 @Route(name = MAIN_AIGC, path = MAIN_AIGC)
@@ -33,9 +36,16 @@ class AigcFragment : BaseFragment() {
         initClick()
         initRv()
         initKeyBoard()
+        initAskModel()
         initObserve()
         getHistoryData()
+        getIsDoctor()
         return mBinding.root
+    }
+
+    private fun initAskModel() {
+        mBinding.aigcFragmentAigcTvModel.text =
+            mViewModel.doctorModel.value?.getChineseName() ?: DifferentModel.COMMON.getChineseName()
     }
 
     private fun initKeyBoard() {
@@ -47,8 +57,9 @@ class AigcFragment : BaseFragment() {
             val rootHeight = mBinding.root.height
             val rect = Rect()
             mBinding.root.getWindowVisibleDisplayFrame(rect)
-            val keyBoardHeight = rootHeight - rect.bottom
-            if (keyBoardHeight != lastHeight){
+            var keyBoardHeight = rootHeight - rect.bottom
+            if (keyBoardHeight < 0) keyBoardHeight = 0
+            if (keyBoardHeight != lastHeight) {
                 with(mBinding.aigcFragmentAigcConstrain) {
                     if (keyBoardHeight > rootHeight * 0.25) {
                         setPadding(
@@ -58,7 +69,12 @@ class AigcFragment : BaseFragment() {
                             keyBoardHeight - 48
                         )
                     } else {
-                        setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom - lastHeight + 48)
+                        setPadding(
+                            paddingLeft,
+                            paddingTop,
+                            paddingRight,
+                            paddingBottom - lastHeight + 48
+                        )
                     }
                 }
                 lastHeight = keyBoardHeight
@@ -102,14 +118,32 @@ class AigcFragment : BaseFragment() {
                 toast("输入不能为空哦~")
             }
         }
+        mBinding.aigcFragmentAigcFrameTransform.setOnClickListener {
+            AigcModelBottomDialogFragment.newInstance(
+                mViewModel.doctorModel.value ?: DifferentModel.COMMON
+            ).apply {
+                setOnClickConfirm {
+                    mViewModel.setDoctorModel(it)
+                    dismiss()
+                }
+            }.show(childFragmentManager, "AigcModelBottomDialogFragment")
+        }
     }
 
     private fun getHistoryData() {
         mViewModel.aigcHistory()
     }
 
+    private fun getIsDoctor() {
+        mViewModel.isDoctor()
+    }
+
     private fun askAiQuestion(content: String) {
-        mViewModel.askQuestion(content)
+        if (mViewModel.doctorModel.value == DifferentModel.COMMON) {
+            mViewModel.askQuestion(content)
+        } else {
+            mViewModel.askModelQuestion(mViewModel.doctorModel.value!!.getEnglishName(), content)
+        }
         addHistoryToAdapter(listOf(content))
     }
 
@@ -169,6 +203,26 @@ class AigcFragment : BaseFragment() {
             } else {
                 toast("网络异常，请重试~")
             }
+        }
+        mViewModel.isDoctor.observing {
+            if (it.isSuccess(requireActivity())) {
+                if (it.department != "") {
+                    mBinding.aigcFragmentAigcFrameTransform.visible()
+                }
+            } else {
+                toast("网络异常，请重试~")
+            }
+        }
+        mViewModel.doctorModel.observing {
+            mBinding.aigcFragmentAigcTvModel.text = it.getChineseName()
+        }
+        mViewModel.askModelQuestion.observing {
+//            if (it.second.isSuccess(requireActivity())){
+            addHistoryToAdapter(listOf(it.second.answer))
+            scrollToRvEnd()
+//            }else{
+//                toast("网络异常。请重试~")
+//            }
         }
     }
 }

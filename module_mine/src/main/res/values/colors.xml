@@ -28,4 +28,10 @@
     <color name="mine_health_record_hint_text_color">#5FA6AA</color>
 
     <color name="mine_official_text_color">#00A584</color>
+
+    <color name="mine_out_login_text_color">#00A584</color>
+
+    <color name="mine_cancel_text_color">#696969</color>
+    <color name="mine_cancel_bg_color">#DDDDDD</color>
+    <color name="mine_confirm_bg_color">#34E4C0</color>
 </resources>

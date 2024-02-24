@@ -22,4 +22,9 @@
     <color name="aigc_doctor_department_bg">#75CCC7C7</color>
 
     <color name="aigc_doctor_recommend_btn_bg">#2DD6B4</color>
+
+    <color name="aigc_transform_btn_color">#52D0D0</color>
+
+    <color name="aigc_model_un_choose_color">#F1F3F6</color>
+    <color name="aigc_model_choose_color">#3FB5A7</color>
 </resources>

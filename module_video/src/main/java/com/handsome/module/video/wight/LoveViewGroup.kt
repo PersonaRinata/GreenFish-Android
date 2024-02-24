@@ -26,14 +26,18 @@ class LoveViewGroup @JvmOverloads constructor(
             override fun onDoubleTap(e: MotionEvent): Boolean {
                 // 在此处处理双击事件
                 // 双击就点赞
+                mOnDoubleTap?.invoke()
                 show(e.x, e.y)
                 return true
             }
 
-            override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
-                return super.onSingleTapConfirmed(e)
-            }
         })
+    }
+
+    private var mOnDoubleTap : (() -> Unit)? = null
+
+    fun setOnDoubleTap(onDoubleTap : () -> Unit){
+        this.mOnDoubleTap = onDoubleTap
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
