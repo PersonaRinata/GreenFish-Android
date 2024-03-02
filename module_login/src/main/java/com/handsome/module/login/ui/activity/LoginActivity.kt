@@ -61,7 +61,7 @@ class LoginActivity : BaseActivity() {
                     finishAfterTransition() // 其他页面可能返回动画，所以使用这个方法
                 }
                 is LoginViewModel.LoginEvent.Fail -> {
-                    toast(it.error.message)
+                    toast("登录失败，请重新登录")
                 }
             }
         }

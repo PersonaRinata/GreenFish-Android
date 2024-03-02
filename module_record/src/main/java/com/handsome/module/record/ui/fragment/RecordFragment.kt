@@ -80,8 +80,10 @@ class RecordFragment : BaseFragment() {
             val bodyInfo =  userInfo.body_info
             bodyInfo?.let {
                 val updateTime = timeToDate(it.update_time)
-                recordFragmentRecordTvTallValue.text = it.height
-                recordFragmentRecordTvWeightValue.text = it.weight
+                val height = it.height + "cm"
+                val weight = it.weight + "kg"
+                recordFragmentRecordTvTallValue.text = height
+                recordFragmentRecordTvWeightValue.text = weight
                 recordFragmentRecordTvSugarValue.text = it.blood_sugar
                 recordFragmentRecordTvSugarUpdateTime.text = updateTime
                 recordFragmentRecordTvBloodPressureValue.text = it.blood_pressure

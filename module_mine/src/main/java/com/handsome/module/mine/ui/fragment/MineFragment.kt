@@ -66,7 +66,10 @@ class MineFragment : BaseFragment() {
     ): View {
         mCurrentUserId = requireArguments().getLong(this::mCurrentUserId.name)
         // 如果是默认值，则获取用户的userId
-        if (mCurrentUserId == -0L) mCurrentUserId = mUserInfo!!.user_id
+        if (mCurrentUserId == -0L){
+            mCurrentUserId = mUserInfo!!.user_id
+            mBinding.mineFragmentMineLinearOutLogin.visible()
+        }
         initObserve()
         initView()
         return mBinding.root
@@ -224,6 +227,7 @@ class MineFragment : BaseFragment() {
         }
         mViewModel.uploadImg.observing {
             if (it.isSuccess(requireActivity())) {
+                getUserInfo()
                 toast("头像更换成功")
             } else {
                 toast("网络错误")

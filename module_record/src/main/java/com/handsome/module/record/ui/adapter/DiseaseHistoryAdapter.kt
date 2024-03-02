@@ -41,7 +41,6 @@ class DiseaseHistoryAdapter :
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(data : IssueListBean.IssueList.DiseaseRelation.HistoryDisease){
             mBinding.recordItemDiseaseHistoryResult.text = data.symptom
-            mBinding.recordItemDiseaseHistoryTvHintDoctor.text = "张春生"
             val formattedDateTime = timeToDate(data.update_time)
             mBinding.recordItemDiseaseHistoryTvTime.text = formattedDateTime
             val sb = StringBuilder()
@@ -49,6 +48,7 @@ class DiseaseHistoryAdapter :
                 sb.append(it).append("、")
             }
             mBinding.recordItemDiseaseHistoryTvMedicines.text = sb.substring(0,sb.length-1).toString()
+            mBinding.recordItemDiseaseHistoryTvDoctors.text = data.department
         }
     }
 
